@@ -1,9 +1,14 @@
+import { Footer, Header, Main } from "@/modules/landing-page";
 import { FC, ReactElement } from "react";
 
-type T = {};
-
-const LandingPage: FC<T> = (): ReactElement => {
-  return <></>;
+const LandingPage: FC = (): ReactElement => {
+  return (
+    <>
+      <Header />
+      <Main />
+      <Footer />
+    </>
+  );
 };
 
 export default LandingPage;
