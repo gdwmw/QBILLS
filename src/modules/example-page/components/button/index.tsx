@@ -1,6 +1,6 @@
-import { FC, ReactElement } from "react";
 import { Button, ButtonCVA } from "@/components";
 import { type VariantProps } from "class-variance-authority";
+import { FC, ReactElement } from "react";
 
 const colors = ["default", "black", "white", "green", "blue", "yellow", "red", "disabled"];
 const sizes = ["sm", "md", "lg", "xl", "2xl", "3xl"];
@@ -53,7 +53,7 @@ export const ExampleButton: FC = (): ReactElement => {
         </div>
       ))}
 
-      <section className="flex gap-5">
+      <div className="flex gap-5">
         <Button solid={"default"} size={"md"} widthFull>
           Button
         </Button>
@@ -63,7 +63,7 @@ export const ExampleButton: FC = (): ReactElement => {
         <Button solid={"disabled"} size={"md"} widthFull disabled>
           Button
         </Button>
-      </section>
+      </div>
     </section>
   );
 };
