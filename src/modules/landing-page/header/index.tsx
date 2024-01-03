@@ -34,7 +34,7 @@ export const Header: FC<T> = (): ReactElement => {
             <Link href={"#FAQ"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
               FAQ
             </Link>
-            <Link href={"#Get-App"} className={ButtonCVA({ solid: "default", size: "sm", widthFull: true, className: "w-[144px] font-semibold" })}>
+            <Link href={"#Get-App"} className={ButtonCVA({ solid: "default", size: "sm", widthFull: true, className: "w-36 font-semibold" })}>
               Get App
             </Link>
           </div>
