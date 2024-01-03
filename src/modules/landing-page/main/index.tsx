@@ -1,5 +1,10 @@
 import Ellipse from "@/public/assets/images/landing-page/hero-section/ellipse.svg";
-import Mockup from "@/public/assets/images/landing-page/hero-section/mockup.png";
+import Mockup1 from "@/public/assets/images/landing-page/hero-section/mockup.png";
+import Mockup2 from "@/public/assets/images/landing-page/our-feature/mockup-1.png";
+import Mockup3 from "@/public/assets/images/landing-page/our-feature/mockup-2.png";
+import Mockup4 from "@/public/assets/images/landing-page/our-feature/mockup-3.png";
+import Mockup5 from "@/public/assets/images/landing-page/our-feature/mockup-4.png";
+import Mockup6 from "@/public/assets/images/landing-page/our-feature/mockup-5.png";
 import logoQbills from "@/public/assets/images/logos/brown/logo-2.png";
 import Image from "next/image";
 import { FC, ReactElement } from "react";
@@ -17,7 +22,7 @@ export const Main: FC<T> = (): ReactElement => {
         <Image src={Ellipse} alt="Ellipse" priority className="absolute right-0 top-0 -z-10" />
 
         <div className="h-full w-full px-24">
-          <div className="grid h-full w-full grid-cols-2 gap-10">
+          <div className="grid h-full w-full grid-cols-2 gap-20">
             <div className="flex flex-col justify-center gap-5 text-N1">
               <h1 className="text-2xl font-bold">Point Of Sales</h1>
 
@@ -36,7 +41,7 @@ export const Main: FC<T> = (): ReactElement => {
             </div>
 
             <div className="flex items-center justify-end">
-              <Image src={Mockup} alt="Mockup" width={700} quality={50} priority />
+              <Image src={Mockup1} alt="Mockup" width={700} quality={50} priority />
             </div>
           </div>
         </div>
@@ -55,7 +60,7 @@ export const Main: FC<T> = (): ReactElement => {
               </p>
             </div>
 
-            <div className="flex flex-col items-end gap-14">
+            <div className="flex flex-col items-center gap-14">
               <div className="flex gap-5">
                 <div className="w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
@@ -90,6 +95,86 @@ export const Main: FC<T> = (): ReactElement => {
                   <h2 className="text-xl font-semibold">Track Transaction History</h2>
                   <p className="text-sm">The use of membership provides its users with coupons, discounts, rewards, loyalty points.</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="bg-P1">
+        <div className="mx-auto h-0.5 w-36 rounded-full bg-N7" />
+      </div>
+
+      {/* OUR FEATURE */}
+      <section className="bg-P1 py-36">
+        <div className="container mx-auto px-5">
+          <h1 className="mb-36 text-center text-6xl font-semibold">Our Feature</h1>
+
+          <div className="space-y-20">
+            <div className="grid grid-cols-2 gap-20">
+              <div className="flex flex-col justify-center space-y-1">
+                <h2 className="text-4xl font-semibold text-P4">Organize Your Product</h2>
+                <p className="text-sm">
+                  Take full control of your products with intuitive organization tools. Categorize, label, price, description and sort your inventory
+                  with ease, ensuring every item is precisely where it needs to be.
+                </p>
+              </div>
+              <div className="flex items-center justify-center">
+                <Image src={Mockup2} alt="Mockup" width={500} quality={50} loading="lazy" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-20">
+              <div className="flex items-center justify-center">
+                <Image src={Mockup3} alt="Mockup" width={500} quality={50} loading="lazy" />
+              </div>
+              <div className="flex flex-col justify-center space-y-1">
+                <h2 className="text-4xl font-semibold text-P4">Manage Your Own Account Cashier</h2>
+                <p className="text-sm">
+                  Create personalized accounts for each cashier. Monitor performance, track sales, and manage permissions seamlessly for a tailored
+                  experience. Meet the game-changer in your point-of-sale experience: our advanced Account Cashier Management feature! Take control of
+                  transactions, accountability, and cashier performance effortlessly.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-20">
+              <div className="flex flex-col justify-center space-y-1">
+                <h2 className="text-4xl font-semibold text-P4">Track Transaction History</h2>
+                <p className="text-sm">
+                  Stay updated with real-time reporting on cash flow and sales by cashier. Ensure accuracy and accountability in every transaction.
+                  Tie transactions to specific cashiers for a transparent and traceable record of sales.
+                </p>
+              </div>
+              <div className="flex items-center justify-center">
+                <Image src={Mockup4} alt="Mockup" width={500} quality={50} loading="lazy" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-20">
+              <div className="flex items-center justify-center">
+                <Image src={Mockup5} alt="Mockup" width={500} quality={50} loading="lazy" />
+              </div>
+              <div className="flex flex-col justify-center space-y-1">
+                <h2 className="text-4xl font-semibold text-P4">Manage Membership from Dashboard</h2>
+                <p className="text-sm">
+                  Quickly locate and access member profiles with robust search functionalities. Seamlessly retrieve customer information whenever you
+                  need it.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-20">
+              <div className="flex flex-col justify-center space-y-1">
+                <h2 className="text-4xl font-semibold text-P4">Analyze Sales Report</h2>
+                <p className="text-sm">
+                  Elevate your business strategy with our powerful Sales Report feature! Dive deep into your sales performance, understand trends, and
+                  make data-driven decisions effortlessly, all within your point-of-sale application. Monitor revenue streams and track profitability
+                  effortlessly. Understand where your sales are coming from and identify areas for growth.
+                </p>
+              </div>
+              <div className="flex items-center justify-center">
+                <Image src={Mockup5} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
             </div>
           </div>
