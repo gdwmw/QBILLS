@@ -25,7 +25,7 @@ export const Header: FC<T> = (): ReactElement => {
             <Link href={"#Home"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
               Home
             </Link>
-            <Link href={"#About-Us"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
+            <Link href={"#About-Us"} className={ButtonCVA({ ghost: "default", className: "whitespace-nowrap font-semibold" })}>
               About Us
             </Link>
             <Link href={"#Our-Feature"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
@@ -34,9 +34,12 @@ export const Header: FC<T> = (): ReactElement => {
             <Link href={"#FAQ"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
               FAQ
             </Link>
-            <Link href={"#Get-App"} className={ButtonCVA({ solid: "default", size: "sm", widthFull: true, className: "w-36 font-semibold" })}>
-              Get App
-            </Link>
+
+            <div className="w-36">
+              <Link href={"#Get-App"} className={ButtonCVA({ solid: "default", size: "sm", widthFull: true, className: "font-semibold" })}>
+                Get App
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
