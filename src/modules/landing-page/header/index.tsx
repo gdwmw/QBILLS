@@ -28,7 +28,7 @@ export const Header: FC<T> = (): ReactElement => {
             <Link href={"#About-Us"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
               About Us
             </Link>
-            <Link href={"#Features"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
+            <Link href={"#Our-Feature"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
               Features
             </Link>
             <Link href={"#FAQ"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>

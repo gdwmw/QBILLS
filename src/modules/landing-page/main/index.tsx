@@ -18,8 +18,8 @@ export const Main: FC<T> = (): ReactElement => {
     <main>
       {/* HERO SECTION */}
       <section className="relative -z-10 h-screen w-full overflow-hidden bg-gradient-to-r from-P3 to-P4">
-        <Image src={logoQbills} alt="Qbills" width={500} priority className="absolute left-0 top-0 -z-10 -rotate-12 opacity-20" />
-        <Image src={Ellipse} alt="Ellipse" priority className="absolute right-0 top-0 -z-10" />
+        <Image src={logoQbills} alt="Qbills" width={500} quality={30} priority className="absolute left-0 top-0 -z-10 -rotate-12 opacity-20" />
+        <Image src={Ellipse} alt="Ellipse" quality={30} priority className="absolute right-0 top-0 -z-10" />
 
         <div className="h-full w-full px-24">
           <div className="grid h-full w-full grid-cols-2 gap-20">
@@ -53,6 +53,7 @@ export const Main: FC<T> = (): ReactElement => {
           <div className="grid grid-cols-2 gap-20">
             <div className="flex flex-col justify-center gap-5">
               <h1 className="text-6xl font-semibold">About Us</h1>
+
               <p>
                 Elevate your sales strategy and delight customers with our state-of-the-art POS application, offering a seamless and user-friendly
                 interface for enhanced transactions. Qbills is here to be a solution for your business, features are available to make your work
@@ -62,7 +63,7 @@ export const Main: FC<T> = (): ReactElement => {
 
             <div className="flex flex-col items-center gap-14">
               <div className="flex gap-5">
-                <div className="w-[335px] space-y-1">
+                <div className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaBoxOpen />
                   </i>
@@ -70,7 +71,7 @@ export const Main: FC<T> = (): ReactElement => {
                   <p className="text-sm">You have the option to request food through the Qbilss POS application.</p>
                 </div>
 
-                <div className="w-[335px] space-y-1">
+                <div className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaUserCircle />
                   </i>
@@ -80,7 +81,7 @@ export const Main: FC<T> = (): ReactElement => {
               </div>
 
               <div className="flex gap-5">
-                <div className="w-[335px] space-y-1">
+                <div className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaShop />
                   </i>
@@ -88,7 +89,7 @@ export const Main: FC<T> = (): ReactElement => {
                   <p className="text-sm">In the admin features there are product management features for coffee shops.</p>
                 </div>
 
-                <div className="w-[335px] space-y-1">
+                <div className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaMoneyBills />
                   </i>
@@ -106,7 +107,7 @@ export const Main: FC<T> = (): ReactElement => {
       </div>
 
       {/* OUR FEATURE */}
-      <section className="bg-P1 py-36">
+      <section id="Our-Feature" className="bg-P1 py-36">
         <div className="container mx-auto px-5">
           <h1 className="mb-36 text-center text-6xl font-semibold">Our Feature</h1>
 
@@ -174,7 +175,7 @@ export const Main: FC<T> = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Image src={Mockup5} alt="Mockup" width={500} quality={50} loading="lazy" />
+                <Image src={Mockup6} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
             </div>
           </div>
