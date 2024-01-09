@@ -181,6 +181,19 @@ export const Main: FC<T> = (): ReactElement => {
           </div>
         </div>
       </section>
+
+      <div className="bg-P1">
+        <div className="mx-auto h-0.5 w-36 rounded-full bg-N7" />
+      </div>
+
+      {/* FAQ */}
+      <section className="bg-P1 py-36">
+        <div className="container mx-auto px-5">
+          <h1 className="mb-36 text-center text-6xl font-semibold">Frequently Asked Questions (FAQ)</h1>
+
+          <div></div>
+        </div>
+      </section>
     </main>
   );
 };
