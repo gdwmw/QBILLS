@@ -1,9 +1,10 @@
-import { ExampleButton } from "@/modules/example-page/components";
+import { ExampleButton, ExampleIconButton } from "@/modules/example-page/components";
 import { FC, ReactElement } from "react";
 
 const ExamplePage: FC = (): ReactElement => {
   return (
-    <main className="p-5">
+    <main className="space-y-5 p-5">
+      <ExampleIconButton />
       <ExampleButton />
     </main>
   );
