@@ -10,6 +10,7 @@ import Image from "next/image";
 import { FC, ReactElement } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxOpen, FaMoneyBills, FaShop } from "react-icons/fa6";
+import FAQ from "./FAQ";
 
 type T = {};
 
@@ -181,6 +182,13 @@ export const Main: FC<T> = (): ReactElement => {
           </div>
         </div>
       </section>
+
+      <div className="bg-P1">
+        <div className="mx-auto h-0.5 w-36 rounded-full bg-N7" />
+      </div>
+
+      {/* FAQ */}
+      <FAQ />
     </main>
   );
 };
