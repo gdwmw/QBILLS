@@ -5,6 +5,9 @@ import Mockup3 from "@/public/assets/images/landing-page/our-feature/mockup-2.pn
 import Mockup4 from "@/public/assets/images/landing-page/our-feature/mockup-3.png";
 import Mockup5 from "@/public/assets/images/landing-page/our-feature/mockup-4.png";
 import Mockup6 from "@/public/assets/images/landing-page/our-feature/mockup-5.png";
+import Mockup7 from "@/public/assets/images/landing-page/get-app/mockup.png";
+import AppStore from "@/public/assets/images/landing-page/get-app/appstore.png";
+import GooglePlay from "@/public/assets/images/landing-page/get-app/googleplay.png";
 import logoQbills from "@/public/assets/images/logos/brown/logo-2.png";
 import Image from "next/image";
 import { FC, ReactElement } from "react";
@@ -114,7 +117,7 @@ export const Main: FC<T> = (): ReactElement => {
 
           <div className="space-y-20">
             <div className="grid grid-cols-2 gap-20">
-              <div className="flex flex-col justify-center space-y-1">
+              <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Organize Your Product</h2>
                 <p className="text-sm">
                   Take full control of your products with intuitive organization tools. Categorize, label, price, description and sort your inventory
@@ -130,7 +133,7 @@ export const Main: FC<T> = (): ReactElement => {
               <div className="flex items-center justify-center">
                 <Image src={Mockup3} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
-              <div className="flex flex-col justify-center space-y-1">
+              <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Manage Your Own Account Cashier</h2>
                 <p className="text-sm">
                   Create personalized accounts for each cashier. Monitor performance, track sales, and manage permissions seamlessly for a tailored
@@ -141,7 +144,7 @@ export const Main: FC<T> = (): ReactElement => {
             </div>
 
             <div className="grid grid-cols-2 gap-20">
-              <div className="flex flex-col justify-center space-y-1">
+              <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Track Transaction History</h2>
                 <p className="text-sm">
                   Stay updated with real-time reporting on cash flow and sales by cashier. Ensure accuracy and accountability in every transaction.
@@ -157,7 +160,7 @@ export const Main: FC<T> = (): ReactElement => {
               <div className="flex items-center justify-center">
                 <Image src={Mockup5} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
-              <div className="flex flex-col justify-center space-y-1">
+              <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Manage Membership from Dashboard</h2>
                 <p className="text-sm">
                   Quickly locate and access member profiles with robust search functionalities. Seamlessly retrieve customer information whenever you
@@ -167,7 +170,7 @@ export const Main: FC<T> = (): ReactElement => {
             </div>
 
             <div className="grid grid-cols-2 gap-20">
-              <div className="flex flex-col justify-center space-y-1">
+              <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Analyze Sales Report</h2>
                 <p className="text-sm">
                   Elevate your business strategy with our powerful Sales Report feature! Dive deep into your sales performance, understand trends, and
@@ -189,6 +192,36 @@ export const Main: FC<T> = (): ReactElement => {
 
       {/* FAQ */}
       <FAQ />
+
+      <div className="bg-P1">
+        <div className="mx-auto h-0.5 w-36 rounded-full bg-N7" />
+      </div>
+
+      <section id="Get-App" className="bg-P1 py-36">
+        <div className="container mx-auto px-5">
+          <div className="grid grid-cols-2 gap-5">
+            <div className="flex w-full max-w-[800px] flex-col justify-center gap-2">
+              <h1 className="text-6xl font-semibold text-P4">
+                QBills is available for iOS
+                <br />
+                and Android
+              </h1>
+              <p className="w-full max-w-[700px] text-justify">
+                Elevate your business strategy with our powerful Sales Report feature! Dive deep into your sales performance, understand trends, and
+                make data-driven decisions effortlessly, all within your point-of-sale application. Monitor revenue streams and track profitability
+                effortlessly. Understand where your sales are coming from and identify areas for growth.
+              </p>
+              <div className="-ml-0.5 mt-5 flex gap-3">
+                <Image src={AppStore} alt="App Store" width={180} quality={30} loading="lazy" className="cursor-pointer" />
+                <Image src={GooglePlay} alt="Google Play" width={180} quality={30} loading="lazy" className="cursor-pointer" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <Image src={Mockup7} alt="Mockup" width={700} quality={50} loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
