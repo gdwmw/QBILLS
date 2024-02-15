@@ -11,7 +11,7 @@ type T = {};
 export const Header: FC<T> = (): ReactElement => {
   return (
     <header>
-      <nav className="fixed left-0 top-0 w-full px-10 py-5">
+      <nav className="absolute left-0 top-0 w-full px-10 py-5">
         <div className="flex items-center justify-between">
           <div className="flex h-fit w-fit items-center justify-center gap-2">
             <Image src={logoQbills1} alt="Qbills" width={40} quality={30} priority />
