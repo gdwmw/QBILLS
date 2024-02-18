@@ -13,15 +13,15 @@ export const Header: FC<T> = (): ReactElement => {
     <header>
       <nav className="absolute left-0 top-0 w-full px-10 py-5">
         <div className="flex items-center justify-between">
-          <div className="flex h-fit w-fit items-center justify-center gap-2">
+          <section className="flex h-fit w-fit items-center justify-center gap-2">
             <Image src={logoQbills1} alt="Qbills" width={40} quality={30} priority />
             <div>
               <Image src={logoQbills2} alt="Qbills" width={110} quality={30} priority className="mx-auto mb-1" />
               <Image src={logoQbills3} alt="Qbills" width={130} quality={30} priority />
             </div>
-          </div>
+          </section>
 
-          <div className="flex items-center gap-24">
+          <section className="flex items-center gap-24">
             <Link href={"#Home"} className={ButtonCVA({ ghost: "default", className: "font-semibold" })}>
               Home
             </Link>
@@ -40,7 +40,7 @@ export const Header: FC<T> = (): ReactElement => {
                 Get App
               </Link>
             </div>
-          </div>
+          </section>
         </div>
       </nav>
     </header>
