@@ -6,9 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, ReactElement } from "react";
 
-type T = {};
-
-export const Header: FC<T> = (): ReactElement => {
+export const Header: FC = (): ReactElement => {
   return (
     <header>
       <nav className="absolute left-0 top-0 w-full px-10 py-5">

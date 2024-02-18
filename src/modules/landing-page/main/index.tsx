@@ -1,3 +1,6 @@
+import AppStore from "@/public/assets/images/landing-page/get-app/appstore.png";
+import GooglePlay from "@/public/assets/images/landing-page/get-app/googleplay.png";
+import Mockup7 from "@/public/assets/images/landing-page/get-app/mockup.png";
 import Ellipse from "@/public/assets/images/landing-page/hero-section/ellipse.svg";
 import Mockup1 from "@/public/assets/images/landing-page/hero-section/mockup.png";
 import Mockup2 from "@/public/assets/images/landing-page/our-feature/mockup-1.png";
@@ -5,19 +8,15 @@ import Mockup3 from "@/public/assets/images/landing-page/our-feature/mockup-2.pn
 import Mockup4 from "@/public/assets/images/landing-page/our-feature/mockup-3.png";
 import Mockup5 from "@/public/assets/images/landing-page/our-feature/mockup-4.png";
 import Mockup6 from "@/public/assets/images/landing-page/our-feature/mockup-5.png";
-import Mockup7 from "@/public/assets/images/landing-page/get-app/mockup.png";
-import AppStore from "@/public/assets/images/landing-page/get-app/appstore.png";
-import GooglePlay from "@/public/assets/images/landing-page/get-app/googleplay.png";
 import logoQbills from "@/public/assets/images/logos/brown/logo-2.png";
 import Image from "next/image";
+import Link from "next/link";
 import { FC, ReactElement } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxOpen, FaMoneyBills, FaShop } from "react-icons/fa6";
 import FAQ from "./FAQ";
 
-type T = {};
-
-export const Main: FC<T> = (): ReactElement => {
+export const Main: FC = (): ReactElement => {
   return (
     <main>
       {/* HERO SECTION */}
@@ -212,8 +211,12 @@ export const Main: FC<T> = (): ReactElement => {
                 effortlessly. Understand where your sales are coming from and identify areas for growth.
               </p>
               <div className="-ml-0.5 mt-5 flex gap-3">
-                <Image src={AppStore} alt="App Store" width={180} quality={30} loading="lazy" className="cursor-pointer" />
-                <Image src={GooglePlay} alt="Google Play" width={180} quality={30} loading="lazy" className="cursor-pointer" />
+                <Link href={"/"}>
+                  <Image src={AppStore} alt="App Store" width={180} quality={30} loading="lazy" className="active:scale-95" />
+                </Link>
+                <Link href={"/"}>
+                  <Image src={GooglePlay} alt="Google Play" width={180} quality={30} loading="lazy" className="active:scale-95" />
+                </Link>
               </div>
             </section>
 

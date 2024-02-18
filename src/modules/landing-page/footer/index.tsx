@@ -7,9 +7,7 @@ import Link from "next/link";
 import { FC, ReactElement } from "react";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
-type T = {};
-
-export const Footer: FC<T> = (): ReactElement => {
+export const Footer: FC = (): ReactElement => {
   return (
     <footer>
       <section className="bg-P4 py-20">
@@ -84,15 +82,15 @@ export const Footer: FC<T> = (): ReactElement => {
                 </div>
                 <h1 className="text-2xl font-semibold text-N1">Social Media</h1>
                 <div className="space-y-3 text-xs">
-                  <Link href={"#/"} className={ButtonCVA({ ghost: "white" })}>
+                  <Link href={"/"} className={ButtonCVA({ ghost: "white" })}>
                     <FaFacebookF />
                     Facebook
                   </Link>
-                  <Link href={"#/"} className={ButtonCVA({ ghost: "white", className: "whitespace-nowrap" })}>
+                  <Link href={"/"} className={ButtonCVA({ ghost: "white", className: "whitespace-nowrap" })}>
                     <FaInstagram />
                     Instagram
                   </Link>
-                  <Link href={"#/"} className={ButtonCVA({ ghost: "white" })}>
+                  <Link href={"/"} className={ButtonCVA({ ghost: "white" })}>
                     <FaYoutube />
                     YouTube
                   </Link>

@@ -4,9 +4,7 @@ import { IconButton } from "@/components";
 import { FC, ReactElement, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-type T = {};
-
-const FAQ: FC<T> = (): ReactElement => {
+const FAQ: FC = (): ReactElement => {
   const [openFAQ, setOpenFAQ] = useState<boolean[]>([false, false, false, false, false, false]);
 
   const handleSetOpenFAQ = (index: number, value: boolean) => {
