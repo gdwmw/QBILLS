@@ -55,7 +55,7 @@ export const Main: FC<T> = (): ReactElement => {
       <section id="About-Us" className="bg-P1 py-36">
         <div className="container mx-auto px-5">
           <div className="grid grid-cols-2 gap-20">
-            <div className="flex flex-col justify-center gap-5">
+            <section className="flex flex-col justify-center gap-5">
               <h1 className="text-6xl font-semibold">About Us</h1>
 
               <p>
@@ -63,43 +63,43 @@ export const Main: FC<T> = (): ReactElement => {
                 interface for enhanced transactions. Qbills is here to be a solution for your business, features are available to make your work
                 easier, use it now.
               </p>
-            </div>
+            </section>
 
             <div className="flex flex-col items-center gap-14">
               <div className="flex gap-5">
-                <div className="w-full max-w-[335px] space-y-1">
+                <section className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaBoxOpen />
                   </i>
                   <h2 className="text-xl font-semibold">Create Order</h2>
                   <p className="text-sm">You have the option to request food through the Qbilss POS application.</p>
-                </div>
+                </section>
 
-                <div className="w-full max-w-[335px] space-y-1">
+                <section className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaUserCircle />
                   </i>
                   <h2 className="text-xl font-semibold">Manage Account Cashier</h2>
                   <p className="text-sm">The use of membership provides its users with coupons, discounts, rewards, loyalty points.</p>
-                </div>
+                </section>
               </div>
 
               <div className="flex gap-5">
-                <div className="w-full max-w-[335px] space-y-1">
+                <section className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaShop />
                   </i>
                   <h2 className="text-xl font-semibold">Manage Product</h2>
                   <p className="text-sm">In the admin features there are product management features for coffee shops.</p>
-                </div>
+                </section>
 
-                <div className="w-full max-w-[335px] space-y-1">
+                <section className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
                     <FaMoneyBills />
                   </i>
                   <h2 className="text-xl font-semibold">Track Transaction History</h2>
                   <p className="text-sm">The use of membership provides its users with coupons, discounts, rewards, loyalty points.</p>
-                </div>
+                </section>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@ export const Main: FC<T> = (): ReactElement => {
           <h1 className="mb-36 text-center text-6xl font-semibold">Our Feature</h1>
 
           <div className="space-y-20">
-            <div className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-2 gap-20">
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Organize Your Product</h2>
                 <p className="text-sm">
@@ -127,9 +127,9 @@ export const Main: FC<T> = (): ReactElement => {
               <div className="flex items-center justify-center">
                 <Image src={Mockup2} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
-            </div>
+            </section>
 
-            <div className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-2 gap-20">
               <div className="flex items-center justify-center">
                 <Image src={Mockup3} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
@@ -141,9 +141,9 @@ export const Main: FC<T> = (): ReactElement => {
                   transactions, accountability, and cashier performance effortlessly.
                 </p>
               </div>
-            </div>
+            </section>
 
-            <div className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-2 gap-20">
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Track Transaction History</h2>
                 <p className="text-sm">
@@ -154,9 +154,9 @@ export const Main: FC<T> = (): ReactElement => {
               <div className="flex items-center justify-center">
                 <Image src={Mockup4} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
-            </div>
+            </section>
 
-            <div className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-2 gap-20">
               <div className="flex items-center justify-center">
                 <Image src={Mockup5} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
@@ -167,9 +167,9 @@ export const Main: FC<T> = (): ReactElement => {
                   need it.
                 </p>
               </div>
-            </div>
+            </section>
 
-            <div className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-2 gap-20">
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Analyze Sales Report</h2>
                 <p className="text-sm">
@@ -181,7 +181,7 @@ export const Main: FC<T> = (): ReactElement => {
               <div className="flex items-center justify-center">
                 <Image src={Mockup6} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
@@ -200,7 +200,7 @@ export const Main: FC<T> = (): ReactElement => {
       <section id="Get-App" className="bg-P1 py-36">
         <div className="container mx-auto px-5">
           <div className="grid grid-cols-2 gap-5">
-            <div className="flex w-full max-w-[800px] flex-col justify-center gap-2">
+            <section className="flex w-full max-w-[800px] flex-col justify-center gap-2">
               <h1 className="text-6xl font-semibold text-P4">
                 QBills is available for iOS
                 <br />
@@ -215,10 +215,11 @@ export const Main: FC<T> = (): ReactElement => {
                 <Image src={AppStore} alt="App Store" width={180} quality={30} loading="lazy" className="cursor-pointer" />
                 <Image src={GooglePlay} alt="Google Play" width={180} quality={30} loading="lazy" className="cursor-pointer" />
               </div>
-            </div>
-            <div className="flex items-center justify-center">
+            </section>
+
+            <section className="flex items-center justify-center">
               <Image src={Mockup7} alt="Mockup" width={700} quality={50} loading="lazy" />
-            </div>
+            </section>
           </div>
         </div>
       </section>

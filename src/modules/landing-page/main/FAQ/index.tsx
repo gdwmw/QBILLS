@@ -22,7 +22,7 @@ const FAQ: FC<T> = (): ReactElement => {
 
         <div className="grid grid-cols-2 gap-40">
           <div className="space-y-5">
-            <div
+            <section
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[0] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(0, !openFAQ[0])}
             >
@@ -36,9 +36,9 @@ const FAQ: FC<T> = (): ReactElement => {
               <IconButton solid={"default"} size={"md"}>
                 {openFAQ[0] ? <FaChevronUp /> : <FaChevronDown />}
               </IconButton>
-            </div>
+            </section>
 
-            <div
+            <section
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[1] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(1, !openFAQ[1])}
             >
@@ -52,9 +52,9 @@ const FAQ: FC<T> = (): ReactElement => {
               <IconButton solid={"default"} size={"md"}>
                 {openFAQ[1] ? <FaChevronUp /> : <FaChevronDown />}
               </IconButton>
-            </div>
+            </section>
 
-            <div
+            <section
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[2] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(2, !openFAQ[2])}
             >
@@ -68,11 +68,11 @@ const FAQ: FC<T> = (): ReactElement => {
               <IconButton solid={"default"} size={"md"}>
                 {openFAQ[2] ? <FaChevronUp /> : <FaChevronDown />}
               </IconButton>
-            </div>
+            </section>
           </div>
 
           <div className="space-y-5">
-            <div
+            <section
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[3] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(3, !openFAQ[3])}
             >
@@ -86,9 +86,9 @@ const FAQ: FC<T> = (): ReactElement => {
               <IconButton solid={"default"} size={"md"}>
                 {openFAQ[3] ? <FaChevronUp /> : <FaChevronDown />}
               </IconButton>
-            </div>
+            </section>
 
-            <div
+            <section
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[4] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(4, !openFAQ[4])}
             >
@@ -102,9 +102,9 @@ const FAQ: FC<T> = (): ReactElement => {
               <IconButton solid={"default"} size={"md"}>
                 {openFAQ[4] ? <FaChevronUp /> : <FaChevronDown />}
               </IconButton>
-            </div>
+            </section>
 
-            <div
+            <section
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[5] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(5, !openFAQ[5])}
             >
@@ -118,7 +118,7 @@ const FAQ: FC<T> = (): ReactElement => {
               <IconButton solid={"default"} size={"md"}>
                 {openFAQ[5] ? <FaChevronUp /> : <FaChevronDown />}
               </IconButton>
-            </div>
+            </section>
           </div>
         </div>
       </div>
