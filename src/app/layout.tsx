@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 1,
+  initialScale: 0.8,
 };
 
 export const metadata: Metadata = {
