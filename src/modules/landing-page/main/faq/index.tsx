@@ -15,10 +15,10 @@ const FAQ: FC = (): ReactElement => {
 
   return (
     <section id="FAQ" className="bg-P1 py-36">
-      <div className="container mx-auto px-5">
+      <div className="container mx-auto px-10">
         <h1 className="mb-36 text-center text-6xl font-semibold">Frequently Asked Questions (FAQ)</h1>
 
-        <div className="grid grid-cols-2 gap-40">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 xl:gap-20 2xl:gap-40">
           <div className="space-y-5">
             <section
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[0] ? "border-P4" : "border-N1"}`}

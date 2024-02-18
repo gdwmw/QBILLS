@@ -1,39 +1,42 @@
 import AppStore from "@/public/assets/images/landing-page/get-app/appstore.png";
 import GooglePlay from "@/public/assets/images/landing-page/get-app/googleplay.png";
 import Mockup7 from "@/public/assets/images/landing-page/get-app/mockup.png";
-import Ellipse from "@/public/assets/images/landing-page/hero-section/ellipse.svg";
 import Mockup1 from "@/public/assets/images/landing-page/hero-section/mockup.png";
 import Mockup2 from "@/public/assets/images/landing-page/our-feature/mockup-1.png";
 import Mockup3 from "@/public/assets/images/landing-page/our-feature/mockup-2.png";
 import Mockup4 from "@/public/assets/images/landing-page/our-feature/mockup-3.png";
 import Mockup5 from "@/public/assets/images/landing-page/our-feature/mockup-4.png";
 import Mockup6 from "@/public/assets/images/landing-page/our-feature/mockup-5.png";
-import logoQbills from "@/public/assets/images/logos/brown/logo-2.png";
+import logoQbills1 from "@/public/assets/images/logos/brown/logo-2.png";
+import logoQbills2 from "@/public/assets/images/logos/white/logo-2.png";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, ReactElement } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxOpen, FaMoneyBills, FaShop } from "react-icons/fa6";
-import FAQ from "./FAQ";
+import FAQ from "./faq";
 
 export const Main: FC = (): ReactElement => {
   return (
     <main>
       {/* HERO SECTION */}
       <section className="relative -z-10 h-screen w-full overflow-hidden bg-gradient-to-r from-P3 to-P4">
-        <Image src={logoQbills} alt="Qbills" width={500} quality={30} priority className="absolute left-0 top-0 -z-10 -rotate-12 opacity-20" />
-        <Image src={Ellipse} alt="Ellipse" quality={30} priority className="absolute right-0 top-0 -z-10" />
+        <Image src={logoQbills1} alt="Qbills" width={700} quality={30} priority className="absolute -top-24 left-10 -z-10 -rotate-12 opacity-25" />
+        <Image
+          src={logoQbills2}
+          alt="Qbills"
+          width={500}
+          quality={30}
+          priority
+          className="absolute -bottom-40 right-0 -z-10 rotate-[168deg] opacity-15"
+        />
 
-        <div className="h-full w-full px-24">
-          <div className="grid h-full w-full grid-cols-2 gap-20">
+        <div className="container mx-auto h-full w-full px-10">
+          <div className="flex h-full w-full grid-cols-2 flex-col items-center justify-center gap-20 lg:grid">
             <div className="flex flex-col justify-center gap-5 text-N1">
-              <h1 className="text-2xl font-bold">Point Of Sales</h1>
+              <h1 className="text-lg font-bold md:text-xl lg:text-2xl">Point Of Sales</h1>
 
-              <h2 className="text-6xl font-semibold">
-                Boost Your Sales with
-                <br />
-                Our Point of Sales App
-              </h2>
+              <h2 className="text-4xl font-semibold md:text-5xl lg:text-6xl">Boost Your Sales with Our Point of Sales App</h2>
 
               <p>
                 Manage your transaction, track product, and analyze report sales.
@@ -43,8 +46,8 @@ export const Main: FC = (): ReactElement => {
               </p>
             </div>
 
-            <div className="flex items-center justify-end">
-              <Image src={Mockup1} alt="Mockup" width={700} quality={50} priority />
+            <div className="flex items-center justify-center lg:justify-end">
+              <Image src={Mockup1} alt="Mockup" quality={50} priority className="w-full max-w-[500px] lg:max-w-[700px]" />
             </div>
           </div>
         </div>
@@ -52,8 +55,8 @@ export const Main: FC = (): ReactElement => {
 
       {/* ABOUT US */}
       <section id="About-Us" className="bg-P1 py-36">
-        <div className="container mx-auto px-5">
-          <div className="grid grid-cols-2 gap-20">
+        <div className="container mx-auto px-10">
+          <div className="grid grid-rows-1 gap-20 lg:grid-cols-2 lg:grid-rows-none">
             <section className="flex flex-col justify-center gap-5">
               <h1 className="text-6xl font-semibold">About Us</h1>
 
@@ -111,11 +114,11 @@ export const Main: FC = (): ReactElement => {
 
       {/* OUR FEATURE */}
       <section id="Our-Feature" className="bg-P1 py-36">
-        <div className="container mx-auto px-5">
+        <div className="container mx-auto px-10">
           <h1 className="mb-36 text-center text-6xl font-semibold">Our Feature</h1>
 
           <div className="space-y-20">
-            <section className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-1 gap-20 sm:grid-cols-2">
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Organize Your Product</h2>
                 <p className="text-sm">
@@ -124,12 +127,12 @@ export const Main: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Image src={Mockup2} alt="Mockup" width={500} quality={50} loading="lazy" />
+                <Image src={Mockup2} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
               </div>
             </section>
 
-            <section className="grid grid-cols-2 gap-20">
-              <div className="flex items-center justify-center">
+            <section className="grid grid-cols-1 gap-20 sm:grid-cols-2">
+              <div className="hidden items-center justify-center sm:flex">
                 <Image src={Mockup3} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
               <div className="flex flex-col justify-center gap-1">
@@ -140,9 +143,12 @@ export const Main: FC = (): ReactElement => {
                   transactions, accountability, and cashier performance effortlessly.
                 </p>
               </div>
+              <div className="flex items-center justify-center sm:hidden">
+                <Image src={Mockup3} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px]" />
+              </div>
             </section>
 
-            <section className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-1 gap-20 sm:grid-cols-2">
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Track Transaction History</h2>
                 <p className="text-sm">
@@ -151,12 +157,12 @@ export const Main: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Image src={Mockup4} alt="Mockup" width={500} quality={50} loading="lazy" />
+                <Image src={Mockup4} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
               </div>
             </section>
 
-            <section className="grid grid-cols-2 gap-20">
-              <div className="flex items-center justify-center">
+            <section className="grid grid-cols-1 gap-20 sm:grid-cols-2">
+              <div className="hidden items-center justify-center sm:flex">
                 <Image src={Mockup5} alt="Mockup" width={500} quality={50} loading="lazy" />
               </div>
               <div className="flex flex-col justify-center gap-1">
@@ -166,9 +172,12 @@ export const Main: FC = (): ReactElement => {
                   need it.
                 </p>
               </div>
+              <div className="flex items-center justify-center sm:hidden">
+                <Image src={Mockup5} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
+              </div>
             </section>
 
-            <section className="grid grid-cols-2 gap-20">
+            <section className="grid grid-cols-1 gap-20 sm:grid-cols-2">
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Analyze Sales Report</h2>
                 <p className="text-sm">
@@ -178,7 +187,7 @@ export const Main: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Image src={Mockup6} alt="Mockup" width={500} quality={50} loading="lazy" />
+                <Image src={Mockup6} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
               </div>
             </section>
           </div>
@@ -197,14 +206,10 @@ export const Main: FC = (): ReactElement => {
       </div>
 
       <section id="Get-App" className="bg-P1 py-36">
-        <div className="container mx-auto px-5">
-          <div className="grid grid-cols-2 gap-5">
+        <div className="container mx-auto px-10">
+          <div className="grid grid-rows-1 gap-20 lg:grid-cols-2 lg:grid-rows-none lg:gap-5">
             <section className="flex w-full max-w-[800px] flex-col justify-center gap-2">
-              <h1 className="text-6xl font-semibold text-P4">
-                QBills is available for iOS
-                <br />
-                and Android
-              </h1>
+              <h1 className="text-6xl font-semibold text-P4">QBills is available for iOS and Android</h1>
               <p className="w-full max-w-[700px] text-justify">
                 Elevate your business strategy with our powerful Sales Report feature! Dive deep into your sales performance, understand trends, and
                 make data-driven decisions effortlessly, all within your point-of-sale application. Monitor revenue streams and track profitability
@@ -221,7 +226,7 @@ export const Main: FC = (): ReactElement => {
             </section>
 
             <section className="flex items-center justify-center">
-              <Image src={Mockup7} alt="Mockup" width={700} quality={50} loading="lazy" />
+              <Image src={Mockup7} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[500px] lg:max-w-[700px]" />
             </section>
           </div>
         </div>

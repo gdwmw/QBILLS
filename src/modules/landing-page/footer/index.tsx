@@ -11,9 +11,9 @@ export const Footer: FC = (): ReactElement => {
   return (
     <footer>
       <section className="bg-P4 py-20">
-        <div className="container mx-auto px-5">
-          <div className="flex justify-between gap-5">
-            <section className="w-full max-w-[500px] space-y-2">
+        <div className="container mx-auto px-10">
+          <div className="grid grid-rows-1 justify-between gap-16 md:grid-rows-2 md:gap-10 lg:flex">
+            <section className="w-full space-y-2 lg:max-w-[500px]">
               <div className="flex h-fit w-fit items-center justify-center gap-2">
                 <Image src={logoQbills1} alt="Qbills" width={40} quality={30} priority />
                 <div>
@@ -27,10 +27,10 @@ export const Footer: FC = (): ReactElement => {
               </p>
             </section>
 
-            <div className="flex gap-20">
+            <div className="flex flex-col gap-20 md:flex-row">
               <section className="space-y-2">
                 <div className="bg-P1">
-                  <div className="h-px w-44 rounded-full bg-N1" />
+                  <div className="h-px w-full rounded-full bg-N1 md:min-w-44" />
                 </div>
                 <h1 className="text-2xl font-semibold text-N1">Archiact</h1>
                 <div className="space-y-3 text-xs">
@@ -54,7 +54,7 @@ export const Footer: FC = (): ReactElement => {
 
               <section className="space-y-2">
                 <div className="bg-P1">
-                  <div className="h-px w-44 rounded-full bg-N1" />
+                  <div className="h-px w-full rounded-full bg-N1 md:min-w-44" />
                 </div>
                 <h1 className="text-2xl font-semibold text-N1">Features</h1>
                 <div className="space-y-3 text-xs">
@@ -78,7 +78,7 @@ export const Footer: FC = (): ReactElement => {
 
               <section className="space-y-2">
                 <div className="bg-P1">
-                  <div className="h-px w-44 rounded-full bg-N1" />
+                  <div className="h-px w-full rounded-full bg-N1 md:min-w-44" />
                 </div>
                 <h1 className="text-2xl font-semibold text-N1">Social Media</h1>
                 <div className="space-y-3 text-xs">
@@ -103,7 +103,7 @@ export const Footer: FC = (): ReactElement => {
 
       <section className="bg-P5 py-8">
         <div className="container mx-auto px-5">
-          <div className="flex justify-between text-xs">
+          <div className="flex flex-col items-center justify-between gap-5 text-xs md:flex-row md:items-start">
             <div className="flex gap-10">
               <Link href={"/"} className={ButtonCVA({ ghost: "white", className: "whitespace-nowrap text-P2" })}>
                 Terms of Service
