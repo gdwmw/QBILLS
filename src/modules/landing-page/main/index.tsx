@@ -205,6 +205,7 @@ export const Main: FC = (): ReactElement => {
         <div className="mx-auto h-0.5 w-36 rounded-full bg-N7" />
       </div>
 
+      {/* GET APP */}
       <section id="Get-App" className="bg-P1 py-36">
         <div className="container mx-auto px-10">
           <div className="grid grid-rows-1 gap-20 lg:grid-cols-2 lg:grid-rows-none lg:gap-5">
