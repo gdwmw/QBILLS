@@ -2,7 +2,7 @@ import { cn } from "@/libs/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, FC, ReactElement } from "react";
 
-const IconButtonCVA = cva("flex items-center justify-center rounded-xl border", {
+const IconButtonCVA = cva("flex items-center justify-center rounded-xl border select-none", {
   variants: {
     solid: {
       default: "border-P4 bg-P4 text-N1 hover:border-P5 hover:bg-P5 active:scale-95 active:border-P6 active:bg-P6",
