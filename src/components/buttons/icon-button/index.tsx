@@ -1,4 +1,4 @@
-import { cn } from "@/libs/cn";
+import { cn } from "@/libs";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, FC, ReactElement } from "react";
 
