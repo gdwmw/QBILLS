@@ -1,4 +1,4 @@
-import { cn } from "@/libs/cn";
+import { cn } from "@/libs";
 import { cva, type VariantProps } from "class-variance-authority";
 import { FC, InputHTMLAttributes, ReactElement, ReactNode, forwardRef } from "react";
 
@@ -45,20 +45,24 @@ interface I extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof I
   label?: string;
   icon?: ReactNode;
   iconOnClick?: () => void;
+  errorMassage?: string;
 }
 
-export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ label, icon, iconOnClick, variant, ...props }, ref): ReactElement => {
+export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ label, icon, iconOnClick, errorMassage, variant, ...props }, ref): ReactElement => {
   return (
-    <fieldset className={cn(InputFieldsetCVA({ variant }))}>
-      <legend className={cn(InputLegendCVA({ variant }))}>{label}</legend>
-      <div className="flex items-center justify-center">
-        <input ref={ref} className="w-full rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed" {...props} />
-        {icon && (
-          <button type="button" onClick={iconOnClick} className={cn(InputIconCVA({ variant }))} disabled={variant === "disabled"}>
-            {icon}
-          </button>
-        )}
-      </div>
-    </fieldset>
+    <section className="space-y-1">
+      <fieldset className={cn(InputFieldsetCVA({ variant }))}>
+        <legend className={cn(InputLegendCVA({ variant }))}>{label}</legend>
+        <div className="flex items-center justify-center">
+          <input ref={ref} className="w-full rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed" {...props} />
+          {icon && (
+            <button type="button" onClick={iconOnClick} className={cn(InputIconCVA({ variant }))} disabled={variant === "disabled"}>
+              {icon}
+            </button>
+          )}
+        </div>
+      </fieldset>
+      {errorMassage && <span className="ml-1 text-xs text-E4">{errorMassage}</span>}
+    </section>
   );
 });
