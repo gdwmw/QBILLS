@@ -1,6 +1,6 @@
 import { cn } from "@/libs/cn";
 import { cva, type VariantProps } from "class-variance-authority";
-import { FC, InputHTMLAttributes, ReactElement, ReactNode } from "react";
+import { FC, InputHTMLAttributes, ReactElement, ReactNode, forwardRef } from "react";
 
 const InputFieldsetCVA = cva("group w-full overflow-hidden rounded-md border-2 px-1 pb-2", {
   variants: {
@@ -47,12 +47,12 @@ interface I extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof I
   iconOnClick?: () => void;
 }
 
-export const Input: FC<I> = ({ label, icon, iconOnClick, variant, ...props }): ReactElement => {
+export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ label, icon, iconOnClick, variant, ...props }, ref): ReactElement => {
   return (
     <fieldset className={cn(InputFieldsetCVA({ variant }))}>
       <legend className={cn(InputLegendCVA({ variant }))}>{label}</legend>
       <div className="flex items-center justify-center">
-        <input className="w-full rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed" {...props} />
+        <input ref={ref} className="w-full rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed" {...props} />
         {icon && (
           <button type="button" onClick={iconOnClick} className={cn(InputIconCVA({ variant }))} disabled={variant === "disabled"}>
             {icon}
@@ -61,4 +61,4 @@ export const Input: FC<I> = ({ label, icon, iconOnClick, variant, ...props }): R
       </div>
     </fieldset>
   );
-};
+});
