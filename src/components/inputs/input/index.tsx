@@ -66,3 +66,5 @@ export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ label, icon, icon
     </section>
   );
 });
+
+Input.displayName = "Input";
