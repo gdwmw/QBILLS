@@ -115,7 +115,7 @@ export const Footer: FC = (): ReactElement => {
                 Manage Cookies
               </Link>
             </div>
-            <p className="text-P2">&copy; 2023 QBills. All rights reserved.</p>
+            <span className="text-P2">&copy; 2023 QBills. All rights reserved.</span>
           </div>
         </div>
       </section>
