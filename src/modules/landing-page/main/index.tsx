@@ -40,8 +40,7 @@ export const Main: FC = (): ReactElement => {
 
               <p>
                 Manage your transaction, track product, and analyze report sales.
-                <br />
-                <strong>Build It On Desktop</strong>, <strong>Launch It On Mobile</strong>. You can gets it on <strong>Play Store</strong> and{" "}
+                <strong> Build It On Desktop</strong>, <strong>Launch It On Mobile</strong>. You can gets it on <strong>Play Store</strong> and{" "}
                 <strong>App Store</strong>.
               </p>
             </div>
