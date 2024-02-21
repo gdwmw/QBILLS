@@ -18,7 +18,7 @@ export const Sidebar: FC = (): ReactElement => {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-[300px] flex-col items-center gap-10 bg-N1.1 px-5 py-10">
+    <aside className="fixed left-0 top-0 flex h-screen w-[300px] flex-col items-center gap-10 bg-N1.1 px-5 py-10">
       <section className="flex h-fit w-fit items-center justify-center gap-2">
         <Image src={logoQbills1} alt="Qbills" width={40} quality={30} priority />
         <div>
