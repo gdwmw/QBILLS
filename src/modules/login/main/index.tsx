@@ -52,15 +52,9 @@ export const Main: FC = (): ReactElement => {
   useEffect(() => {
     if (session.status === "authenticated") {
       setLoading(true);
-      if (session.data.user?.role === "admin") {
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 1000);
-      } else {
-        setTimeout(() => {
-          router.push("/superadmin");
-        }, 1000);
-      }
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1000);
     }
   }, [session, router]);
 
