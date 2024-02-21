@@ -12,7 +12,7 @@ const ButtonCVA = cva("flex items-center justify-center gap-2 select-none", {
       blue: "rounded-lg border border-I4 bg-I4 text-N1 hover:border-I5 hover:bg-I5 active:scale-95 active:border-I6 active:bg-I6",
       yellow: "rounded-lg border border-W4 bg-W4 text-N1 hover:border-W5 hover:bg-W5 active:scale-95 active:border-W6 active:bg-W6",
       red: "rounded-lg border border-E4 bg-E4 text-N1 hover:border-E5 hover:bg-E5 active:scale-95 active:border-E6 active:bg-E6",
-      disabled: "cursor-not-allowed rounded-lg border border-N3 bg-N2 text-N3",
+      disabled: "cursor-not-allowed rounded-lg border border-N3 bg-N2 text-N4",
     },
 
     outline: {
@@ -26,7 +26,7 @@ const ButtonCVA = cva("flex items-center justify-center gap-2 select-none", {
       yellow:
         "rounded-lg border border-W4 text-W4 hover:border-W5 hover:bg-W5 hover:text-N1 active:scale-95 active:border-W6 active:bg-W6 active:text-N1",
       red: "rounded-lg border border-E4 text-E4 hover:border-E5 hover:bg-E5 hover:text-N1 active:scale-95 active:border-E6 active:bg-E6 active:text-N1",
-      disabled: "cursor-not-allowed rounded-lg border border-N3 text-N3",
+      disabled: "cursor-not-allowed rounded-lg border border-N4 text-N3",
     },
 
     ghost: {
@@ -37,7 +37,7 @@ const ButtonCVA = cva("flex items-center justify-center gap-2 select-none", {
       blue: "text-I4 hover:text-I5 active:scale-95 active:text-I6",
       yellow: "text-W4 hover:text-W5 active:scale-95 active:text-W6",
       red: "text-E4 hover:text-E5 active:scale-95 active:text-E6",
-      disabled: "cursor-not-allowed text-N3",
+      disabled: "cursor-not-allowed text-N4",
     },
 
     size: {
