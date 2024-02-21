@@ -13,7 +13,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, ReactElement } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { FaBoxOpen, FaMoneyBills, FaShop } from "react-icons/fa6";
+import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
+import { MdAddToPhotos } from "react-icons/md";
 import FAQ from "./faq";
 
 export const Main: FC = (): ReactElement => {
@@ -70,7 +71,7 @@ export const Main: FC = (): ReactElement => {
               <div className="flex gap-5">
                 <section className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
-                    <FaBoxOpen />
+                    <MdAddToPhotos />
                   </i>
                   <h2 className="text-xl font-semibold">Create Order</h2>
                   <p className="text-sm">You have the option to request food through the Qbilss POS application.</p>
@@ -88,7 +89,7 @@ export const Main: FC = (): ReactElement => {
               <div className="flex gap-5">
                 <section className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
-                    <FaShop />
+                    <FaBoxesStacked />
                   </i>
                   <h2 className="text-xl font-semibold">Manage Product</h2>
                   <p className="text-sm">In the admin features there are product management features for coffee shops.</p>
@@ -96,7 +97,7 @@ export const Main: FC = (): ReactElement => {
 
                 <section className="w-full max-w-[335px] space-y-1">
                   <i className="text-3xl text-P4">
-                    <FaMoneyBills />
+                    <FaMoneyBillTransfer />
                   </i>
                   <h2 className="text-xl font-semibold">Track Transaction History</h2>
                   <p className="text-sm">The use of membership provides its users with coupons, discounts, rewards, loyalty points.</p>
