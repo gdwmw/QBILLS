@@ -1,6 +1,7 @@
 "use client";
 
 import { Button, Input } from "@/components";
+import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import logoQbills from "@/public/assets/images/logos/brown/logo-1.png";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { signIn, useSession } from "next-auth/react";
@@ -101,7 +102,8 @@ export const Main: FC = (): ReactElement => {
         <span className={`select-none text-sm font-semibold text-E4 ${error ? "" : "hidden"}`}>Invalid Username And Password</span>
 
         <div className="w-full max-w-[400px]">
-          <Button type="submit" solid={"default"} size={"sm"} widthFull className="font-semibold">
+          <Button type="submit" solid={loading ? "disabled" : "default"} size={"sm"} widthFull className="font-semibold" disabled={loading}>
+            <Image src={loadingAnimation} alt="Loading" width={20} className={loading ? "" : "hidden"} />
             LOGIN
           </Button>
         </div>
