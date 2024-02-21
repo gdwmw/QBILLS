@@ -95,7 +95,7 @@ export const Main: FC = (): ReactElement => {
             icon={visibility ? <FaEye /> : <FaEyeSlash />}
             iconOnClick={() => setVisibility(!visibility)}
             errorMassage={errors.password?.message}
-            variant={error || errors.username ? "error" : "default"}
+            variant={error || errors.password ? "error" : "default"}
           />
         </div>
 
