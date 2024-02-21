@@ -12,7 +12,7 @@ const IconButtonCVA = cva("flex items-center justify-center rounded-xl border se
       blue: "border-I4 bg-I4 text-N1 hover:border-I5 hover:bg-I5 active:scale-95 active:border-I6 active:bg-I6",
       yellow: "border-W4 bg-W4 text-N1 hover:border-W5 hover:bg-W5 active:scale-95 active:border-W6 active:bg-W6",
       red: "border-E4 bg-E4 text-N1 hover:border-E5 hover:bg-E5 active:scale-95 active:border-E6 active:bg-E6",
-      disabled: "border-N3 bg-N2 text-N3 cursor-not-allowed",
+      disabled: "border-N3 bg-N2 text-N4 cursor-not-allowed",
     },
 
     outline: {
@@ -23,7 +23,7 @@ const IconButtonCVA = cva("flex items-center justify-center rounded-xl border se
       blue: "border-I4 text-I4 hover:border-I5 hover:bg-I5 hover:text-N1 active:scale-95 active:border-I6 active:bg-I6 active:text-N1",
       yellow: "border-W4 text-W4 hover:border-W5 hover:bg-W5 hover:text-N1 active:scale-95 active:border-W6 active:bg-W6 active:text-N1",
       red: "border-E4 text-E4 hover:border-E5 hover:bg-E5 hover:text-N1 active:scale-95 active:border-E6 active:bg-E6 active:text-N1",
-      disabled: "border-N3 text-N3 cursor-not-allowed",
+      disabled: "border-N3 text-N4 cursor-not-allowed",
     },
 
     size: {
