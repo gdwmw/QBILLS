@@ -15,8 +15,8 @@ type T = {
   children: ReactNode;
 };
 
-const RootLayout: FC<T> = ({ children }): ReactNode => {
+const LoginLayout: FC<T> = ({ children }): ReactNode => {
   return children;
 };
 
-export default RootLayout;
+export default LoginLayout;
