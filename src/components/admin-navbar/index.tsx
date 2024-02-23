@@ -1,9 +1,10 @@
 "use client";
 
-import { FC, ReactElement, useState, useEffect } from "react";
 import { IconButton } from "@/components";
-import { IoIosNotifications } from "react-icons/io";
+import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { IoIosNotifications } from "react-icons/io";
 
 type TTitleData = {
   [key: string]: string;
@@ -22,8 +23,9 @@ const titleData: TTitleData = {
 type T = {};
 
 export const AdminNavbar: FC<T> = (): ReactElement => {
+  const session = useSession();
   const pathname = usePathname();
-  const [title, setTitle] = useState<string>();
+  const [title, setTitle] = useState<string>("Loading...");
 
   useEffect(() => {
     setTitle(titleData[pathname] || "Example Page");
@@ -32,16 +34,18 @@ export const AdminNavbar: FC<T> = (): ReactElement => {
   return (
     <header>
       <nav className="flex h-20 w-full items-center justify-between border-b bg-N1 px-5 shadow-sm">
-        <h1 className="text-2xl font-bold">{title}</h1>
+        <h1 className="whitespace-nowrap text-2xl font-bold">{title}</h1>
 
-        <section className="flex items-center gap-2">
+        <section className="flex w-full max-w-[335px] items-center gap-2">
           <div className="h-10 w-10 rounded-full bg-P4" />
-          <div className="flex flex-col">
-            <span className="font-semibold">Gede Dewo Wahyu M.W</span>
-            <span className="text-xs font-semibold">Super Admin</span>
+          <div className="flex w-full max-w-[185px] flex-col">
+            <span className="truncate font-semibold">{session.data?.user?.name ?? "Loading..."}</span>
+            <span className="whitespace-nowrap text-xs font-semibold">
+              {session.data?.user?.role === "admin" ? "Admin" : session.data?.user?.role === "superadmin" ? "Super Admin" : "Loading..."}
+            </span>
           </div>
-          <IconButton solid={"default"} size={"sm"} className="ml-14">
-            <IoIosNotifications size={25} />
+          <IconButton solid={"default"} size={"sm"} className="ml-auto">
+            <IoIosNotifications size={20} />
           </IconButton>
         </section>
       </nav>
