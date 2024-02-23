@@ -1,12 +1,6 @@
+import { GETAdminAccount, IAdminAccount } from "@/libs";
 import type { NextAuthOptions } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
-
-interface IData {
-  id: string;
-  username: string;
-  password: string;
-  role: string;
-}
 
 export const options: NextAuthOptions = {
   providers: [
@@ -16,9 +10,8 @@ export const options: NextAuthOptions = {
       async authorize(credentials: any) {
         const { username, password } = credentials;
         try {
-          const res: Response = await fetch(process.env.ACCOUNT_LOGIN_URL as string);
-          const data: IData[] = await res.json();
-          const user: IData | undefined = data.find((data) => data.username === username && data.password === password);
+          const res = await GETAdminAccount();
+          const user: IAdminAccount | undefined = res.find((data) => data.username === username && data.password === password);
           if (user) {
             return user;
           } else {
@@ -36,7 +29,7 @@ export const options: NextAuthOptions = {
       if (user) token.role = user.role;
       return token;
     },
-    async redirect({ url, baseUrl }) {
+    async redirect({ baseUrl }) {
       return baseUrl;
     },
     async session({ session, token }) {
