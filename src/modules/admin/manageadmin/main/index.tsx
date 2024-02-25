@@ -96,7 +96,7 @@ export const Main: FC = (): ReactElement => {
   const indexOfLastData = currentPage * perPage;
   const indexOfFirstData = indexOfLastData - perPage;
   const currentData = searchResult?.slice(indexOfFirstData, indexOfLastData);
-  const totalPage = data && Math.ceil(data.length / perPage);
+  const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
 
   useEffect(() => {
     if (data?.length !== 0) {
@@ -194,8 +194,8 @@ export const Main: FC = (): ReactElement => {
 
       <Pagination
         startData={indexOfFirstData >= 0 ? indexOfFirstData + 1 : 0}
-        endData={(data && Math.min(indexOfLastData, data.length)) ?? 0}
-        total={data?.length ?? 0}
+        endData={(searchResult && Math.min(indexOfLastData, searchResult.length)) ?? 0}
+        total={searchResult?.length ?? 0}
         currentPage={currentPage ?? 0}
         totalPage={totalPage ?? 0}
         onClickPrevPage={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
