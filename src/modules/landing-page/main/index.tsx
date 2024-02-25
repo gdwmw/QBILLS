@@ -15,7 +15,7 @@ import { FC, ReactElement } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
 import { MdAddToPhotos } from "react-icons/md";
-import FAQ from "./faq";
+import { FAQ } from "./faq";
 
 export const Main: FC = (): ReactElement => {
   return (
@@ -41,8 +41,8 @@ export const Main: FC = (): ReactElement => {
 
               <p>
                 Manage your transaction, track product, and analyze report sales.
-                <strong> Build It On Desktop</strong>, <strong>Launch It On Mobile</strong>. You can gets it on <strong>Play Store</strong> and{" "}
-                <strong>App Store</strong>.
+                <strong> Build It On Desktop</strong>, <strong>Launch It On Mobile</strong>. You can gets it on <strong>Play Store</strong> and
+                <strong> App Store</strong>.
               </p>
             </div>
 

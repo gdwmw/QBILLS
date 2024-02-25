@@ -4,7 +4,7 @@ import { IconButton } from "@/components";
 import { FC, ReactElement, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-const FAQ: FC = (): ReactElement => {
+export const FAQ: FC = (): ReactElement => {
   const [openFAQ, setOpenFAQ] = useState<boolean[]>([false, false, false, false, false, false]);
 
   const handleSetOpenFAQ = (index: number, value: boolean) => {
@@ -21,8 +21,8 @@ const FAQ: FC = (): ReactElement => {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 xl:gap-20 2xl:gap-40">
           <div className="space-y-5">
             <section
-              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[0] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(0, !openFAQ[0])}
+              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[0] ? "border-P4" : "border-N1"}`}
             >
               <div className="space-y-3">
                 <p className="pr-5">How can we as users manage and access our products efficiently in the application?</p>
@@ -37,8 +37,8 @@ const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
-              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[1] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(1, !openFAQ[1])}
+              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[1] ? "border-P4" : "border-N1"}`}
             >
               <div className="space-y-3">
                 <p className="pr-5">How can we make payments efficiently in the app Qbills? And what methods are there?</p>
@@ -53,8 +53,8 @@ const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
-              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[2] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(2, !openFAQ[2])}
+              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[2] ? "border-P4" : "border-N1"}`}
             >
               <div className="space-y-3">
                 <p className="pr-5">How can first-time users access a manual guide when initially using the application?</p>
@@ -71,8 +71,8 @@ const FAQ: FC = (): ReactElement => {
 
           <div className="space-y-5">
             <section
-              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[3] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(3, !openFAQ[3])}
+              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[3] ? "border-P4" : "border-N1"}`}
             >
               <div className="space-y-3">
                 <p className="pr-5">How is the management of cashier accounts handled within the application?</p>
@@ -87,8 +87,8 @@ const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
-              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[4] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(4, !openFAQ[4])}
+              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[4] ? "border-P4" : "border-N1"}`}
             >
               <div className="space-y-3">
                 <p className="pr-5">Where can users view transaction history, both on mobile and the dashboard?</p>
@@ -103,8 +103,8 @@ const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
-              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[5] ? "border-P4" : "border-N1"}`}
               onClick={() => handleSetOpenFAQ(5, !openFAQ[5])}
+              className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[5] ? "border-P4" : "border-N1"}`}
             >
               <div className="space-y-3">
                 <p className="pr-5">How does the application allow for the management of member accounts?</p>
@@ -123,5 +123,3 @@ const FAQ: FC = (): ReactElement => {
     </section>
   );
 };
-
-export default FAQ;
