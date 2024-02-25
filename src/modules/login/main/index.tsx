@@ -22,16 +22,15 @@ type TUseForm = Output<typeof schema>;
 export const Main: FC = (): ReactElement => {
   const session = useSession();
   const router = useRouter();
+  const [visibility, setVisibility] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TUseForm>({ resolver: valibotResolver(schema) });
-
-  const [visibility, setVisibility] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     setLoading(true);
