@@ -98,7 +98,7 @@ export const Main: FC = (): ReactElement => {
 
         <div className="w-full max-w-[400px]">
           <Button type="submit" solid={loading ? "disabled" : "default"} size={"sm"} widthFull className="font-semibold" disabled={loading}>
-            <Image src={loadingAnimation} alt="Loading" width={20} className={loading ? "" : "hidden"} />
+            <Image src={loadingAnimation} alt="Loading" width={20} quality={30} className={loading ? "" : "hidden"} />
             LOGIN
           </Button>
         </div>
