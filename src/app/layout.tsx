@@ -1,4 +1,4 @@
-import { NextAuthProvider } from "@/libs";
+import { NextAuthProvider, ReactQueryProvider } from "@/libs";
 import "@/styles/globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
@@ -26,12 +26,14 @@ const RootLayout: FC<T> = ({ children }): ReactElement => {
   console.log("© 2023 QBILLS. All rights reserved.");
   console.log("Created by Gede Dewo Wahyu M.W with 🖤");
   return (
-    <html lang="en">
-      <body className={openSans.className}>
-        <NextAuthProvider>{children}</NextAuthProvider>
-        <SpeedInsights />
-      </body>
-    </html>
+    <ReactQueryProvider>
+      <html lang="en">
+        <body className={openSans.className}>
+          <NextAuthProvider>{children}</NextAuthProvider>
+          <SpeedInsights />
+        </body>
+      </html>
+    </ReactQueryProvider>
   );
 };
 
