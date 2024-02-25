@@ -57,7 +57,7 @@ export const POSTAdminAccount = async (data: TAdminAccount): Promise<IAdminAccou
 
 export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
   try {
-    const res = await fetch(`${URL}/${data.id}`, {
+    const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -75,9 +75,9 @@ export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccoun
   }
 };
 
-export const DELETEAdminAccount = async (id: number): Promise<IAdminAccount> => {
+export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => {
   try {
-    const res = await fetch(`${URL}/${id}`, {
+    const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
