@@ -37,8 +37,8 @@ export const AdminNavbar: FC<T> = (): ReactElement => {
         <h1 className="whitespace-nowrap text-2xl font-bold">{title}</h1>
 
         <section className="flex w-full max-w-[335px] items-center gap-2">
-          <div className="h-10 w-10 rounded-full bg-P4" />
-          <div className="flex w-full max-w-[185px] flex-col">
+          <div className="hidden h-10 w-10 rounded-full bg-P4 sm:block" />
+          <div className="hidden w-full max-w-[185px] flex-col sm:flex">
             <span className="truncate font-semibold">{session.data?.user?.name ?? "Loading..."}</span>
             <span className="whitespace-nowrap text-xs font-semibold">
               {session.data?.user?.role === "admin" ? "Admin" : session.data?.user?.role === "superadmin" ? "Super Admin" : "Loading..."}
