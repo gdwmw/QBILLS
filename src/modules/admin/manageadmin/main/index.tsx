@@ -108,8 +108,8 @@ export const Main: FC = (): ReactElement => {
     <main className="px-5">
       <section>
         <div className="flex items-center gap-3 py-5">
-          <h2 className="whitespace-nowrap text-xl font-semibold">Admin Account List</h2>
-          <div className="-mt-1.5 ml-auto w-full max-w-[350px]">
+          <h2 className="hidden whitespace-nowrap text-xl font-semibold md:block">Admin Account List</h2>
+          <div className="-mt-1.5 ml-auto w-full md:max-w-[350px]">
             <Input type="text" label="Search Account" {...register("search")} id="search-account" icon={<FaSearch />}></Input>
           </div>
           <Button
@@ -131,7 +131,7 @@ export const Main: FC = (): ReactElement => {
       <section className="overflow-hidden rounded-lg">
         <div className="max-h-[74vh] overflow-scroll">
           <table className="w-full">
-            <thead className="sticky top-0 z-20 bg-N2">
+            <thead className="sticky top-0 z-10 bg-N2">
               <tr className="text-center">
                 <th className="px-4 py-4">Checkbox</th>
                 <th className="px-4 py-4">Name</th>
