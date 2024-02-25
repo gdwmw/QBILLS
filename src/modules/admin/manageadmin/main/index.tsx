@@ -2,8 +2,10 @@
 
 import { Button, IconButton, Input, Pagination } from "@/components";
 import { DELETEAdminAccount, GETAdminAccount, IAdminAccount } from "@/libs";
+import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { FC, ReactElement, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
@@ -36,18 +38,38 @@ export const Main: FC = (): ReactElement => {
   const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useManageAdmin();
   const [selectedData, setSelectedData] = useState<IAdminAccount>({ id: "", name: "", username: "", role: "", password: "" });
   const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState<boolean[]>([]);
 
   const { data } = useQuery({
     queryKey: ["GETAdminAccount"],
     queryFn: GETAdminAccount,
   });
 
-  const handleDelete = useMutation({
+  const mutationDelete = useMutation({
     mutationFn: (id: string) => DELETEAdminAccount(id),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
     },
   });
+
+  useEffect(() => {
+    setLoading(new Array(data?.length).fill(false));
+  }, [data]);
+
+  const handleSetLoding = (index: number, value: boolean) => {
+    const newArray = [...loading];
+    newArray[index] = value;
+    setLoading(newArray);
+  };
+
+  const handleDelete = (id: string, index: number) => {
+    handleSetLoding(index, true);
+    mutationDelete.mutate(id, {
+      onSuccess: () => {
+        handleSetLoding(index, false);
+      },
+    });
+  };
 
   const { register, watch } = useForm<{ search: string }>({
     defaultValues: {
@@ -155,12 +177,12 @@ export const Main: FC = (): ReactElement => {
 
                     <IconButton
                       type="button"
-                      solid={account.role === "superadmin" ? "disabled" : "red"}
+                      solid={account.role === "superadmin" || loading[index] ? "disabled" : "red"}
                       size={"sm"}
-                      onClick={() => handleDelete.mutate(account.id)}
-                      disabled={account.role === "superadmin"}
+                      onClick={() => handleDelete(account.id, index)}
+                      disabled={account.role === "superadmin" || loading[index]}
                     >
-                      <MdDelete />
+                      {loading[index] ? <Image src={loadingAnimation} alt="Loading" width={15} quality={30} /> : <MdDelete />}
                     </IconButton>
                   </td>
                 </tr>
