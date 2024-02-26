@@ -13,12 +13,12 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Output, minLength, object, string } from "valibot";
 
 // VALIBOT
-const schema = object({
+const Schema = object({
   username: string([minLength(1, "Please enter your username.")]),
   password: string([minLength(1, "Please enter your password.")]),
 });
 
-type TUseForm = Output<typeof schema>;
+type TUseForm = Output<typeof Schema>;
 // END VALIBOT
 
 export const Main: FC = (): ReactElement => {
@@ -33,7 +33,7 @@ export const Main: FC = (): ReactElement => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TUseForm>({ resolver: valibotResolver(schema) });
+  } = useForm<TUseForm>({ resolver: valibotResolver(Schema) });
 
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     setLoading(true);
