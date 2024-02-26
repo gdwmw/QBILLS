@@ -11,7 +11,7 @@ import { Output, minLength, object, string } from "valibot";
 import { useManageAdmin } from "..";
 
 // VALIBOT
-const schema = object({
+const Schema = object({
   id: string(),
   name: string([minLength(3, "Please enter name minimum 3 character.")]),
   username: string([minLength(5, "Please enter username minimum 5 character.")]),
@@ -19,7 +19,7 @@ const schema = object({
   role: string(),
 });
 
-type TUseForm = Output<typeof schema>;
+type TUseForm = Output<typeof Schema>;
 // END VALIBOT
 
 type T = {
@@ -46,7 +46,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
       password: selectedData.password,
       role: selectedData.role,
     },
-    resolver: valibotResolver(schema),
+    resolver: valibotResolver(Schema),
   });
   // END REACT HOOK FORM WITH VALIBOT
 
