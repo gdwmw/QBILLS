@@ -187,8 +187,9 @@ export const Main: FC = (): ReactElement => {
                       size={"sm"}
                       onClick={() => handleDelete(account.id, index)}
                       disabled={account.role === "superadmin" || loading[index]}
+                      className={loading[index] ? "cursor-wait" : ""}
                     >
-                      {loading[index] ? <Image src={loadingAnimation} alt="Loading" width={15} quality={30} /> : <MdDelete />}
+                      {loading[index] ? <Image src={loadingAnimation} alt="Loading" width={16} quality={30} /> : <MdDelete />}
                     </IconButton>
                   </td>
                 </tr>

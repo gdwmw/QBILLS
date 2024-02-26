@@ -118,7 +118,14 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
             >
               Cancel
             </Button>
-            <Button type="submit" solid={loading ? "disabled" : "default"} size={"sm"} widthFull disabled={loading}>
+            <Button
+              type="submit"
+              solid={loading ? "disabled" : "default"}
+              size={"sm"}
+              widthFull
+              disabled={loading}
+              className={loading ? "cursor-wait" : ""}
+            >
               {loading && <Image src={loadingAnimation} alt="Loading" width={20} quality={30} />}
               Update
             </Button>
