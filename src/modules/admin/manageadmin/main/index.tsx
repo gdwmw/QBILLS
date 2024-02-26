@@ -14,6 +14,7 @@ import { create } from "zustand";
 const AddData = dynamic(() => import("./add-data"));
 const UpdateData = dynamic(() => import("./update-data"));
 
+// ZUSTAND
 type States = {
   openAddData?: boolean;
   openUpdateData?: boolean;
@@ -30,16 +31,18 @@ export const useManageAdmin = create<States & Actions>((set) => ({
   setOpenAddData: (openAddData: boolean) => set({ openAddData }),
   setOpenUpdateData: (openUpdateData: boolean) => set({ openUpdateData }),
 }));
+// END ZUSTAND
 
 export const Main: FC = (): ReactElement => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(); // REACT QUERY
   const [checkbox, setCheckbox] = useState<number[]>([]);
   const [checkboxCount, setCheckboxCount] = useState<number>(0);
-  const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useManageAdmin();
+  const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useManageAdmin(); // ZUSTAND
   const [selectedData, setSelectedData] = useState<IAdminAccount>({ id: "", name: "", username: "", role: "", password: "" });
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState<boolean[]>([]);
 
+  // REACT QUERY
   const { data } = useQuery({
     queryKey: ["GETAdminAccount"],
     queryFn: GETAdminAccount,
@@ -51,6 +54,7 @@ export const Main: FC = (): ReactElement => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
     },
   });
+  // END REACT QUERY
 
   useEffect(() => {
     setLoading(new Array(data?.length).fill(false));
@@ -71,11 +75,13 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
+  // REACT HOOK FORM
   const { register, watch } = useForm<{ search: string }>({
     defaultValues: {
       search: "",
     },
   });
+  // END REACT HOOK FORM
 
   const searchResult = data?.filter((data) => {
     const result =
