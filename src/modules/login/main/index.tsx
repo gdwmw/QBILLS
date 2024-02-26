@@ -101,7 +101,14 @@ export const Main: FC = (): ReactElement => {
         <span className={`select-none text-sm font-semibold text-E4 ${error ? "" : "hidden"}`}>Invalid Username And Password</span>
 
         <div className="w-full max-w-[400px]">
-          <Button type="submit" solid={loading ? "disabled" : "default"} size={"sm"} widthFull className="font-semibold" disabled={loading}>
+          <Button
+            type="submit"
+            solid={loading ? "disabled" : "default"}
+            size={"sm"}
+            widthFull
+            className={`font-semibold ${loading ? "cursor-wait" : ""}`}
+            disabled={loading}
+          >
             <Image src={loadingAnimation} alt="Loading" width={20} quality={30} className={loading ? "" : "hidden"} />
             LOGIN
           </Button>
