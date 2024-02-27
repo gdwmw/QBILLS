@@ -15,7 +15,7 @@ const InputFieldsetCVA = cva("group w-full overflow-hidden rounded-md border-2 p
   },
 });
 
-const InputLegendCVA = cva("ml-3 select-none px-1 text-xs font-semibold", {
+const InputLegendCVA = cva("ml-3 select-none px-1 text-xs whitespace-nowrap font-semibold", {
   variants: {
     variant: {
       default: "text-N3 group-focus-within:text-P5",
