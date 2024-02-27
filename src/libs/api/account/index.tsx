@@ -93,3 +93,28 @@ export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => 
     throw new Error("Failed to delete: Admin Account");
   }
 };
+
+export const DELETEMultipleAdminAccounts = async (ids: string[]): Promise<IAdminAccount[]> => {
+  try {
+    const results = await Promise.all(
+      ids.map(async (id) => {
+        const res = await fetch(`${URL}/${parseInt(id)}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error(`Failed to delete: Admin Account with id ${id}`);
+        }
+
+        return await res.json();
+      }),
+    );
+
+    return results;
+  } catch (error) {
+    throw new Error("Failed to delete: Admin Accounts");
+  }
+};
