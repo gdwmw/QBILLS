@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, IconButton, Input, Pagination } from "@/components";
-import { DELETEAdminAccount, GETAdminAccount, IAdminAccount } from "@/libs";
+import { DELETEAdminAccount, DELETEMultipleAdminAccounts, GETAdminAccount, IAdminAccount } from "@/libs";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
@@ -35,12 +35,12 @@ export const useManageAdmin = create<States & Actions>((set) => ({
 
 export const Main: FC = (): ReactElement => {
   const queryClient = useQueryClient(); // REACT QUERY
-  const [checkbox, setCheckbox] = useState<number[]>([]);
+  const [checkbox, setCheckbox] = useState<string[]>([]);
   const [checkboxCount, setCheckboxCount] = useState<number>(0);
   const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useManageAdmin(); // ZUSTAND
   const [selectedData, setSelectedData] = useState<IAdminAccount>({ id: "", name: "", username: "", role: "", password: "" });
   const [currentPage, setCurrentPage] = useState(0);
-  const [loading, setLoading] = useState<boolean[]>([]);
+  const [loading, setLoading] = useState<boolean[]>([false]);
 
   // REACT QUERY
   const { data } = useQuery({
@@ -52,6 +52,15 @@ export const Main: FC = (): ReactElement => {
     mutationFn: (id: string) => DELETEAdminAccount(id),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
+    },
+  });
+
+  const mutationMultipleDelete = useMutation({
+    mutationFn: (ids: string[]) => DELETEMultipleAdminAccounts(ids),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
+      setCheckbox([]);
+      setCheckboxCount(0);
     },
   });
   // END REACT QUERY
@@ -75,6 +84,15 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
+  const handleMultipleDelete = () => {
+    handleSetLoding(0, true);
+    mutationMultipleDelete.mutate(checkbox, {
+      onSuccess: () => {
+        handleSetLoding(0, false);
+      },
+    });
+  };
+
   // REACT HOOK FORM
   const { register, watch } = useForm<{ search: string }>({
     defaultValues: {
@@ -89,7 +107,7 @@ export const Main: FC = (): ReactElement => {
     return result;
   });
 
-  const handleCheckbox = (id: number) => {
+  const handleCheckbox = (id: string) => {
     setCheckbox((prev) => {
       const selected = prev.includes(id);
       const updated = selected ? prev.filter((row) => row !== id) : [...prev, id];
@@ -120,12 +138,14 @@ export const Main: FC = (): ReactElement => {
           </div>
           <Button
             type="button"
-            solid={checkboxCount === 0 ? "disabled" : "red"}
+            solid={checkboxCount === 0 || loading[0] ? "disabled" : "red"}
             size={"sm"}
             widthFull
-            disabled={checkboxCount !== 0}
-            className="max-w-[100px] font-semibold"
+            disabled={checkboxCount === 0 || loading[0]}
+            onClick={handleMultipleDelete}
+            className={`max-w-[120px] font-semibold ${loading[0] ? "cursor-wait" : ""}`}
           >
+            <Image src={loadingAnimation} alt="Loading" width={20} quality={30} className={loading[0] ? "" : "hidden"} />
             Delete ({checkboxCount})
           </Button>
           <Button type="button" solid={"default"} size={"sm"} widthFull onClick={() => setOpenAddData(true)} className="max-w-[150px] font-semibold">
@@ -153,8 +173,8 @@ export const Main: FC = (): ReactElement => {
                   <td className="px-2 py-2">
                     <input
                       type="checkbox"
-                      checked={checkbox.includes(parseInt(account.id))}
-                      onChange={() => handleCheckbox(parseInt(account.id))}
+                      checked={checkbox.includes(account.id)}
+                      onChange={() => handleCheckbox(account.id)}
                       disabled={account.role === "superadmin"}
                     />
                   </td>
@@ -183,13 +203,13 @@ export const Main: FC = (): ReactElement => {
 
                     <IconButton
                       type="button"
-                      solid={account.role === "superadmin" || loading[index] ? "disabled" : "red"}
+                      solid={account.role === "superadmin" || loading[index + 1] ? "disabled" : "red"}
                       size={"sm"}
-                      onClick={() => handleDelete(account.id, index)}
-                      disabled={account.role === "superadmin" || loading[index]}
-                      className={loading[index] ? "cursor-wait" : ""}
+                      onClick={() => handleDelete(account.id, index + 1)}
+                      disabled={account.role === "superadmin" || loading[index + 1]}
+                      className={loading[index + 1] ? "cursor-wait" : ""}
                     >
-                      {loading[index] ? <Image src={loadingAnimation} alt="Loading" width={16} quality={30} /> : <MdDelete />}
+                      {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading" width={16} quality={30} /> : <MdDelete />}
                     </IconButton>
                   </td>
                 </tr>
