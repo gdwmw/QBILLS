@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, IconButton, Input, Pagination } from "@/components";
-import { DELETEAdminAccount, DELETEMultipleAdminAccounts, GETAdminAccount, IAdminAccount } from "@/libs";
+import { DELETEAdminAccount, DELETEMultipleAdminAccount, GETAdminAccount, IAdminAccount } from "@/libs";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
@@ -56,7 +56,7 @@ export const Main: FC = (): ReactElement => {
   });
 
   const mutationMultipleDelete = useMutation({
-    mutationFn: (ids: string[]) => DELETEMultipleAdminAccounts(ids),
+    mutationFn: (ids: string[]) => DELETEMultipleAdminAccount(ids),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
       setCheckbox([]);
@@ -143,12 +143,19 @@ export const Main: FC = (): ReactElement => {
             widthFull
             disabled={checkboxCount === 0 || loading[0]}
             onClick={handleMultipleDelete}
-            className={`max-w-[120px] font-semibold ${loading[0] ? "cursor-wait" : ""}`}
+            className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
           >
             <Image src={loadingAnimation} alt="Loading" width={20} quality={30} className={loading[0] ? "" : "hidden"} />
             Delete ({checkboxCount})
           </Button>
-          <Button type="button" solid={"default"} size={"sm"} widthFull onClick={() => setOpenAddData(true)} className="max-w-[150px] font-semibold">
+          <Button
+            type="button"
+            solid={"default"}
+            size={"sm"}
+            widthFull
+            onClick={() => setOpenAddData(true)}
+            className="max-w-[150px] whitespace-nowrap font-semibold"
+          >
             Add Account
           </Button>
         </div>
