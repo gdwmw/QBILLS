@@ -94,7 +94,7 @@ export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => 
   }
 };
 
-export const DELETEMultipleAdminAccounts = async (ids: string[]): Promise<IAdminAccount[]> => {
+export const DELETEMultipleAdminAccount = async (ids: string[]): Promise<IAdminAccount[]> => {
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
