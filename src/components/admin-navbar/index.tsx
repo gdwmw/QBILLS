@@ -1,7 +1,6 @@
 "use client";
 
 import { IconButton } from "@/components";
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { FC, ReactElement, useEffect, useState } from "react";
 import { IoIosNotifications } from "react-icons/io";
@@ -13,17 +12,24 @@ type TTitleData = {
 const titleData: TTitleData = {
   "/dashboard": "Dashboard",
   "/manageadmin": "Manage Admin",
-  "/managecashiert": "Manage Cashier",
+  "/managecashier": "Manage Cashier",
   "/manageproduct": "Manage Product",
   "/managemembership": "Manage Membership",
   "/transaction": "Transaction",
   "/report": "Report",
 };
 
-type T = {};
+interface I {
+  id: string;
+  name: string;
+  role: string;
+}
 
-export const AdminNavbar: FC<T> = (): ReactElement => {
-  const session = useSession();
+type T = {
+  user: I | undefined;
+};
+
+export const AdminNavbar: FC<T> = ({ user }): ReactElement => {
   const pathname = usePathname();
   const [title, setTitle] = useState<string>("Loading...");
 
@@ -39,9 +45,9 @@ export const AdminNavbar: FC<T> = (): ReactElement => {
         <section className="flex w-full max-w-[335px] items-center gap-2">
           <div className="hidden h-10 w-10 rounded-full bg-P4 sm:block" />
           <div className="hidden w-full max-w-[185px] flex-col sm:flex">
-            <span className="truncate font-semibold">{session.data?.user?.name ?? "Loading..."}</span>
+            <span className="truncate font-semibold">{user?.name ?? "Loading..."}</span>
             <span className="whitespace-nowrap text-xs font-semibold">
-              {session.data?.user?.role === "admin" ? "Admin" : session.data?.user?.role === "superadmin" ? "Super Admin" : "Loading..."}
+              {user?.role === "admin" ? "Admin" : user?.role === "superadmin" ? "Super Admin" : "Loading..."}
             </span>
           </div>
           <IconButton solid={"default"} size={"sm"} className="ml-auto">
