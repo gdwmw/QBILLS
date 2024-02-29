@@ -4,7 +4,7 @@ import { IconButton } from "@/components";
 import logoQbills1 from "@/public/assets/images/logos/brown/logo-2.png";
 import logoQbills2 from "@/public/assets/images/logos/brown/logo-4.png";
 import logoQbills3 from "@/public/assets/images/logos/brown/logo-5.png";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,8 +14,11 @@ import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
 import { IoDocumentText } from "react-icons/io5";
 import { MdAdminPanelSettings, MdDashboard } from "react-icons/md";
 
-export const Sidebar: FC = (): ReactElement => {
-  const session = useSession();
+type T = {
+  role: string | undefined;
+};
+
+export const Sidebar: FC<T> = ({ role }): ReactElement => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -38,13 +41,12 @@ export const Sidebar: FC = (): ReactElement => {
             Dashboard
           </Link>
 
-          <Link
-            href={"/manageadmin"}
-            className={`${pathname === "/manageadmin" ? "sidebar-active" : "sidebar-button"} ${session.data?.user?.role === "admin" ? "hidden" : ""}`}
-          >
-            <MdAdminPanelSettings size={25} />
-            Manage Admin
-          </Link>
+          {role === "superadmin" && (
+            <Link href={"/manageadmin"} className={pathname === "/manageadmin" ? "sidebar-active" : "sidebar-button"}>
+              <MdAdminPanelSettings size={25} />
+              Manage Admin
+            </Link>
+          )}
 
           <Link href={"/managecashier"} className={pathname === "/managecashier" ? "sidebar-active" : "sidebar-button"}>
             <FaUserCircle size={25} />
