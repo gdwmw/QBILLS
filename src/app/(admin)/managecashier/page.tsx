@@ -1,5 +1,5 @@
 import { GETCashierAccount } from "@/libs";
-import { Main } from "@/modules/admin/managecashier";
+import { Main } from "@/modules/admin/manage-cashier";
 import { FC, ReactElement } from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
