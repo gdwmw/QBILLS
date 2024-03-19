@@ -17,7 +17,7 @@ const MembershipCard: FC<T> = ({ selectedData }): ReactElement => {
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">
-      <div className="relative w-full max-w-[500px]">
+      <div className="relative w-[500px]">
         <button type="button" onClick={() => setOpenCard(false)} className="absolute left-3 top-3 z-10 text-N1 active:scale-95">
           <IoClose size={25} />
         </button>
