@@ -138,7 +138,7 @@ export const Main: FC = (): ReactElement => {
   const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
 
   useEffect(() => {
-    if (data) {
+    if (data?.length !== 0) {
       setCurrentPage(1);
     }
   }, [data]);
@@ -176,8 +176,8 @@ export const Main: FC = (): ReactElement => {
         </div>
       </section>
 
-      <section className="overflow-hidden rounded-lg">
-        <div className="max-h-[74vh] overflow-scroll">
+      <section className="overflow-hidden rounded-lg border border-N2">
+        <div className="max-h-[74vh] overflow-auto">
           <table className="w-full">
             <thead className="sticky top-0 z-10 bg-N2">
               <tr className="text-center">
@@ -212,7 +212,7 @@ export const Main: FC = (): ReactElement => {
                   <td className="whitespace-nowrap px-2 py-2">{product.code}</td>
                   <td className="whitespace-nowrap px-2 py-2">{product.name}</td>
                   <td className="min-w-80 max-w-96 px-2 py-2">
-                    <p className="max-h-16 overflow-y-scroll text-justify">{product.description}</p>
+                    <p className="max-h-16 overflow-y-auto text-justify">{product.description}</p>
                   </td>
                   <td className="whitespace-nowrap px-2 py-2">
                     {(() => {
