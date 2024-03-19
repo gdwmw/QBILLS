@@ -161,8 +161,8 @@ export const Main: FC = (): ReactElement => {
         </div>
       </section>
 
-      <section className="overflow-hidden rounded-lg">
-        <div className="max-h-[74vh] overflow-scroll">
+      <section className="overflow-hidden rounded-lg border border-N2">
+        <div className="max-h-[74vh] overflow-auto">
           <table className="w-full">
             <thead className="sticky top-0 z-10 bg-N2">
               <tr className="text-center">
@@ -184,35 +184,37 @@ export const Main: FC = (): ReactElement => {
                   <td className="whitespace-nowrap px-2 py-2">{account.username}</td>
                   <td className="whitespace-nowrap px-2 py-2">**********</td>
                   <td className="whitespace-nowrap px-2 py-2">{account.role}</td>
-                  <td className="flex items-center justify-center gap-2 px-2 py-2">
-                    <IconButton
-                      type="button"
-                      solid={"green"}
-                      size={"sm"}
-                      onClick={() => {
-                        setSelectedData({
-                          id: account.id,
-                          name: account.name,
-                          username: account.username,
-                          role: account.role,
-                          password: account.password,
-                        });
-                        setOpenUpdateData(true);
-                      }}
-                    >
-                      <MdEdit />
-                    </IconButton>
+                  <td className="px-2 py-2">
+                    <div className="flex justify-center gap-2">
+                      <IconButton
+                        type="button"
+                        solid={"green"}
+                        size={"sm"}
+                        onClick={() => {
+                          setSelectedData({
+                            id: account.id,
+                            name: account.name,
+                            username: account.username,
+                            role: account.role,
+                            password: account.password,
+                          });
+                          setOpenUpdateData(true);
+                        }}
+                      >
+                        <MdEdit />
+                      </IconButton>
 
-                    <IconButton
-                      type="button"
-                      solid={loading[index + 1] ? "disabled" : "red"}
-                      size={"sm"}
-                      onClick={() => handleDelete(account.id, index + 1)}
-                      disabled={loading[index + 1]}
-                      className={loading[index + 1] ? "cursor-wait" : ""}
-                    >
-                      {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading" width={16} quality={30} /> : <MdDelete />}
-                    </IconButton>
+                      <IconButton
+                        type="button"
+                        solid={loading[index + 1] ? "disabled" : "red"}
+                        size={"sm"}
+                        onClick={() => handleDelete(account.id, index + 1)}
+                        disabled={loading[index + 1]}
+                        className={loading[index + 1] ? "cursor-wait" : ""}
+                      >
+                        {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading" width={16} quality={30} /> : <MdDelete />}
+                      </IconButton>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -222,7 +224,7 @@ export const Main: FC = (): ReactElement => {
       </section>
 
       <Pagination
-        startData={indexOfFirstData >= 0 ? indexOfFirstData + 1 : 0}
+        startData={indexOfLastData > 0 ? indexOfFirstData + 1 : 0}
         endData={(searchResult && Math.min(indexOfLastData, searchResult.length)) ?? 0}
         total={searchResult?.length ?? 0}
         currentPage={currentPage ?? 0}
