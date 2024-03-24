@@ -69,7 +69,7 @@ export const Main: FC = (): ReactElement => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex h-full max-h-[600px] w-full max-w-[500px] flex-col items-center justify-center gap-5 rounded-xl bg-N1 px-5 shadow-md"
       >
-        <Image src={logoQbills} alt="Qbills" width={150} quality={30} priority />
+        <Image src={logoQbills} alt="QBills" width={150} quality={30} priority />
 
         <div className="space-y-1 text-center">
           <h1 className="text-2xl font-bold">Welcome Admin</h1>
@@ -109,7 +109,7 @@ export const Main: FC = (): ReactElement => {
             className={`font-semibold ${loading ? "cursor-wait" : ""}`}
             disabled={loading}
           >
-            <Image src={loadingAnimation} alt="Loading" width={20} quality={30} className={loading ? "" : "hidden"} />
+            <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading ? "" : "hidden"} />
             LOGIN
           </Button>
         </div>

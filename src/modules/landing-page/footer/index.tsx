@@ -15,10 +15,10 @@ export const Footer: FC = (): ReactElement => {
           <div className="grid grid-rows-1 justify-between gap-16 md:grid-rows-2 md:gap-10 lg:flex">
             <section className="w-full space-y-2 lg:max-w-[500px]">
               <div className="flex h-fit w-fit items-center justify-center gap-2">
-                <Image src={logoQbills1} alt="Qbills" width={40} quality={30} priority />
+                <Image src={logoQbills1} alt="QBills" width={40} quality={30} priority />
                 <div>
-                  <Image src={logoQbills2} alt="Qbills" width={110} quality={30} priority className="mx-auto mb-1" />
-                  <Image src={logoQbills3} alt="Qbills" width={130} quality={30} priority />
+                  <Image src={logoQbills2} alt="QBills" width={110} quality={30} priority className="mx-auto mb-1" />
+                  <Image src={logoQbills3} alt="QBills" width={130} quality={30} priority />
                 </div>
               </div>
               <p className="text-N1">

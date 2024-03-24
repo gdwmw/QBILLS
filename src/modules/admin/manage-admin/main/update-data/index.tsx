@@ -126,7 +126,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               disabled={loading}
               className={loading ? "cursor-wait" : ""}
             >
-              {loading && <Image src={loadingAnimation} alt="Loading" width={20} quality={30} />}
+              {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
               Update
             </Button>
           </div>

@@ -28,10 +28,10 @@ export const Sidebar: FC<T> = ({ role }): ReactElement => {
         className={`fixed left-0 top-0 z-20 h-dvh w-[300px] flex-col items-center gap-10 border-r bg-N1.1 px-5 py-10 ${open ? "flex" : "hidden lg:flex"}`}
       >
         <section className="flex h-fit w-fit items-center justify-center gap-2">
-          <Image src={logoQbills1} alt="Qbills" width={40} quality={30} priority />
+          <Image src={logoQbills1} alt="QBills" width={40} quality={30} priority />
           <div>
-            <Image src={logoQbills2} alt="Qbills" width={110} quality={30} priority className="mx-auto mb-1" />
-            <Image src={logoQbills3} alt="Qbills" width={130} quality={30} priority />
+            <Image src={logoQbills2} alt="QBills" width={110} quality={30} priority className="mx-auto mb-1" />
+            <Image src={logoQbills3} alt="QBills" width={130} quality={30} priority />
           </div>
         </section>
 

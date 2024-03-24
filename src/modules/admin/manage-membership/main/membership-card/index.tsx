@@ -23,15 +23,15 @@ const MembershipCard: FC<T> = ({ selectedData }): ReactElement => {
         </button>
         <div className="absolute flex h-full w-full items-center justify-center pb-16 pr-[61px]">
           <div className="flex h-fit w-fit items-center justify-center gap-2">
-            <Image src={logoQbills1} alt="Qbills" width={68} quality={30} priority />
+            <Image src={logoQbills1} alt="QBills" width={68} quality={30} priority />
             <div>
-              <Image src={logoQbills2} alt="Qbills" width={187} quality={30} priority className="mx-auto mb-1" />
-              <Image src={logoQbills3} alt="Qbills" width={221} quality={30} priority />
+              <Image src={logoQbills2} alt="QBills" width={187} quality={30} priority className="mx-auto mb-1" />
+              <Image src={logoQbills3} alt="QBills" width={221} quality={30} priority />
             </div>
           </div>
         </div>
         <h1 className="absolute bottom-5 left-5 w-[293px] text-2xl text-N1">{selectedData.name.toUpperCase()}</h1>
-        <Image src={cardBackground} alt="Card Background" priority className="w-full" />
+        <Image src={cardBackground} alt="Image" priority className="w-full" />
       </div>
     </section>
   );

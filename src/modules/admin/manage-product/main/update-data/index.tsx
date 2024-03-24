@@ -205,7 +205,14 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 <legend className="ml-3 select-none whitespace-nowrap px-1 text-xs font-semibold text-N3 group-focus-within:text-P5">Preview</legend>
                 <div className="flex h-full w-full max-w-[337px] items-center justify-center">
                   {imageURL || watch("image") ? (
-                    <Image src={imageURL || watch("image")} alt="Loading" width={0} height={0} quality={30} className="h-fit max-h-[352px] w-fit" />
+                    <Image
+                      src={imageURL || watch("image")}
+                      alt="Loading..."
+                      width={0}
+                      height={0}
+                      quality={30}
+                      className="h-fit max-h-[352px] w-fit"
+                    />
                   ) : null}
                 </div>
               </fieldset>
@@ -232,7 +239,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               disabled={loading}
               className={loading ? "cursor-wait" : ""}
             >
-              {loading && <Image src={loadingAnimation} alt="Loading" width={20} quality={30} />}
+              {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
               Update
             </Button>
           </div>

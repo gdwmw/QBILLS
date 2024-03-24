@@ -93,7 +93,7 @@ const DetailProduct: FC<T> = ({ selectedData }): ReactElement => {
             </div>
           </div>
 
-          <Image src={logoQbills1} alt="Qbills" width={160} quality={30} priority className="absolute -bottom-14 -right-5 rotate-[60deg]" />
+          <Image src={logoQbills1} alt="QBills" width={160} quality={30} priority className="absolute -bottom-14 -right-5 rotate-[60deg]" />
 
           <Image src={detailProductBackground} alt="Image" priority className="w-full" />
         </div>

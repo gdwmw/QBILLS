@@ -13,10 +13,10 @@ export const Header: FC = (): ReactElement => {
       <nav className="absolute left-0 top-0 w-full px-10 py-5">
         <div className="mx-auto flex max-w-[1920px] items-center justify-between">
           <section className="flex h-fit w-fit items-center justify-center gap-2">
-            <Image src={logoQbills1} alt="Qbills" width={40} quality={30} priority />
+            <Image src={logoQbills1} alt="QBills" width={40} quality={30} priority />
             <div>
-              <Image src={logoQbills2} alt="Qbills" width={110} quality={30} priority className="mx-auto mb-1" />
-              <Image src={logoQbills3} alt="Qbills" width={130} quality={30} priority />
+              <Image src={logoQbills2} alt="QBills" width={110} quality={30} priority className="mx-auto mb-1" />
+              <Image src={logoQbills3} alt="QBills" width={130} quality={30} priority />
             </div>
           </section>
 

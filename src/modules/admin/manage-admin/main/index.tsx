@@ -145,7 +145,7 @@ export const Main: FC = (): ReactElement => {
             onClick={handleMultipleDelete}
             className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
           >
-            <Image src={loadingAnimation} alt="Loading" width={20} quality={30} className={loading[0] ? "" : "hidden"} />
+            <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading[0] ? "" : "hidden"} />
             Delete ({checkboxCount})
           </Button>
           <Button
@@ -217,7 +217,7 @@ export const Main: FC = (): ReactElement => {
                         disabled={account.role === "superadmin" || loading[index + 1]}
                         className={loading[index + 1] ? "cursor-wait" : ""}
                       >
-                        {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading" width={16} quality={30} /> : <MdDelete />}
+                        {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading..." width={16} quality={30} /> : <MdDelete />}
                       </IconButton>
                     </div>
                   </td>

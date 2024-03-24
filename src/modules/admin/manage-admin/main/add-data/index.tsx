@@ -120,7 +120,7 @@ const AddData: FC = (): ReactElement => {
               disabled={loading}
               className={loading ? "cursor-wait" : ""}
             >
-              {loading && <Image src={loadingAnimation} alt="Loading" width={20} quality={30} />}
+              {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
               Add
             </Button>
           </div>

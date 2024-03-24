@@ -22,10 +22,10 @@ export const Main: FC = (): ReactElement => {
     <main>
       {/* HERO SECTION */}
       <section className="relative -z-10 h-screen w-full overflow-hidden bg-gradient-to-r from-P3 to-P4">
-        <Image src={logoQbills1} alt="Qbills" width={700} quality={30} priority className="absolute -top-24 left-10 -z-10 -rotate-12 opacity-25" />
+        <Image src={logoQbills1} alt="QBills" width={700} quality={30} priority className="absolute -top-24 left-10 -z-10 -rotate-12 opacity-25" />
         <Image
           src={logoQbills2}
-          alt="Qbills"
+          alt="QBills"
           width={500}
           quality={30}
           priority
