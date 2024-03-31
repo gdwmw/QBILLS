@@ -147,7 +147,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 id="description"
                 errorMassage={errors.description?.message}
                 variant={errors.description ? "error" : "default"}
-                className="max-h-[150px] w-full"
+                className="max-h-[150px] min-h-[48px] w-full"
               />
 
               <Select
