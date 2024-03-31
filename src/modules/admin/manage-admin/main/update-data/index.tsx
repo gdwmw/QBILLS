@@ -1,5 +1,5 @@
 import { Button, Input } from "@/components";
-import { IAdminAccount, PUTAdminAccount } from "@/libs";
+import { IAdminAccount, PUTAdminAccount } from "@/utils";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

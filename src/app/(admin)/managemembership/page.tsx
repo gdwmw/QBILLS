@@ -1,4 +1,4 @@
-import { GETMembership } from "@/libs";
+import { GETMembership } from "@/utils";
 import { Main } from "@/modules/admin/manage-membership";
 import { FC, ReactElement } from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";

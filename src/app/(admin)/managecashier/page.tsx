@@ -1,4 +1,4 @@
-import { GETCashierAccount } from "@/libs";
+import { GETCashierAccount } from "@/utils";
 import { Main } from "@/modules/admin/manage-cashier";
 import { FC, ReactElement } from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";

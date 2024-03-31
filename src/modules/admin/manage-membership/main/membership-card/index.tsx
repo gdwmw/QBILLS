@@ -1,4 +1,4 @@
-import { IMembership } from "@/libs";
+import { IMembership } from "@/utils";
 import cardBackground from "@/public/assets/images/card/membership-card.svg";
 import logoQbills1 from "@/public/assets/images/logos/white/logo-2.png";
 import logoQbills2 from "@/public/assets/images/logos/white/logo-4.png";

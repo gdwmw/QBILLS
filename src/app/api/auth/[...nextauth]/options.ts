@@ -1,4 +1,4 @@
-import { GETAdminAccount, IAdminAccount } from "@/libs";
+import { GETAdminAccount, IAdminAccount } from "@/utils";
 import type { NextAuthOptions } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
 

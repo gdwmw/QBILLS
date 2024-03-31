@@ -1,4 +1,4 @@
-import { GETAdminAccount } from "@/libs";
+import { GETAdminAccount } from "@/utils";
 import { Main } from "@/modules/admin/manage-admin";
 import { FC, ReactElement } from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";

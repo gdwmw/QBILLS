@@ -1,5 +1,5 @@
 import { Button, Input, Select, TextArea } from "@/components";
-import { POSTProduct, TProduct } from "@/libs";
+import { POSTProduct, TProduct } from "@/utils";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

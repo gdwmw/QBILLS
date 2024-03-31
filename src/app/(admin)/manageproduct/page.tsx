@@ -1,4 +1,4 @@
-import { GETProduct } from "@/libs";
+import { GETProduct } from "@/utils";
 import { Main } from "@/modules/admin/manage-product";
 import { FC, ReactElement } from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";

@@ -1,4 +1,4 @@
-import { IProduct } from "@/libs";
+import { IProduct } from "@/utils";
 import detailProductBackground from "@/public/assets/images/detail-product/detail-product.svg";
 import Image from "next/image";
 import { FC, ReactElement } from "react";

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, IconButton, Input, Pagination } from "@/components";
-import { DELETECashierAccount, DELETEMultipleCashierAccount, GETCashierAccount, ICashierAccount } from "@/libs";
+import { DELETECashierAccount, DELETEMultipleCashierAccount, GETCashierAccount, ICashierAccount } from "@/utils";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";

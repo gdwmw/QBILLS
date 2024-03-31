@@ -1,5 +1,5 @@
 import { Button, Input } from "@/components";
-import { ICashierAccount, PUTCashierAccount } from "@/libs";
+import { ICashierAccount, PUTCashierAccount } from "@/utils";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
