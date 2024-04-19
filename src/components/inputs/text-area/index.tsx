@@ -30,17 +30,17 @@ const TextAreaLegendCVA = cva("ml-3 select-none px-1 text-xs whitespace-nowrap f
 
 interface I extends TextareaHTMLAttributes<HTMLTextAreaElement>, VariantProps<typeof TextAreaFieldsetCVA> {
   label?: string;
-  errorMassage?: string;
+  errorMessage?: string;
 }
 
-export const TextArea: FC<I> = forwardRef<HTMLTextAreaElement, I>(({ label, errorMassage, variant, className, ...props }, ref): ReactElement => {
+export const TextArea: FC<I> = forwardRef<HTMLTextAreaElement, I>(({ label, errorMessage, variant, className, ...props }, ref): ReactElement => {
   return (
     <section className="space-y-1">
       <fieldset className={cn(TextAreaFieldsetCVA({ variant }))}>
         <legend className={cn(TextAreaLegendCVA({ variant }))}>{label}</legend>
         <textarea ref={ref} className={`w-full rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed ${className}`} {...props} />
       </fieldset>
-      {errorMassage && <span className="ml-1 text-xs text-E4">{errorMassage}</span>}
+      {errorMessage && <span className="ml-1 text-xs text-E4">{errorMessage}</span>}
     </section>
   );
 });

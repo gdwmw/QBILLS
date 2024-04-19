@@ -31,10 +31,10 @@ const SelectLegendCVA = cva("ml-3 select-none px-1 text-xs whitespace-nowrap fon
 interface I extends SelectHTMLAttributes<HTMLSelectElement>, VariantProps<typeof SelectFieldsetCVA> {
   label?: string;
   children: ReactNode;
-  errorMassage?: string;
+  errorMessage?: string;
 }
 
-export const Select: FC<I> = forwardRef<HTMLSelectElement, I>(({ label, children, errorMassage, variant, ...props }, ref): ReactElement => {
+export const Select: FC<I> = forwardRef<HTMLSelectElement, I>(({ label, children, errorMessage, variant, ...props }, ref): ReactElement => {
   return (
     <section className="space-y-1">
       <fieldset className={cn(SelectFieldsetCVA({ variant }))}>
@@ -43,7 +43,7 @@ export const Select: FC<I> = forwardRef<HTMLSelectElement, I>(({ label, children
           {children}
         </select>
       </fieldset>
-      {errorMassage && <span className="ml-1 text-xs text-E4">{errorMassage}</span>}
+      {errorMessage && <span className="ml-1 text-xs text-E4">{errorMessage}</span>}
     </section>
   );
 });

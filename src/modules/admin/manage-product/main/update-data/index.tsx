@@ -128,7 +128,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 label="Code"
                 {...register("code")}
                 id="code"
-                errorMassage={errors.code?.message}
+                errorMessage={errors.code?.message}
                 variant={errors.code ? "error" : "default"}
               />
 
@@ -137,7 +137,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 label="Name"
                 {...register("name")}
                 id="name"
-                errorMassage={errors.name?.message}
+                errorMessage={errors.name?.message}
                 variant={errors.name ? "error" : "default"}
               />
 
@@ -145,7 +145,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 label="Description"
                 {...register("description")}
                 id="description"
-                errorMassage={errors.description?.message}
+                errorMessage={errors.description?.message}
                 variant={errors.description ? "error" : "default"}
                 className="max-h-[150px] min-h-[48px] w-full"
               />
@@ -154,7 +154,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 label="Category"
                 {...register("category")}
                 id="category"
-                errorMassage={errors.category?.message}
+                errorMessage={errors.category?.message}
                 variant={errors.category ? "error" : "default"}
               >
                 <option value="coffee">Coffee</option>
@@ -163,7 +163,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 <option value="meal">Meal</option>
               </Select>
 
-              <Select label="Size" {...register("size")} id="size" errorMassage={errors.size?.message} variant={errors.size ? "error" : "default"}>
+              <Select label="Size" {...register("size")} id="size" errorMessage={errors.size?.message} variant={errors.size ? "error" : "default"}>
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
                 <option value="large">Large</option>
@@ -174,7 +174,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 label="Price"
                 {...register("price", { valueAsNumber: true })}
                 id="price"
-                errorMassage={errors.price?.message}
+                errorMessage={errors.price?.message}
                 variant={errors.price ? "error" : "default"}
               />
 
@@ -182,7 +182,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 label="Stock"
                 {...register("stock")}
                 id="stock"
-                errorMassage={errors.stock?.message}
+                errorMessage={errors.stock?.message}
                 variant={errors.stock ? "error" : "default"}
               >
                 <option value="available">Available</option>
@@ -197,7 +197,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
                 label="Image"
                 {...register("image")}
                 id="image"
-                // errorMassage={errors.image?.message} // TODO Tinggal ini
+                // errorMessage={errors.image?.message} // TODO Tinggal ini
                 variant={errors.image ? "error" : "default"}
               />
 

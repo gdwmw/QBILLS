@@ -45,10 +45,10 @@ interface I extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof I
   label?: string;
   icon?: ReactNode;
   iconOnClick?: () => void;
-  errorMassage?: string;
+  errorMessage?: string;
 }
 
-export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ label, icon, iconOnClick, errorMassage, variant, ...props }, ref): ReactElement => {
+export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ label, icon, iconOnClick, errorMessage, variant, ...props }, ref): ReactElement => {
   return (
     <section className="space-y-1">
       <fieldset className={cn(InputFieldsetCVA({ variant }))}>
@@ -62,7 +62,7 @@ export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ label, icon, icon
           )}
         </div>
       </fieldset>
-      {errorMassage && <span className="ml-1 text-xs text-E4">{errorMassage}</span>}
+      {errorMessage && <span className="ml-1 text-xs text-E4">{errorMessage}</span>}
     </section>
   );
 });

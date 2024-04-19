@@ -82,7 +82,7 @@ export const Main: FC = (): ReactElement => {
             label="Username"
             {...register("username")}
             id="username"
-            errorMassage={errors.username?.message}
+            errorMessage={errors.username?.message}
             variant={error || errors.username ? "error" : "default"}
           />
 
@@ -93,7 +93,7 @@ export const Main: FC = (): ReactElement => {
             id="password"
             icon={visibility ? <FaEye /> : <FaEyeSlash />}
             iconOnClick={() => setVisibility(!visibility)}
-            errorMassage={errors.password?.message}
+            errorMessage={errors.password?.message}
             variant={error || errors.password ? "error" : "default"}
           />
         </div>

@@ -79,7 +79,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               label="Name"
               {...register("name")}
               id="name"
-              errorMassage={errors.name?.message}
+              errorMessage={errors.name?.message}
               variant={errors.name ? "error" : "default"}
             />
 
@@ -88,7 +88,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               label="Username"
               {...register("username")}
               id="username"
-              errorMassage={errors.username?.message}
+              errorMessage={errors.username?.message}
               variant={errors.username ? "error" : "default"}
             />
 
@@ -99,7 +99,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               id="password"
               icon={visibility ? <FaEye /> : <FaEyeSlash />}
               iconOnClick={() => setVisibility(!visibility)}
-              errorMassage={errors.password?.message}
+              errorMessage={errors.password?.message}
               variant={errors.password ? "error" : "default"}
             />
 

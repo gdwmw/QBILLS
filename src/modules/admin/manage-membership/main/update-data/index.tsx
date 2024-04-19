@@ -75,7 +75,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               label="Name"
               {...register("name")}
               id="name"
-              errorMassage={errors.name?.message}
+              errorMessage={errors.name?.message}
               variant={errors.name ? "error" : "default"}
             />
 
@@ -84,7 +84,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               label="Phone Number"
               {...register("phone-number", { valueAsNumber: true })}
               id="phone-number"
-              errorMassage={errors["phone-number"]?.message}
+              errorMessage={errors["phone-number"]?.message}
               variant={errors["phone-number"] ? "error" : "default"}
             />
 
@@ -93,7 +93,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               label="Point"
               {...register("point", { valueAsNumber: true })}
               id="point"
-              errorMassage={errors.point?.message}
+              errorMessage={errors.point?.message}
               variant={errors.point ? "error" : "default"}
             />
           </div>
