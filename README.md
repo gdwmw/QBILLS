@@ -1,3 +1,3 @@
 # QBILLS
 
-Final Assignment Project From Alterra Academy That I Re-Write <br/> Source: https://github.com/Capstone-Kelompok10-POS/QBILLS-FE
+I Rewrote a Final Project from Alterra Academy <br/> Source: https://github.com/Capstone-Kelompok10-POS/QBILLS-FE
