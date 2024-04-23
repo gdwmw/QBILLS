@@ -1,4 +1,4 @@
-const URL = "https://65e037b8d3db23f76248a0a7.mockapi.io/qbills/v2/membership";
+const URL = process.env.NEXT_PUBLIC_MEMBERSHIP;
 
 export interface IMembership {
   id: string;
@@ -14,6 +14,10 @@ export type TMembership = {
 };
 
 export const GETMembership = async (): Promise<IMembership[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -34,6 +38,10 @@ export const GETMembership = async (): Promise<IMembership[]> => {
 };
 
 export const POSTMembership = async (data: TMembership): Promise<IMembership> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -54,6 +62,10 @@ export const POSTMembership = async (data: TMembership): Promise<IMembership> =>
 };
 
 export const PUTMembership = async (data: IMembership): Promise<IMembership> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -74,6 +86,10 @@ export const PUTMembership = async (data: IMembership): Promise<IMembership> => 
 };
 
 export const DELETEMembership = async (id: string): Promise<IMembership> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -93,6 +109,10 @@ export const DELETEMembership = async (id: string): Promise<IMembership> => {
 };
 
 export const DELETEMultipleMembership = async (ids: string[]): Promise<IMembership[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const results = await Promise.all(
       ids.map(async (id) => {

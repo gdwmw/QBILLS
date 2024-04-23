@@ -1,4 +1,4 @@
-const URL = "https://65d4d0d13f1ab8c63436117f.mockapi.io/qbills/v1/cashieraccount";
+const URL = process.env.NEXT_PUBLIC_CASHIERACCOUNT;
 
 export interface ICashierAccount {
   id: string;
@@ -16,6 +16,10 @@ export type TCashierAccount = {
 };
 
 export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -36,6 +40,10 @@ export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
 };
 
 export const POSTCashierAccount = async (data: TCashierAccount): Promise<ICashierAccount> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -56,6 +64,10 @@ export const POSTCashierAccount = async (data: TCashierAccount): Promise<ICashie
 };
 
 export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -76,6 +88,10 @@ export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashier
 };
 
 export const DELETECashierAccount = async (id: string): Promise<ICashierAccount> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -95,6 +111,10 @@ export const DELETECashierAccount = async (id: string): Promise<ICashierAccount>
 };
 
 export const DELETEMultipleCashierAccount = async (ids: string[]): Promise<ICashierAccount[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const results = await Promise.all(
       ids.map(async (id) => {

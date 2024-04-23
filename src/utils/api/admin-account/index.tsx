@@ -1,4 +1,4 @@
-const URL = "https://65d4d0d13f1ab8c63436117f.mockapi.io/qbills/v1/adminaccount";
+const URL = process.env.NEXT_PUBLIC_ADMINACCOUNT;
 
 export interface IAdminAccount {
   id: string;
@@ -16,6 +16,10 @@ export type TAdminAccount = {
 };
 
 export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -36,6 +40,10 @@ export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
 };
 
 export const POSTAdminAccount = async (data: TAdminAccount): Promise<IAdminAccount> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -56,6 +64,10 @@ export const POSTAdminAccount = async (data: TAdminAccount): Promise<IAdminAccou
 };
 
 export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -76,6 +88,10 @@ export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccoun
 };
 
 export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -95,6 +111,10 @@ export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => 
 };
 
 export const DELETEMultipleAdminAccount = async (ids: string[]): Promise<IAdminAccount[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const results = await Promise.all(
       ids.map(async (id) => {

@@ -1,4 +1,4 @@
-const URL = "https://65e037b8d3db23f76248a0a7.mockapi.io/qbills/v2/product";
+const URL = process.env.NEXT_PUBLIC_PRODUCT;
 
 export interface IProduct {
   id: string;
@@ -24,6 +24,10 @@ export type TProduct = {
 };
 
 export const GETProduct = async (): Promise<IProduct[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -44,6 +48,10 @@ export const GETProduct = async (): Promise<IProduct[]> => {
 };
 
 export const POSTProduct = async (data: TProduct): Promise<IProduct> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -64,6 +72,10 @@ export const POSTProduct = async (data: TProduct): Promise<IProduct> => {
 };
 
 export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -93,6 +105,10 @@ export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
 };
 
 export const DELETEProduct = async (id: string): Promise<IProduct> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -112,6 +128,10 @@ export const DELETEProduct = async (id: string): Promise<IProduct> => {
 };
 
 export const DELETEMultipleProduct = async (ids: string[]): Promise<IProduct[]> => {
+  if (!URL) {
+    throw new Error("URL is not defined");
+  }
+
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
