@@ -26,7 +26,6 @@ export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-cache",
     });
 
     if (!res.ok) {

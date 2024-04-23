@@ -26,7 +26,6 @@ export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-cache",
     });
 
     if (!res.ok) {
