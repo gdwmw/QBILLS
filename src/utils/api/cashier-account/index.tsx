@@ -1,4 +1,4 @@
-const URL = process.env.NEXT_PUBLIC_CASHIERACCOUNT;
+const URL = process.env.NEXT_PUBLIC_CASHIER_ACCOUNT;
 
 export interface ICashierAccount {
   id: string;

@@ -1,4 +1,4 @@
-const URL = process.env.NEXT_PUBLIC_ADMINACCOUNT;
+const URL = process.env.NEXT_PUBLIC_ADMIN_ACCOUNT;
 
 export interface IAdminAccount {
   id: string;
