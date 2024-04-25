@@ -1,7 +1,7 @@
-import { GETMembership } from "@/utils";
 import { Main } from "@/modules/admin/manage-membership";
-import { FC, ReactElement } from "react";
+import { GETMembership } from "@/utils";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { FC, ReactElement } from "react";
 
 const ManageMembership: FC = async (): Promise<ReactElement> => {
   const queryClient = new QueryClient();

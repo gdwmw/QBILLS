@@ -1,7 +1,7 @@
-import { GETCashierAccount } from "@/utils";
 import { Main } from "@/modules/admin/manage-cashier";
-import { FC, ReactElement } from "react";
+import { GETCashierAccount } from "@/utils";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { FC, ReactElement } from "react";
 
 const ManageCashier: FC = async (): Promise<ReactElement> => {
   const queryClient = new QueryClient();

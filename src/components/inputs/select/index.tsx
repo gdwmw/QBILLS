@@ -1,6 +1,6 @@
 import { cn } from "@/libs";
 import { cva, type VariantProps } from "class-variance-authority";
-import { FC, SelectHTMLAttributes, ReactElement, ReactNode, forwardRef } from "react";
+import { FC, ReactElement, ReactNode, SelectHTMLAttributes, forwardRef } from "react";
 
 const SelectFieldsetCVA = cva("group w-full overflow-hidden rounded-md border-2 px-1 pb-2", {
   variants: {

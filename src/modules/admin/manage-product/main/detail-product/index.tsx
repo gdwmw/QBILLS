@@ -1,11 +1,11 @@
-import { IProduct } from "@/utils";
 import detailProductBackground from "@/public/assets/images/detail-product/detail-product.svg";
+import logoQbills1 from "@/public/assets/images/logos/white/logo-2.png";
+import { IProduct } from "@/utils";
 import Image from "next/image";
 import { FC, ReactElement } from "react";
+import { FaCoffee } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useManageProduct } from "..";
-import { FaCoffee } from "react-icons/fa";
-import logoQbills1 from "@/public/assets/images/logos/white/logo-2.png";
 
 type T = {
   selectedData: IProduct;

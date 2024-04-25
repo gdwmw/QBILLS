@@ -1,8 +1,8 @@
-import { IMembership } from "@/utils";
 import cardBackground from "@/public/assets/images/card/membership-card.svg";
 import logoQbills1 from "@/public/assets/images/logos/white/logo-2.png";
 import logoQbills2 from "@/public/assets/images/logos/white/logo-4.png";
 import logoQbills3 from "@/public/assets/images/logos/white/logo-5.png";
+import { IMembership } from "@/utils";
 import Image from "next/image";
 import { FC, ReactElement } from "react";
 import { IoClose } from "react-icons/io5";
