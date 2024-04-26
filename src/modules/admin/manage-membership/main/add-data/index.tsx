@@ -1,6 +1,6 @@
 import { Button, Input } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { POSTMembership, TMembership } from "@/utils";
+import { POSTMembership, IMembership } from "@/utils";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import { useManageMembership } from "..";
 
 // VALIBOT
 const Schema = object({
+  id: string(),
   name: string([minLength(3, "Please enter name minimum 3 character.")]),
   "phone-number": number([minValue(8, "Please enter phone number minimum 8 number.")]),
   point: number(),
@@ -32,6 +33,7 @@ const AddData: FC = (): ReactElement => {
     reset,
   } = useForm<TUseForm>({
     defaultValues: {
+      id: "",
       name: "",
       "phone-number": 0,
       point: 0,
@@ -41,7 +43,7 @@ const AddData: FC = (): ReactElement => {
   // END REACT HOOK FORM WITH VALIBOT
 
   const handleAdd = useMutation({
-    mutationFn: (data: TMembership) => POSTMembership(data),
+    mutationFn: (data: IMembership) => POSTMembership(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETMembership"] });
       setOpenAddData(false);

@@ -1,6 +1,6 @@
 import { Button, Input, Select, TextArea } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { POSTProduct, TProduct } from "@/utils";
+import { IProduct, POSTProduct } from "@/utils";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import { useManageProduct } from "..";
 
 // VALIBOT
 const Schema = object({
+  id: string(),
   code: string([minLength(5, "Please enter code minimum 5 character.")]),
   name: string([minLength(3, "Please enter name minimum 3 character.")]),
   description: string([minLength(8, "Please enter description minimum 8 character.")]),
@@ -39,6 +40,7 @@ const AddData: FC = (): ReactElement => {
     reset,
   } = useForm<TUseForm>({
     defaultValues: {
+      id: "",
       code: "",
       name: "",
       description: "",
@@ -80,7 +82,7 @@ const AddData: FC = (): ReactElement => {
   // END CONVERT IMAGE TO BASE64
 
   const handleAdd = useMutation({
-    mutationFn: (data: TProduct) => POSTProduct(data),
+    mutationFn: (data: IProduct) => POSTProduct(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETProduct"] });
       setOpenAddData(false);
@@ -91,6 +93,7 @@ const AddData: FC = (): ReactElement => {
   // REACT HOOK FORM WITH REACT QUERY
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     const newData = {
+      id: data.id,
       code: data.code,
       name: data.name,
       description: data.description,

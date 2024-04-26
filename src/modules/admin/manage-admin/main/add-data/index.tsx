@@ -1,6 +1,6 @@
 import { Button, Input } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { POSTAdminAccount, TAdminAccount } from "@/utils";
+import { IAdminAccount, POSTAdminAccount } from "@/utils";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import { useManageAdmin } from "..";
 
 // VALIBOT
 const Schema = object({
+  id: string(),
   name: string([minLength(3, "Please enter name minimum 3 character.")]),
   username: string([minLength(5, "Please enter username minimum 5 character.")]),
   password: string([minLength(5, "Please enter password minimum 5 character.")]),
@@ -35,6 +36,7 @@ const AddData: FC = (): ReactElement => {
     reset,
   } = useForm<TUseForm>({
     defaultValues: {
+      id: "",
       name: "",
       username: "",
       password: "",
@@ -45,7 +47,7 @@ const AddData: FC = (): ReactElement => {
   // END REACT HOOK FORM WITH VALIBOT
 
   const handleAdd = useMutation({
-    mutationFn: (data: TAdminAccount) => POSTAdminAccount(data),
+    mutationFn: (data: IAdminAccount) => POSTAdminAccount(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
       setOpenAddData(false);
