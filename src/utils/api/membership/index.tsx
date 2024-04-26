@@ -7,12 +7,6 @@ export interface IMembership {
   point: number;
 }
 
-export type TMembership = {
-  name: string;
-  "phone-number": number;
-  point: number;
-};
-
 export const GETMembership = async (): Promise<IMembership[]> => {
   if (!URL) {
     throw new Error("URL is not defined");
@@ -36,7 +30,7 @@ export const GETMembership = async (): Promise<IMembership[]> => {
   }
 };
 
-export const POSTMembership = async (data: TMembership): Promise<IMembership> => {
+export const POSTMembership = async (data: IMembership): Promise<IMembership> => {
   if (!URL) {
     throw new Error("URL is not defined");
   }
@@ -47,7 +41,7 @@ export const POSTMembership = async (data: TMembership): Promise<IMembership> =>
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ name: data.name, "phone-number": data["phone-number"], point: data.point }),
     });
 
     if (!res.ok) {

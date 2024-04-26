@@ -8,13 +8,6 @@ export interface ICashierAccount {
   role: string;
 }
 
-export type TCashierAccount = {
-  name: string;
-  username: string;
-  password: string;
-  role: string;
-};
-
 export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
   if (!URL) {
     throw new Error("URL is not defined");
@@ -38,7 +31,7 @@ export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
   }
 };
 
-export const POSTCashierAccount = async (data: TCashierAccount): Promise<ICashierAccount> => {
+export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
   if (!URL) {
     throw new Error("URL is not defined");
   }
@@ -49,7 +42,7 @@ export const POSTCashierAccount = async (data: TCashierAccount): Promise<ICashie
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ name: data.name, username: data.username, password: data.password, role: data.role }),
     });
 
     if (!res.ok) {

@@ -12,17 +12,6 @@ export interface IProduct {
   image: any;
 }
 
-export type TProduct = {
-  code: string;
-  name: string;
-  description: string;
-  category: string;
-  size: string;
-  price: number;
-  stock: string;
-  image: any;
-};
-
 export const GETProduct = async (): Promise<IProduct[]> => {
   if (!URL) {
     throw new Error("URL is not defined");
@@ -46,7 +35,7 @@ export const GETProduct = async (): Promise<IProduct[]> => {
   }
 };
 
-export const POSTProduct = async (data: TProduct): Promise<IProduct> => {
+export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
   if (!URL) {
     throw new Error("URL is not defined");
   }
@@ -57,7 +46,16 @@ export const POSTProduct = async (data: TProduct): Promise<IProduct> => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        code: data.code,
+        name: data.name,
+        description: data.description,
+        category: data.category,
+        size: data.size,
+        price: data.price,
+        stock: data.stock,
+        image: data.image,
+      }),
     });
 
     if (!res.ok) {

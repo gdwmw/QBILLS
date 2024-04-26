@@ -8,13 +8,6 @@ export interface IAdminAccount {
   role: string;
 }
 
-export type TAdminAccount = {
-  name: string;
-  username: string;
-  password: string;
-  role: string;
-};
-
 export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
   if (!URL) {
     throw new Error("URL is not defined");
@@ -38,7 +31,7 @@ export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
   }
 };
 
-export const POSTAdminAccount = async (data: TAdminAccount): Promise<IAdminAccount> => {
+export const POSTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
   if (!URL) {
     throw new Error("URL is not defined");
   }
@@ -49,7 +42,7 @@ export const POSTAdminAccount = async (data: TAdminAccount): Promise<IAdminAccou
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ name: data.name, username: data.username, password: data.password, role: data.role }),
     });
 
     if (!res.ok) {
