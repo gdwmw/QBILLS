@@ -66,7 +66,7 @@ const AddData: FC = (): ReactElement => {
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">
-      <form onSubmit={handleSubmit(onSubmit)} className=" h-fit max-h-[500px] w-full max-w-[500px] rounded-xl bg-N1 p-5 shadow-md">
+      <form onSubmit={handleSubmit(onSubmit)} className=" h-fit w-full max-w-[500px] rounded-xl bg-N1 p-5 shadow-md">
         <div className="flex h-full w-full flex-col items-center gap-3 rounded-lg border p-5">
           <h1 className="text-center text-2xl font-bold">Add Cashier Account</h1>
           <div className="w-full space-y-3">
