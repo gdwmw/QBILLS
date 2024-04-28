@@ -195,7 +195,7 @@ const AddData: FC = (): ReactElement => {
                 variant={errors.image ? "error" : "default"}
               />
 
-              <fieldset className="group h-full max-h-[384px] w-full overflow-hidden rounded-md border-2 border-N2 px-1 pb-2 focus-within:border-P4">
+              <fieldset className="group h-full max-h-[390px] w-full overflow-hidden rounded-md border-2 border-N2 px-1 pb-2 focus-within:border-P4">
                 <legend className="ml-3 select-none whitespace-nowrap px-1 text-xs font-semibold text-N3 group-focus-within:text-P5">Preview</legend>
                 <div className="flex h-full w-full max-w-[337px] items-center justify-center">
                   {imageURL && <Image src={imageURL} alt="Loading..." width={0} height={0} quality={30} className="h-fit max-h-[352px] w-fit" />}
