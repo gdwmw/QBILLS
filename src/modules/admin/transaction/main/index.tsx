@@ -8,9 +8,9 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { FC, ReactElement, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaRegCheckCircle, FaRegClock, FaSearch } from "react-icons/fa";
-import { ImCancelCircle } from "react-icons/im";
-import { MdDelete, MdEdit, MdOutlineAccountBalanceWallet } from "react-icons/md";
+import { FaCheckCircle, FaClock, FaSearch } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
+import { MdAccountBalanceWallet, MdDelete, MdEdit } from "react-icons/md";
 import { create } from "zustand";
 const AddData = dynamic(() => import("./add-data"));
 const UpdateData = dynamic(() => import("./update-data"));
@@ -196,190 +196,212 @@ export const Main: FC = (): ReactElement => {
   };
 
   return (
-    <main className="space-y-5 px-5">
-      <section>
-        {editMode && (
-          <div className="flex items-center gap-3 py-5">
-            <h2 className="mr-auto hidden whitespace-nowrap text-xl font-semibold md:block">Transaction List</h2>
-            <Button
-              type="button"
-              solid={checkboxCount === 0 || loading[0] ? "disabled" : "red"}
-              size={"sm"}
-              widthFull
-              disabled={checkboxCount === 0 || loading[0]}
-              onClick={handleMultipleDelete}
-              className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
-            >
-              <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading[0] ? "" : "hidden"} />
-              Delete ({checkboxCount})
-            </Button>
-            <Button
-              type="button"
-              solid={"default"}
-              size={"sm"}
-              widthFull
-              onClick={() => setOpenAddData(true)}
-              className="max-w-[150px] whitespace-nowrap font-semibold"
-            >
-              Add Transaction
-            </Button>
+    <main className="px-5">
+      <div className="space-y-5">
+        <section>
+          {editMode && (
+            <div className="flex items-center gap-3 py-5">
+              <h2 className="mr-auto hidden whitespace-nowrap text-xl font-semibold md:block">Transaction List</h2>
+              <Button
+                type="button"
+                solid={checkboxCount === 0 || loading[0] ? "disabled" : "red"}
+                size={"sm"}
+                widthFull
+                disabled={checkboxCount === 0 || loading[0]}
+                onClick={handleMultipleDelete}
+                className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
+              >
+                <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading[0] ? "" : "hidden"} />
+                Delete ({checkboxCount})
+              </Button>
+              <Button
+                type="button"
+                solid={"default"}
+                size={"sm"}
+                widthFull
+                onClick={() => setOpenAddData(true)}
+                className="max-w-[150px] whitespace-nowrap font-semibold"
+              >
+                Add Transaction
+              </Button>
+            </div>
+          )}
+        </section>
+
+        <section className="flex justify-between gap-5 overflow-x-auto">
+          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <div>
+              <div className="h-[40px] border border-N1">
+                <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
+              </div>
+              <span className="font-semibold text-N3">Total Monthly Per.{` (${calculateCurrentMonthlyTotal(data || []).month})`}</span>
+              <br />
+              <span className="text-2xl font-semibold">
+                {new Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                }).format(calculateCurrentMonthlyTotal(data || []).total)}
+              </span>
+            </div>
           </div>
-        )}
-      </section>
 
-      <section className="flex justify-between gap-5 overflow-x-auto">
-        <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-          <div>
-            <MdOutlineAccountBalanceWallet size={50} className="text-I4" />
-            <span className="font-semibold text-N3">Total Monthly Per.{` (${calculateCurrentMonthlyTotal(data || []).month})`}</span>
-            <br />
-            <span className="text-2xl font-semibold">
-              {new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR",
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-              }).format(calculateCurrentMonthlyTotal(data || []).total)}
-            </span>
+          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <div>
+              <div className="h-[40px] border border-N1">
+                <FaCheckCircle size={38} className="-ml-[1px] mb-px text-S4" />
+              </div>
+              <span className="font-semibold text-N3">Success</span>
+              <br />
+              <span className="text-2xl font-semibold">{calculateStatus(data || [], "success")}</span>
+            </div>
           </div>
-        </div>
 
-        <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-          <div>
-            <FaRegCheckCircle size={50} className="text-S4" />
-            <span className="font-semibold text-N3">Success</span>
-            <br />
-            <span className="text-2xl font-semibold">{calculateStatus(data || [], "success")}</span>
+          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <div>
+              <div className="h-[40px] border border-N1">
+                <FaClock size={38} className="-ml-[1px] mb-px text-W4" />
+              </div>
+              <span className="font-semibold text-N3">Pending</span>
+              <br />
+              <span className="text-2xl font-semibold">{calculateStatus(data || [], "pending")}</span>
+            </div>
           </div>
-        </div>
 
-        <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-          <div>
-            <FaRegClock size={50} className="text-W4" />
-            <span className="font-semibold text-N3">Pending</span>
-            <br />
-            <span className="text-2xl font-semibold">{calculateStatus(data || [], "pending")}</span>
+          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <div>
+              <div className="h-[40px] border border-N1">
+                <IoMdCloseCircle size={46} className="-ml-[4px] -mt-[4px] text-E4" />
+              </div>
+              <span className="font-semibold text-N3">Canceled</span>
+              <br />
+              <span className="text-2xl font-semibold">{calculateStatus(data || [], "canceled")}</span>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-          <div>
-            <ImCancelCircle size={50} className="text-E4" />
-            <span className="font-semibold text-N3">Canceled</span>
-            <br />
-            <span className="text-2xl font-semibold">{calculateStatus(data || [], "canceled")}</span>
+        <section className="flex w-full items-center gap-3 overflow-y-auto">
+          <div className="w-full min-w-[162px]">
+            <Input type="text" label="Search Transaction" {...register("search")} id="search-transaction" icon={<FaSearch />}></Input>
           </div>
-        </div>
-      </section>
+          <div className="min-w-[162px]">
+            <Input type="date" label="Start Date" {...register("startDate")} id="startDate" variant={"default"} />
+          </div>
+          <div className="min-w-[162px]">
+            <Input type="date" label="End Date" {...register("endDate")} id="endDate" variant={"default"} />
+          </div>
+          <div className="min-w-[162px]">
+            <Select label="Status" {...register("status")} id="status">
+              <option value=""></option>
+              <option value="success">Success</option>
+              <option value="pending">Pending</option>
+              <option value="canceled">Canceled</option>
+            </Select>
+          </div>
+        </section>
 
-      <div className="flex w-full items-center gap-3">
-        <div className="w-full">
-          <Input type="text" label="Search Transaction" {...register("search")} id="search-transaction" icon={<FaSearch />}></Input>
-        </div>
-        <Input type="date" label="Start Date" {...register("startDate")} id="startDate" variant={"default"} />
-        <Input type="date" label="End Date" {...register("endDate")} id="endDate" variant={"default"} />
-        <div className="min-w-[162px]">
-          <Select label="Status" {...register("status")} id="status">
-            <option value=""></option>
-            <option value="success">Success</option>
-            <option value="pending">Pending</option>
-            <option value="canceled">Canceled</option>
-          </Select>
-        </div>
-      </div>
-
-      <section className="overflow-hidden rounded-lg border border-N2">
-        <div className="max-h-[51vh] overflow-auto">
-          <table className="w-full">
-            <thead className="sticky top-0 z-10 bg-N2">
-              <tr className="text-center">
-                {editMode && <th className="px-4 py-4">Checkbox</th>}
-                <th className="px-4 py-4">Code</th>
-                <th className="px-4 py-4">Cashier</th>
-                <th className="px-4 py-4">Customer</th>
-                <th className="px-4 py-4">Payment</th>
-                <th className="px-4 py-4">Date - Time</th>
-                <th className="px-4 py-4">Amount</th>
-                <th className="px-4 py-4">Status</th>
-                {editMode && <th className="px-4 py-4">Action</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {currentData?.map((transaction, index) => (
-                <tr key={transaction.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
-                  {editMode && (
-                    <td className="px-2 py-2">
-                      <input
-                        type="checkbox"
-                        id={`checkbox-id-${index}`}
-                        name={`checkbox-name-${index}`}
-                        checked={checkbox.includes(transaction.id)}
-                        onChange={() => handleCheckbox(transaction.id)}
-                      />
-                    </td>
-                  )}
-                  <td className="whitespace-nowrap px-2 py-2">{transaction.code}</td>
-                  <td className="whitespace-nowrap px-2 py-2">{transaction.cashier}</td>
-                  <td className="whitespace-nowrap px-2 py-2">{transaction.customer}</td>
-                  <td className="whitespace-nowrap px-2 py-2">{transaction.payment}</td>
-                  <td className="whitespace-nowrap px-2 py-2">
-                    {transaction.date} - {transaction.time}
-                  </td>
-                  <td className="whitespace-nowrap px-2 py-2">
-                    {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0,
-                    }).format(transaction.amount)}
-                  </td>
-                  <td className="px-2 py-2">
-                    <Chip label={transaction.status} status={statusMap[transaction.status]} size={"sm-status"} className="mx-auto" />
-                  </td>
-                  {editMode && (
-                    <td className="px-2 py-2">
-                      <div className="flex justify-center gap-2">
-                        <IconButton
-                          type="button"
-                          solid={"green"}
-                          size={"sm"}
-                          onClick={() => {
-                            setSelectedData({
-                              id: transaction.id,
-                              code: transaction.code,
-                              cashier: transaction.cashier,
-                              customer: transaction.customer,
-                              payment: transaction.payment,
-                              date: transaction.date,
-                              time: transaction.time,
-                              amount: transaction.amount,
-                              status: transaction.status,
-                            });
-                            setOpenUpdateData(true);
-                          }}
-                        >
-                          <MdEdit />
-                        </IconButton>
-
-                        <IconButton
-                          type="button"
-                          solid={loading[index + 1] ? "disabled" : "red"}
-                          size={"sm"}
-                          onClick={() => handleDelete(transaction.id, index + 1)}
-                          disabled={loading[index + 1]}
-                          className={loading[index + 1] ? "cursor-wait" : ""}
-                        >
-                          {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading..." width={16} quality={30} /> : <MdDelete />}
-                        </IconButton>
-                      </div>
-                    </td>
-                  )}
+        <section className="overflow-hidden rounded-lg border border-N2">
+          <div className="max-h-[51vh] overflow-auto">
+            <table className="w-full">
+              <thead className="sticky top-0 z-10 bg-N2">
+                <tr className="text-center">
+                  {editMode && <th className="px-4 py-4">Checkbox</th>}
+                  <th className="px-4 py-4">Code</th>
+                  <th className="px-4 py-4">Cashier</th>
+                  <th className="px-4 py-4">Customer</th>
+                  <th className="px-4 py-4">Payment</th>
+                  <th className="px-4 py-4">Date - Time</th>
+                  <th className="px-4 py-4">Amount</th>
+                  <th className="px-4 py-4">Status</th>
+                  {editMode && <th className="px-4 py-4">Action</th>}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+              </thead>
+              <tbody>
+                {currentData
+                  ?.sort((a, b) => {
+                    const dateDifference = new Date(b.date).getTime() - new Date(a.date).getTime();
+                    if (dateDifference !== 0) return dateDifference;
+                    const [aHours, aMinutes] = a.time.split(":").map(Number);
+                    const [bHours, bMinutes] = b.time.split(":").map(Number);
+                    return bHours * 60 + bMinutes - (aHours * 60 + aMinutes);
+                  })
+                  .map((transaction, index) => (
+                    <tr key={transaction.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
+                      {editMode && (
+                        <td className="px-2 py-2">
+                          <input
+                            type="checkbox"
+                            id={`checkbox-id-${index}`}
+                            name={`checkbox-name-${index}`}
+                            checked={checkbox.includes(transaction.id)}
+                            onChange={() => handleCheckbox(transaction.id)}
+                          />
+                        </td>
+                      )}
+                      <td className="whitespace-nowrap px-2 py-2">{transaction.code}</td>
+                      <td className="whitespace-nowrap px-2 py-2">{transaction.cashier}</td>
+                      <td className="whitespace-nowrap px-2 py-2">{transaction.customer}</td>
+                      <td className="whitespace-nowrap px-2 py-2">{transaction.payment}</td>
+                      <td className="whitespace-nowrap px-2 py-2">
+                        {transaction.date} - {transaction.time}
+                      </td>
+                      <td className="whitespace-nowrap px-2 py-2">
+                        {new Intl.NumberFormat("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        }).format(transaction.amount)}
+                      </td>
+                      <td className="px-2 py-2">
+                        <Chip label={transaction.status} status={statusMap[transaction.status]} size={"sm-status"} className="mx-auto" />
+                      </td>
+                      {editMode && (
+                        <td className="px-2 py-2">
+                          <div className="flex justify-center gap-2">
+                            <IconButton
+                              type="button"
+                              solid={"green"}
+                              size={"sm"}
+                              onClick={() => {
+                                setSelectedData({
+                                  id: transaction.id,
+                                  code: transaction.code,
+                                  cashier: transaction.cashier,
+                                  customer: transaction.customer,
+                                  payment: transaction.payment,
+                                  date: transaction.date,
+                                  time: transaction.time,
+                                  amount: transaction.amount,
+                                  status: transaction.status,
+                                });
+                                setOpenUpdateData(true);
+                              }}
+                            >
+                              <MdEdit />
+                            </IconButton>
+
+                            <IconButton
+                              type="button"
+                              solid={loading[index + 1] ? "disabled" : "red"}
+                              size={"sm"}
+                              onClick={() => handleDelete(transaction.id, index + 1)}
+                              disabled={loading[index + 1]}
+                              className={loading[index + 1] ? "cursor-wait" : ""}
+                            >
+                              {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading..." width={16} quality={30} /> : <MdDelete />}
+                            </IconButton>
+                          </div>
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
 
       <Pagination
         startData={indexOfLastData > 0 ? indexOfFirstData + 1 : 0}
