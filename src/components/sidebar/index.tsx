@@ -87,7 +87,7 @@ export const Sidebar: FC<T> = ({ role }): ReactElement => {
         solid={"default"}
         size={"sm"}
         onClick={() => setOpen(!open)}
-        className={`fixed top-1/2 block lg:hidden ${open ? "left-[312px]" : "left-3"}`}
+        className={`fixed top-1/2 z-20 block lg:hidden ${open ? "left-[312px]" : "left-3"}`}
       >
         {open ? <FaChevronLeft /> : <FaChevronRight />}
       </IconButton>
