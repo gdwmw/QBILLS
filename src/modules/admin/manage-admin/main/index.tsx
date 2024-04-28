@@ -180,6 +180,8 @@ export const Main: FC = (): ReactElement => {
                   <td className="px-2 py-2">
                     <input
                       type="checkbox"
+                      id={`checkbox-id-${index}`}
+                      name={`checkbox-name-${index}`}
                       checked={checkbox.includes(account.id)}
                       onChange={() => handleCheckbox(account.id)}
                       disabled={account.role === "superadmin"}

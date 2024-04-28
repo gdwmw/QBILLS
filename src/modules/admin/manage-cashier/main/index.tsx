@@ -178,7 +178,13 @@ export const Main: FC = (): ReactElement => {
               {currentData?.map((account, index) => (
                 <tr key={account.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
                   <td className="px-2 py-2">
-                    <input type="checkbox" checked={checkbox.includes(account.id)} onChange={() => handleCheckbox(account.id)} />
+                    <input
+                      type="checkbox"
+                      id={`checkbox-id-${index}`}
+                      name={`checkbox-name-${index}`}
+                      checked={checkbox.includes(account.id)}
+                      onChange={() => handleCheckbox(account.id)}
+                    />
                   </td>
                   <td className="whitespace-nowrap px-2 py-2">{account.name}</td>
                   <td className="whitespace-nowrap px-2 py-2">{account.username}</td>

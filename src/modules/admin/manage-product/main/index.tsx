@@ -197,7 +197,13 @@ export const Main: FC = (): ReactElement => {
               {currentData?.map((product, index) => (
                 <tr key={product.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
                   <td className="px-2 py-2">
-                    <input type="checkbox" checked={checkbox.includes(product.id)} onChange={() => handleCheckbox(product.id)} />
+                    <input
+                      type="checkbox"
+                      id={`checkbox-id-${index}`}
+                      name={`checkbox-name-${index}`}
+                      checked={checkbox.includes(product.id)}
+                      onChange={() => handleCheckbox(product.id)}
+                    />
                   </td>
                   <td className="px-2 py-2">
                     <Image
