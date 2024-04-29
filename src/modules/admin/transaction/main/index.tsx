@@ -228,55 +228,59 @@ export const Main: FC = (): ReactElement => {
           )}
         </section>
 
-        <section className="flex justify-between gap-5 overflow-x-auto">
-          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-            <div>
-              <div className="h-[40px] border border-N1">
-                <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
+        <section className="w-full gap-5 max-[1480px]:grid max-[1480px]:grid-cols-2 min-[1480px]:flex">
+          <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
+            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <div>
+                <div className="h-[40px] border border-N1">
+                  <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
+                </div>
+                <span className="font-semibold text-N3">Total Monthly Per.{` (${calculateCurrentMonthlyTotal(data || []).month})`}</span>
+                <br />
+                <span className="text-2xl font-semibold">
+                  {new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  }).format(calculateCurrentMonthlyTotal(data || []).total)}
+                </span>
               </div>
-              <span className="font-semibold text-N3">Total Monthly Per.{` (${calculateCurrentMonthlyTotal(data || []).month})`}</span>
-              <br />
-              <span className="text-2xl font-semibold">
-                {new Intl.NumberFormat("id-ID", {
-                  style: "currency",
-                  currency: "IDR",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 0,
-                }).format(calculateCurrentMonthlyTotal(data || []).total)}
-              </span>
+            </div>
+
+            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <div>
+                <div className="h-[40px] border border-N1">
+                  <FaCheckCircle size={38} className="-ml-[1px] mb-px text-S4" />
+                </div>
+                <span className="font-semibold text-N3">Success</span>
+                <br />
+                <span className="text-2xl font-semibold">{calculateStatus(data || [], "success")}</span>
+              </div>
             </div>
           </div>
 
-          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-            <div>
-              <div className="h-[40px] border border-N1">
-                <FaCheckCircle size={38} className="-ml-[1px] mb-px text-S4" />
+          <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
+            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <div>
+                <div className="h-[40px] border border-N1">
+                  <FaClock size={38} className="-ml-[1px] mb-px text-W4" />
+                </div>
+                <span className="font-semibold text-N3">Pending</span>
+                <br />
+                <span className="text-2xl font-semibold">{calculateStatus(data || [], "pending")}</span>
               </div>
-              <span className="font-semibold text-N3">Success</span>
-              <br />
-              <span className="text-2xl font-semibold">{calculateStatus(data || [], "success")}</span>
             </div>
-          </div>
 
-          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-            <div>
-              <div className="h-[40px] border border-N1">
-                <FaClock size={38} className="-ml-[1px] mb-px text-W4" />
+            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <div>
+                <div className="h-[40px] border border-N1">
+                  <IoMdCloseCircle size={46} className="-ml-[4px] -mt-[4px] text-E4" />
+                </div>
+                <span className="font-semibold text-N3">Canceled</span>
+                <br />
+                <span className="text-2xl font-semibold">{calculateStatus(data || [], "canceled")}</span>
               </div>
-              <span className="font-semibold text-N3">Pending</span>
-              <br />
-              <span className="text-2xl font-semibold">{calculateStatus(data || [], "pending")}</span>
-            </div>
-          </div>
-
-          <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-            <div>
-              <div className="h-[40px] border border-N1">
-                <IoMdCloseCircle size={46} className="-ml-[4px] -mt-[4px] text-E4" />
-              </div>
-              <span className="font-semibold text-N3">Canceled</span>
-              <br />
-              <span className="text-2xl font-semibold">{calculateStatus(data || [], "canceled")}</span>
             </div>
           </div>
         </section>

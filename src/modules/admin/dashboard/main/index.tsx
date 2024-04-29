@@ -126,56 +126,60 @@ export const Main: FC = (): ReactElement => {
   return (
     <main className="space-y-5 px-5 pb-5">
       <div id="main-pick" className="mt-5 grid grid-cols-4 gap-5">
-        <div className="col-span-3 space-y-5">
-          <section className="flex justify-between gap-5 overflow-x-auto">
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-              <div>
-                <div className="h-[40px] border border-N1">
-                  <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
+        <div className="col-span-4 space-y-5 min-[1480px]:col-span-3">
+          <section className="w-full gap-5 max-[1480px]:grid max-[1480px]:grid-cols-2 min-[1480px]:flex">
+            <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
+              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+                <div>
+                  <div className="h-[40px] border border-N1">
+                    <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
+                  </div>
+                  <span className="font-semibold text-N3">Revenue Per. {`(${monthlyTotal.month})`}</span>
+                  <br />
+                  <span className="text-2xl font-semibold">
+                    {new Intl.NumberFormat("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    }).format(monthlyTotal.total)}
+                  </span>
                 </div>
-                <span className="font-semibold text-N3">Revenue Per. {`(${monthlyTotal.month})`}</span>
-                <br />
-                <span className="text-2xl font-semibold">
-                  {new Intl.NumberFormat("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  }).format(monthlyTotal.total)}
-                </span>
+              </div>
+
+              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+                <div>
+                  <div className="h-[40px] border border-N1">
+                    <RiSwapBoxFill size={50} className="-ml-[4px] -mt-[6px] text-S4" />
+                  </div>
+                  <span className="whitespace-nowrap font-semibold text-N3">Total Order</span>
+                  <br />
+                  <span className="text-2xl font-semibold">{sumQuantity()}</span>
+                </div>
               </div>
             </div>
 
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-              <div>
-                <div className="h-[40px] border border-N1">
-                  <RiSwapBoxFill size={50} className="-ml-[4px] -mt-[6px] text-S4" />
+            <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
+              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+                <div>
+                  <div className="h-[40px] border border-N1">
+                    <FaBoxesStacked size={43} className="-mt-[3px] text-W4" />
+                  </div>
+                  <span className="whitespace-nowrap font-semibold text-N3">Total Product</span>
+                  <br />
+                  <span className="text-2xl font-semibold">{product?.length}</span>
                 </div>
-                <span className="whitespace-nowrap font-semibold text-N3">Total Order</span>
-                <br />
-                <span className="text-2xl font-semibold">{sumQuantity()}</span>
               </div>
-            </div>
 
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-              <div>
-                <div className="h-[40px] border border-N1">
-                  <FaBoxesStacked size={43} className="-mt-[3px] text-W4" />
+              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+                <div>
+                  <div className="h-[40px] border border-N1">
+                    <FaUserCircle size={38} className="text-E4" />
+                  </div>
+                  <span className="whitespace-nowrap font-semibold text-N3">Total Cashier</span>
+                  <br />
+                  <span className="text-2xl font-semibold">{cashier?.length}</span>
                 </div>
-                <span className="whitespace-nowrap font-semibold text-N3">Total Product</span>
-                <br />
-                <span className="text-2xl font-semibold">{product?.length}</span>
-              </div>
-            </div>
-
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
-              <div>
-                <div className="h-[40px] border border-N1">
-                  <FaUserCircle size={38} className="text-E4" />
-                </div>
-                <span className="whitespace-nowrap font-semibold text-N3">Total Cashier</span>
-                <br />
-                <span className="text-2xl font-semibold">{cashier?.length}</span>
               </div>
             </div>
           </section>
@@ -188,8 +192,8 @@ export const Main: FC = (): ReactElement => {
           </section>
         </div>
 
-        <section>
-          <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Recent Transaction</h2>
+        <section className="max-[1480px]:hidden">
+          <h2 className="mb-3 whitespace-nowrap text-xl font-semibold ">Recent Transaction</h2>
           <div className="overflow-hidden rounded-lg border border-N2">
             <div className="overflow-auto" style={{ maxHeight: height }}>
               <table className="w-full">
@@ -246,7 +250,7 @@ export const Main: FC = (): ReactElement => {
       </div>
 
       <div className="grid grid-cols-4 gap-5">
-        <section className="col-span-3">
+        <section className="col-span-4 min-[1480px]:col-span-3">
           <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Best Selling Products</h2>
           <div className="overflow-hidden rounded-lg border border-N2">
             <div className="overflow-auto">
@@ -334,7 +338,7 @@ export const Main: FC = (): ReactElement => {
           </div>
         </section>
 
-        <section>
+        <section className="max-[1480px]:hidden">
           <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Top Membership</h2>
           <div className="overflow-hidden rounded-lg border border-N2">
             <div className="overflow-auto">
