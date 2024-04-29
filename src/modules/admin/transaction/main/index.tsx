@@ -201,29 +201,31 @@ export const Main: FC = (): ReactElement => {
         <section>
           {editMode && (
             <div className="flex items-center gap-3 py-5">
-              <h2 className="mr-auto hidden whitespace-nowrap text-xl font-semibold md:block">Transaction List</h2>
-              <Button
-                type="button"
-                solid={checkboxCount === 0 || loading[0] ? "disabled" : "red"}
-                size={"sm"}
-                widthFull
-                disabled={checkboxCount === 0 || loading[0]}
-                onClick={handleMultipleDelete}
-                className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
-              >
-                <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading[0] ? "" : "hidden"} />
-                Delete ({checkboxCount})
-              </Button>
-              <Button
-                type="button"
-                solid={"default"}
-                size={"sm"}
-                widthFull
-                onClick={() => setOpenAddData(true)}
-                className="max-w-[150px] whitespace-nowrap font-semibold"
-              >
-                Add Transaction
-              </Button>
+              <h2 className="hidden whitespace-nowrap text-xl font-semibold md:block">Transaction List</h2>
+              <div className="ml-auto flex gap-3">
+                <Button
+                  type="button"
+                  solid={checkboxCount === 0 || loading[0] ? "disabled" : "red"}
+                  size={"sm"}
+                  widthFull
+                  disabled={checkboxCount === 0 || loading[0]}
+                  onClick={handleMultipleDelete}
+                  className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
+                >
+                  <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading[0] ? "" : "hidden"} />
+                  Delete ({checkboxCount})
+                </Button>
+                <Button
+                  type="button"
+                  solid={"default"}
+                  size={"sm"}
+                  widthFull
+                  onClick={() => setOpenAddData(true)}
+                  className="max-w-[150px] whitespace-nowrap font-semibold"
+                >
+                  Add Transaction
+                </Button>
+              </div>
             </div>
           )}
         </section>
