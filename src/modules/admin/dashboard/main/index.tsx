@@ -133,9 +133,7 @@ export const Main: FC = (): ReactElement => {
                 <div className="h-[40px] border border-N1">
                   <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
                 </div>
-                <span className="font-semibold text-N3">
-                  {height} Revenue Per. {`(${monthlyTotal.month})`}
-                </span>
+                <span className="font-semibold text-N3">Revenue Per. {`(${monthlyTotal.month})`}</span>
                 <br />
                 <span className="text-2xl font-semibold">
                   {new Intl.NumberFormat("id-ID", {
