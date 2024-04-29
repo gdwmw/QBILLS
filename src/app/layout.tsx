@@ -27,7 +27,7 @@ const RootLayout: FC<T> = ({ children }): ReactElement => {
   console.log("Created by Gede Dewo Wahyu M.W with 🖤");
   return (
     <ReactQueryProvider>
-      <html lang="en">
+      <html lang="en" className="scroll-smooth">
         <body className={openSans.className}>
           <NextAuthProvider>{children}</NextAuthProvider>
           <SpeedInsights />
