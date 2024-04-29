@@ -9,7 +9,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Output, any, minLength, minValue, number, object, string } from "valibot";
 import { useManageProduct } from "..";
 
-// VALIBOT
 const Schema = object({
   id: string(),
   code: string([minLength(5, "Please enter code minimum 5 character.")]),
@@ -23,15 +22,13 @@ const Schema = object({
 });
 
 type TUseForm = Output<typeof Schema>;
-// END VALIBOT
 
 const AddData: FC = (): ReactElement => {
-  const queryClient = useQueryClient(); // REACT QUERY
-  const { setOpenAddData } = useManageProduct(); // ZUSTAND
+  const queryClient = useQueryClient();
+  const { setOpenAddData } = useManageProduct();
   const [loading, setLoading] = useState<boolean>(false);
   const [convertedImage, setConvertedImage] = useState<string>("");
 
-  // REACT HOOK FORM WITH VALIBOT
   const {
     register,
     handleSubmit,
@@ -52,18 +49,7 @@ const AddData: FC = (): ReactElement => {
     },
     resolver: valibotResolver(Schema),
   });
-  // END REACT HOOK FORM WITH VALIBOT
 
-  // IMAGE PREVIEW
-  const imageFile = watch("image")[0];
-  let imageURL = "";
-
-  if (imageFile instanceof File) {
-    imageURL = URL.createObjectURL(imageFile);
-  }
-  // END IMAGE PREVIEW
-
-  // CONVERT IMAGE TO BASE64
   const handleConvertImage = () => {
     const file = watch("image")[0];
     if (file) {
@@ -79,7 +65,6 @@ const AddData: FC = (): ReactElement => {
   useEffect(() => {
     handleConvertImage();
   }, [watch("image")]);
-  // END CONVERT IMAGE TO BASE64
 
   const handleAdd = useMutation({
     mutationFn: (data: IProduct) => POSTProduct(data),
@@ -90,7 +75,6 @@ const AddData: FC = (): ReactElement => {
     },
   });
 
-  // REACT HOOK FORM WITH REACT QUERY
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     const newData = {
       id: data.id,
@@ -108,7 +92,13 @@ const AddData: FC = (): ReactElement => {
       onSuccess: () => setLoading(false),
     });
   };
-  // END REACT HOOK FORM WITH REACT QUERY
+
+  const imageFile = watch("image")[0];
+  let imageURL = "";
+
+  if (imageFile instanceof File) {
+    imageURL = URL.createObjectURL(imageFile);
+  }
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">

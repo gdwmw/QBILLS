@@ -32,6 +32,10 @@ export const Main: FC = (): ReactElement => {
     queryFn: GETTransaction,
   });
 
+  const quantity = [50, 35, 20];
+
+  const [height, setHeight] = useState(0);
+
   function calculateCurrentMonthlyTotal(transactions: { date: string; amount: number; status: string }[]) {
     let currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
@@ -45,75 +49,51 @@ export const Main: FC = (): ReactElement => {
     }
     return { month: currentMonth, total: currentMonthTotal };
   }
+
+  function sumQuantity() {
+    return quantity.reduce((a, b) => a + b, 0);
+  }
+
+  function getRandomNumber(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   let transactionsAfterDeduction = transaction?.map((t) => {
     let transactionAmount = t.amount;
     let transactionAmountAfterDeduction = transactionAmount - transactionAmount * 0.5;
     return { ...t, amount: transactionAmountAfterDeduction };
   });
+
   let monthlyTotal = calculateCurrentMonthlyTotal(transactionsAfterDeduction || []);
 
-  const quantity = [50, 35, 20];
-  function sumQuantity() {
-    return quantity.reduce((a, b) => a + b, 0);
-  }
-
-  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-  const options = {
-    responsive: true,
-    plugins: {},
-  };
   const labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  function getRandomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
   const data = {
     labels,
     datasets: [
       {
         label: "Income This Year",
-        data: [
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-        ],
+        data: labels.map(() => getRandomNumber(1000000, 20000000)),
         borderColor: "rgb(190, 132, 101)",
         backgroundColor: "rgba(190, 132, 101, 0.5)",
       },
       {
         label: "Income Last Year",
-        data: [
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-          getRandomNumber(1000000, 20000000),
-        ],
+        data: labels.map(() => getRandomNumber(1000000, 20000000)),
         borderColor: "rgb(230, 230, 230)",
         backgroundColor: "rgba(230, 230, 230, 0.5)",
       },
     ],
   };
 
-  const [height, setHeight] = useState(0);
+  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+  const options = {
+    responsive: true,
+    plugins: {},
+  };
+
   useEffect(() => {
     const updateHeight = () => {
-      const element = document.getElementById("main-pick");
+      const element = document.getElementById("take-height");
       if (element) {
         setHeight(element.offsetHeight - 42);
       }
@@ -125,11 +105,11 @@ export const Main: FC = (): ReactElement => {
 
   return (
     <main className="space-y-5 px-5 pb-5">
-      <div id="main-pick" className="mt-5 grid grid-cols-4 gap-5">
+      <div id="take-height" className="mt-5 grid grid-cols-4 gap-5">
         <div className="col-span-4 space-y-5 min-[1480px]:col-span-3">
           <section className="w-full gap-5 max-[1480px]:grid max-[1480px]:grid-cols-2 min-[1480px]:flex">
             <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
-              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
                     <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
@@ -145,9 +125,9 @@ export const Main: FC = (): ReactElement => {
                     }).format(monthlyTotal.total)}
                   </span>
                 </div>
-              </div>
+              </section>
 
-              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
                     <RiSwapBoxFill size={50} className="-ml-[4px] -mt-[6px] text-S4" />
@@ -156,11 +136,11 @@ export const Main: FC = (): ReactElement => {
                   <br />
                   <span className="text-2xl font-semibold">{sumQuantity()}</span>
                 </div>
-              </div>
+              </section>
             </div>
 
             <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
-              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
                     <FaBoxesStacked size={43} className="-mt-[3px] text-W4" />
@@ -169,9 +149,9 @@ export const Main: FC = (): ReactElement => {
                   <br />
                   <span className="text-2xl font-semibold">{product?.length}</span>
                 </div>
-              </div>
+              </section>
 
-              <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+              <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
                     <FaUserCircle size={38} className="text-E4" />
@@ -180,7 +160,7 @@ export const Main: FC = (): ReactElement => {
                   <br />
                   <span className="text-2xl font-semibold">{cashier?.length}</span>
                 </div>
-              </div>
+              </section>
             </div>
           </section>
 

@@ -13,7 +13,7 @@ type T = {
 };
 
 const MembershipCard: FC<T> = ({ selectedData }): ReactElement => {
-  const { setOpenCard } = useManageMembership(); // ZUSTAND
+  const { setOpenCard } = useManageMembership();
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">

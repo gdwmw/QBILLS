@@ -14,7 +14,6 @@ import { create } from "zustand";
 const AddData = dynamic(() => import("./add-data"));
 const UpdateData = dynamic(() => import("./update-data"));
 
-// ZUSTAND
 type States = {
   openAddData?: boolean;
   openUpdateData?: boolean;
@@ -31,18 +30,16 @@ export const useManageCashier = create<States & Actions>((set) => ({
   setOpenAddData: (openAddData: boolean) => set({ openAddData }),
   setOpenUpdateData: (openUpdateData: boolean) => set({ openUpdateData }),
 }));
-// END ZUSTAND
 
 export const Main: FC = (): ReactElement => {
-  const queryClient = useQueryClient(); // REACT QUERY
+  const queryClient = useQueryClient();
+  const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useManageCashier();
   const [checkbox, setCheckbox] = useState<string[]>([]);
   const [checkboxCount, setCheckboxCount] = useState<number>(0);
-  const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useManageCashier(); // ZUSTAND
   const [selectedData, setSelectedData] = useState<ICashierAccount>({ id: "", name: "", username: "", role: "", password: "" });
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState<boolean[]>([false]);
 
-  // REACT QUERY
   const { data } = useQuery({
     queryKey: ["GETCashierAccount"],
     queryFn: GETCashierAccount,
@@ -63,11 +60,6 @@ export const Main: FC = (): ReactElement => {
       setCheckboxCount(0);
     },
   });
-  // END REACT QUERY
-
-  useEffect(() => {
-    setLoading(new Array(data?.length).fill(false));
-  }, [data]);
 
   const handleSetLoding = (index: number, value: boolean) => {
     const newArray = [...loading];
@@ -93,20 +85,6 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
-  // REACT HOOK FORM
-  const { register, watch } = useForm<{ search: string }>({
-    defaultValues: {
-      search: "",
-    },
-  });
-  // END REACT HOOK FORM
-
-  const searchResult = data?.filter((data) => {
-    const result =
-      data.name.toLowerCase().includes(watch("search").toLowerCase()) || data.username.toLowerCase().includes(watch("search").toLowerCase());
-    return result;
-  });
-
   const handleCheckbox = (id: string) => {
     setCheckbox((prev) => {
       const selected = prev.includes(id);
@@ -116,11 +94,27 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
+  const { register, watch } = useForm<{ search: string }>({
+    defaultValues: {
+      search: "",
+    },
+  });
+
+  const searchResult = data?.filter((data) => {
+    const result =
+      data.name.toLowerCase().includes(watch("search").toLowerCase()) || data.username.toLowerCase().includes(watch("search").toLowerCase());
+    return result;
+  });
+
   const perPage = 30;
   const indexOfLastData = currentPage * perPage;
   const indexOfFirstData = indexOfLastData - perPage;
   const currentData = searchResult?.slice(indexOfFirstData, indexOfLastData);
   const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
+
+  useEffect(() => {
+    setLoading(new Array(data?.length).fill(false));
+  }, [data]);
 
   useEffect(() => {
     if (data?.length !== 0) {

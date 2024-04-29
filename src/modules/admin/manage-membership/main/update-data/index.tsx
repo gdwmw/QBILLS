@@ -9,7 +9,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Output, minLength, minValue, number, object, string } from "valibot";
 import { useManageMembership } from "..";
 
-// VALIBOT
 const Schema = object({
   id: string(),
   name: string([minLength(3, "Please enter name minimum 3 character.")]),
@@ -18,18 +17,16 @@ const Schema = object({
 });
 
 type TUseForm = Output<typeof Schema>;
-// END VALIBOT
 
 type T = {
   selectedData: IMembership;
 };
 
 const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
-  const queryClient = useQueryClient(); // REACT QUERY
-  const { setOpenUpdateData } = useManageMembership(); // ZUSTAND
+  const queryClient = useQueryClient();
+  const { setOpenUpdateData } = useManageMembership();
   const [loading, setLoading] = useState<boolean>(false);
 
-  // REACT HOOK FORM WITH VALIBOT
   const {
     register,
     handleSubmit,
@@ -44,7 +41,6 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
     },
     resolver: valibotResolver(Schema),
   });
-  // END REACT HOOK FORM WITH VALIBOT
 
   const handleUpdate = useMutation({
     mutationFn: (data: IMembership) => PUTMembership(data),
@@ -55,14 +51,12 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
     },
   });
 
-  // REACT HOOK FORM WITH REACT QUERY
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     setLoading(true);
     handleUpdate.mutate(data, {
       onSuccess: () => setLoading(false),
     });
   };
-  // END REACT HOOK FORM WITH REACT QUERY
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">

@@ -15,7 +15,6 @@ const AddData = dynamic(() => import("./add-data"));
 const UpdateData = dynamic(() => import("./update-data"));
 const MembershipCard = dynamic(() => import("./membership-card"));
 
-// ZUSTAND
 type States = {
   openAddData?: boolean;
   openUpdateData?: boolean;
@@ -36,18 +35,22 @@ export const useManageMembership = create<States & Actions>((set) => ({
   setOpenUpdateData: (openUpdateData: boolean) => set({ openUpdateData }),
   setOpenCard: (openCard: boolean) => set({ openCard }),
 }));
-// END ZUSTAND
 
 export const Main: FC = (): ReactElement => {
-  const queryClient = useQueryClient(); // REACT QUERY
+  const queryClient = useQueryClient();
+  const { openAddData, openUpdateData, openCard, setOpenAddData, setOpenUpdateData, setOpenCard } = useManageMembership();
+  const { register, watch } = useForm<{ search: string }>({
+    defaultValues: {
+      search: "",
+    },
+  });
+
   const [checkbox, setCheckbox] = useState<string[]>([]);
   const [checkboxCount, setCheckboxCount] = useState<number>(0);
-  const { openAddData, openUpdateData, openCard, setOpenAddData, setOpenUpdateData, setOpenCard } = useManageMembership(); // ZUSTAND
   const [selectedData, setSelectedData] = useState<IMembership>({ id: "", name: "", "phone-number": 0, point: 0 });
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState<boolean[]>([false]);
 
-  // REACT QUERY
   const { data } = useQuery({
     queryKey: ["GETMembership"],
     queryFn: GETMembership,
@@ -68,10 +71,15 @@ export const Main: FC = (): ReactElement => {
       setCheckboxCount(0);
     },
   });
-  // END REACT QUERY
 
   useEffect(() => {
     setLoading(new Array(data?.length).fill(false));
+  }, [data]);
+
+  useEffect(() => {
+    if (data?.length !== 0) {
+      setCurrentPage(1);
+    }
   }, [data]);
 
   const handleSetLoding = (index: number, value: boolean) => {
@@ -98,20 +106,6 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
-  // REACT HOOK FORM
-  const { register, watch } = useForm<{ search: string }>({
-    defaultValues: {
-      search: "",
-    },
-  });
-  // END REACT HOOK FORM
-
-  const searchResult = data?.filter((data) => {
-    const result =
-      data.name.toLowerCase().includes(watch("search").toLowerCase()) || data["phone-number"].toString().includes(watch("search").toLowerCase());
-    return result;
-  });
-
   const handleCheckbox = (id: string) => {
     setCheckbox((prev) => {
       const selected = prev.includes(id);
@@ -121,17 +115,17 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
+  const searchResult = data?.filter((data) => {
+    const result =
+      data.name.toLowerCase().includes(watch("search").toLowerCase()) || data["phone-number"].toString().includes(watch("search").toLowerCase());
+    return result;
+  });
+
   const perPage = 30;
   const indexOfLastData = currentPage * perPage;
   const indexOfFirstData = indexOfLastData - perPage;
   const currentData = searchResult?.slice(indexOfFirstData, indexOfLastData);
   const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
-
-  useEffect(() => {
-    if (data?.length !== 0) {
-      setCurrentPage(1);
-    }
-  }, [data]);
 
   return (
     <main className="px-5">

@@ -10,7 +10,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Output, minLength, object, string } from "valibot";
 import { useManageCashier } from "..";
 
-// VALIBOT
 const Schema = object({
   id: string(),
   name: string([minLength(3, "Please enter name minimum 3 character.")]),
@@ -20,15 +19,13 @@ const Schema = object({
 });
 
 type TUseForm = Output<typeof Schema>;
-// END VALIBOT
 
 const AddData: FC = (): ReactElement => {
-  const queryClient = useQueryClient(); // REACT QUERY
-  const { setOpenAddData } = useManageCashier(); // ZUSTAND
+  const queryClient = useQueryClient();
+  const { setOpenAddData } = useManageCashier();
   const [visibility, setVisibility] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // REACT HOOK FORM WITH VALIBOT
   const {
     register,
     handleSubmit,
@@ -44,7 +41,6 @@ const AddData: FC = (): ReactElement => {
     },
     resolver: valibotResolver(Schema),
   });
-  // END REACT HOOK FORM WITH VALIBOT
 
   const handleAdd = useMutation({
     mutationFn: (data: ICashierAccount) => POSTCashierAccount(data),
@@ -55,14 +51,12 @@ const AddData: FC = (): ReactElement => {
     },
   });
 
-  // REACT HOOK FORM WITH REACT QUERY
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     setLoading(true);
     handleAdd.mutate(data, {
       onSuccess: () => setLoading(false),
     });
   };
-  // END REACT HOOK FORM WITH REACT QUERY
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">

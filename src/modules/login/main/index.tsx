@@ -12,14 +12,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Output, minLength, object, string } from "valibot";
 
-// VALIBOT
 const Schema = object({
   username: string([minLength(1, "Please enter your username.")]),
   password: string([minLength(1, "Please enter your password.")]),
 });
 
 type TUseForm = Output<typeof Schema>;
-// END VALIBOT
 
 export const Main: FC = (): ReactElement => {
   const session = useSession();
@@ -28,7 +26,6 @@ export const Main: FC = (): ReactElement => {
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // REACT HOOK FORM
   const {
     register,
     handleSubmit,
@@ -52,7 +49,6 @@ export const Main: FC = (): ReactElement => {
       console.log(error);
     }
   };
-  // END REACT HOOK FORM
 
   useEffect(() => {
     if (session.status === "authenticated") {

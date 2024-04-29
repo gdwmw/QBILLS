@@ -10,7 +10,6 @@ import { IoTime } from "react-icons/io5";
 import { Output, minLength, minValue, number, object, string } from "valibot";
 import { useTransaction } from "..";
 
-// VALIBOT
 const Schema = object({
   id: string(),
   code: string([minLength(10, "Please enter code minimum 10 character.")]),
@@ -24,27 +23,17 @@ const Schema = object({
 });
 
 type TUseForm = Output<typeof Schema>;
-// END VALIBOT
 
 type T = {
   selectedData: ITransaction;
 };
 
 const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
-  const queryClient = useQueryClient(); // REACT QUERY
-  const { setOpenUpdateData } = useTransaction(); // ZUSTAND
+  const queryClient = useQueryClient();
+  const { setOpenUpdateData } = useTransaction();
   const [loading, setLoading] = useState<boolean>(false);
   const [realTime, setRealTime] = useState<string>("");
 
-  useEffect(() => {
-    const realTimeInterval = setInterval(() => {
-      let date = new Date();
-      setRealTime(date.toLocaleTimeString());
-    }, 1000);
-    return () => clearInterval(realTimeInterval);
-  }, []);
-
-  // REACT HOOK FORM WITH VALIBOT
   const {
     register,
     setValue,
@@ -65,7 +54,6 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
     },
     resolver: valibotResolver(Schema),
   });
-  // END REACT HOOK FORM WITH VALIBOT
 
   const handleUpdate = useMutation({
     mutationFn: (data: ITransaction) => PUTTransaction(data),
@@ -76,14 +64,20 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
     },
   });
 
-  // REACT HOOK FORM WITH REACT QUERY
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     setLoading(true);
     handleUpdate.mutate(data, {
       onSuccess: () => setLoading(false),
     });
   };
-  // END REACT HOOK FORM WITH REACT QUERY
+
+  useEffect(() => {
+    const realTimeInterval = setInterval(() => {
+      let date = new Date();
+      setRealTime(date.toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(realTimeInterval);
+  }, []);
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">

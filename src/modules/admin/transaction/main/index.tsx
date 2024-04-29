@@ -15,7 +15,6 @@ import { create } from "zustand";
 const AddData = dynamic(() => import("./add-data"));
 const UpdateData = dynamic(() => import("./update-data"));
 
-// ZUSTAND
 type States = {
   openAddData?: boolean;
   openUpdateData?: boolean;
@@ -32,13 +31,21 @@ export const useTransaction = create<States & Actions>((set) => ({
   setOpenAddData: (openAddData: boolean) => set({ openAddData }),
   setOpenUpdateData: (openUpdateData: boolean) => set({ openUpdateData }),
 }));
-// END ZUSTAND
 
 export const Main: FC = (): ReactElement => {
-  const queryClient = useQueryClient(); // REACT QUERY
+  const queryClient = useQueryClient();
+  const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useTransaction();
+  const { register, watch } = useForm<{ search: string; startDate: Date; endDate: Date; status: string }>({
+    defaultValues: {
+      search: "",
+      startDate: new Date("0001-01-01"),
+      endDate: new Date(),
+      status: "",
+    },
+  });
+
   const [checkbox, setCheckbox] = useState<string[]>([]);
   const [checkboxCount, setCheckboxCount] = useState<number>(0);
-  const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useTransaction(); // ZUSTAND
   const [selectedData, setSelectedData] = useState<ITransaction>({
     id: "",
     code: "",
@@ -54,19 +61,6 @@ export const Main: FC = (): ReactElement => {
   const [loading, setLoading] = useState<boolean[]>([false]);
   const [editMode, setEditMode] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "`") {
-        setEditMode((prevEditMode) => !prevEditMode);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
-  // REACT QUERY
   const { data } = useQuery({
     queryKey: ["GETTransaction"],
     queryFn: GETTransaction,
@@ -87,10 +81,27 @@ export const Main: FC = (): ReactElement => {
       setCheckboxCount(0);
     },
   });
-  // END REACT QUERY
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "`") {
+        setEditMode((prevEditMode) => !prevEditMode);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   useEffect(() => {
     setLoading(new Array(data?.length).fill(false));
+  }, [data]);
+
+  useEffect(() => {
+    if (data?.length !== 0) {
+      setCurrentPage(1);
+    }
   }, [data]);
 
   const handleSetLoding = (index: number, value: boolean) => {
@@ -117,31 +128,6 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
-  // REACT HOOK FORM
-  const { register, watch } = useForm<{ search: string; startDate: Date; endDate: Date; status: string }>({
-    defaultValues: {
-      search: "",
-      startDate: new Date("0001-01-01"),
-      endDate: new Date(),
-      status: "",
-    },
-  });
-  // END REACT HOOK FORM
-
-  const searchResult = data?.filter((data) => {
-    const startDate = new Date(watch("startDate"));
-    const endDate = new Date(watch("endDate"));
-    const dataDate = new Date(data.date);
-
-    const isWithinDate = dataDate >= startDate && dataDate <= endDate;
-    const isCodeMatch = data.code.toLowerCase().includes(watch("search").toLowerCase());
-    const isCustomerMatch = data.customer.toLowerCase().includes(watch("search").toLowerCase());
-    const isStatusMatch = data.status.toLowerCase().includes(watch("status").toLowerCase());
-
-    const result = isCodeMatch && isCustomerMatch && isWithinDate && isStatusMatch;
-    return result;
-  });
-
   const handleCheckbox = (id: string) => {
     setCheckbox((prev) => {
       const selected = prev.includes(id);
@@ -151,22 +137,27 @@ export const Main: FC = (): ReactElement => {
     });
   };
 
+  const searchResult = data?.filter((data) => {
+    const startDate = new Date(watch("startDate"));
+    const endDate = new Date(watch("endDate"));
+    const dataDate = new Date(data.date);
+    const dateMatch = dataDate >= startDate && dataDate <= endDate;
+    const codeMatch = data.code.toLowerCase().includes(watch("search").toLowerCase());
+    const customerMatch = data.customer.toLowerCase().includes(watch("search").toLowerCase());
+    const statusMatch = data.status.toLowerCase().includes(watch("status").toLowerCase());
+    const result = codeMatch && customerMatch && dateMatch && statusMatch;
+    return result;
+  });
+
   const perPage = 30;
   const indexOfLastData = currentPage * perPage;
   const indexOfFirstData = indexOfLastData - perPage;
   const currentData = searchResult?.slice(indexOfFirstData, indexOfLastData);
   const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
 
-  useEffect(() => {
-    if (data?.length !== 0) {
-      setCurrentPage(1);
-    }
-  }, [data]);
-
   function calculateCurrentMonthlyTotal(transactions: { date: string; amount: number; status: string }[]) {
     let currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
-
     for (let transaction of transactions) {
       if (transaction.status === "success") {
         let month = transaction.date.slice(0, 7);
@@ -175,7 +166,6 @@ export const Main: FC = (): ReactElement => {
         }
       }
     }
-
     return { month: currentMonth, total: currentMonthTotal };
   }
 
@@ -232,7 +222,7 @@ export const Main: FC = (): ReactElement => {
 
         <section className="w-full gap-5 max-[1480px]:grid max-[1480px]:grid-cols-2 min-[1480px]:flex">
           <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
                   <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
@@ -248,9 +238,9 @@ export const Main: FC = (): ReactElement => {
                   }).format(calculateCurrentMonthlyTotal(data || []).total)}
                 </span>
               </div>
-            </div>
+            </section>
 
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
                   <FaCheckCircle size={38} className="-ml-[1px] mb-px text-S4" />
@@ -259,11 +249,11 @@ export const Main: FC = (): ReactElement => {
                 <br />
                 <span className="text-2xl font-semibold">{calculateStatus(data || [], "success")}</span>
               </div>
-            </div>
+            </section>
           </div>
 
           <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
                   <FaClock size={38} className="-ml-[1px] mb-px text-W4" />
@@ -272,9 +262,9 @@ export const Main: FC = (): ReactElement => {
                 <br />
                 <span className="text-2xl font-semibold">{calculateStatus(data || [], "pending")}</span>
               </div>
-            </div>
+            </section>
 
-            <div className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
+            <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
                   <IoMdCloseCircle size={46} className="-ml-[4px] -mt-[4px] text-E4" />
@@ -283,7 +273,7 @@ export const Main: FC = (): ReactElement => {
                 <br />
                 <span className="text-2xl font-semibold">{calculateStatus(data || [], "canceled")}</span>
               </div>
-            </div>
+            </section>
           </div>
         </section>
 
