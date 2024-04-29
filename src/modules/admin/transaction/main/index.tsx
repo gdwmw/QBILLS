@@ -287,23 +287,25 @@ export const Main: FC = (): ReactElement => {
           </div>
         </section>
 
-        <section className="flex w-full items-center gap-3 overflow-y-auto">
-          <div className="w-full min-w-[162px]">
+        <section className="grid w-full grid-rows-2 items-center gap-3 overflow-y-auto md:flex">
+          <div className="w-full">
             <Input type="text" label="Search Transaction" {...register("search")} id="search-transaction" icon={<FaSearch />}></Input>
           </div>
-          <div className="min-w-[162px]">
-            <Input type="date" label="Start Date" {...register("startDate")} id="startDate" variant={"default"} />
-          </div>
-          <div className="min-w-[162px]">
-            <Input type="date" label="End Date" {...register("endDate")} id="endDate" variant={"default"} />
-          </div>
-          <div className="min-w-[162px]">
-            <Select label="Status" {...register("status")} id="status">
-              <option value=""></option>
-              <option value="success">Success</option>
-              <option value="pending">Pending</option>
-              <option value="canceled">Canceled</option>
-            </Select>
+          <div className="flex w-full gap-3">
+            <div className="w-full min-w-[162px]">
+              <Input type="date" label="Start Date" {...register("startDate")} id="startDate" variant={"default"} />
+            </div>
+            <div className="w-full min-w-[162px]">
+              <Input type="date" label="End Date" {...register("endDate")} id="endDate" variant={"default"} />
+            </div>
+            <div className="w-full min-w-[162px]">
+              <Select label="Status" {...register("status")} id="status">
+                <option value=""></option>
+                <option value="success">Success</option>
+                <option value="pending">Pending</option>
+                <option value="canceled">Canceled</option>
+              </Select>
+            </div>
           </div>
         </section>
 
