@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel": "vercel --prod"
+    "vercel": "vercel --prod",
+    "vercel_link": "vercel link",
+    "vercel_pull": "vercel env pull .env.local"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
