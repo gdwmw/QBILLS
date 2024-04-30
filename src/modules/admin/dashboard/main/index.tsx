@@ -1,5 +1,6 @@
 "use client";
 
+import { Chip } from "@/components";
 import { GETCashierAccount, GETMembership, GETProduct, GETTransaction } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from "chart.js";
@@ -103,12 +104,18 @@ export const Main: FC = (): ReactElement => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  const statusMap: { [key: string]: "default" | "success" | "pending" | "canceled" | "selected" | "disabled" | null | undefined } = {
+    success: "success",
+    pending: "pending",
+    canceled: "canceled",
+  };
+
   return (
     <main className="space-y-5 px-5 pb-5">
       <div id="take-height" className="mt-5 grid grid-cols-4 gap-5">
         <div className="col-span-4 space-y-5 min-[1480px]:col-span-3">
-          <section className="w-full gap-5 max-[1480px]:grid max-[1480px]:grid-cols-2 min-[1480px]:flex">
-            <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
+          <section className="w-full gap-5 max-[1479px]:grid max-[1479px]:grid-cols-2 min-[1480px]:flex">
+            <div className="w-full gap-5 max-[1479px]:space-y-5 min-[1480px]:flex">
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
@@ -139,7 +146,7 @@ export const Main: FC = (): ReactElement => {
               </section>
             </div>
 
-            <div className="w-full gap-5 max-[1480px]:space-y-5 min-[1480px]:flex">
+            <div className="w-full gap-5 max-[1479px]:space-y-5 min-[1480px]:flex">
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
@@ -172,7 +179,7 @@ export const Main: FC = (): ReactElement => {
           </section>
         </div>
 
-        <section className="max-[1480px]:hidden">
+        <section className="max-[1479px]:hidden">
           <h2 className="mb-3 whitespace-nowrap text-xl font-semibold ">Recent Transaction</h2>
           <div className="overflow-hidden rounded-lg border border-N2">
             <div className="overflow-auto" style={{ maxHeight: height }}>
@@ -197,7 +204,7 @@ export const Main: FC = (): ReactElement => {
                       <tr key={transaction.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
                         <td className="px-2 py-2">
                           <div
-                            className={`mx-auto flex h-5 w-5 items-center justify-center rounded-full text-N1 ${transaction.status === "success" && "bg-S4"} ${transaction.status === "pending" && "bg-W4"} ${transaction.status === "canceled" && "bg-E4"}`}
+                            className={`mx-auto flex h-5 w-5 items-center justify-center rounded-full ${transaction.status === "success" && "bg-S1 text-S5"} ${transaction.status === "pending" && "bg-W1 text-W5"} ${transaction.status === "canceled" && "bg-E1 text-E5"}`}
                           >
                             {transaction.status === "success" && "S"}
                             {transaction.status === "pending" && "P"}
@@ -228,6 +235,52 @@ export const Main: FC = (): ReactElement => {
           </div>
         </section>
       </div>
+
+      <section className="w-full min-[1480px]:hidden">
+        <h2 className="mb-3 whitespace-nowrap text-xl font-semibold ">Recent Transaction</h2>
+        <div className="overflow-hidden rounded-lg border border-N2">
+          <div className="max-h-[300px] overflow-auto">
+            <table className="w-full">
+              <thead className="sticky top-0 z-10 bg-N2">
+                <tr className="text-center">
+                  <th className="px-4 py-4">Status</th>
+                  <th className="px-4 py-4">Amount</th>
+                  <th className="px-4 py-4">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transaction
+                  ?.sort((a, b) => {
+                    const dateDifference = new Date(b.date).getTime() - new Date(a.date).getTime();
+                    if (dateDifference !== 0) return dateDifference;
+                    const [aHours, aMinutes] = a.time.split(":").map(Number);
+                    const [bHours, bMinutes] = b.time.split(":").map(Number);
+                    return bHours * 60 + bMinutes - (aHours * 60 + aMinutes);
+                  })
+                  .map((transaction, index) => (
+                    <tr key={transaction.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
+                      <td className="px-2 py-2">
+                        <Chip label={transaction.status} status={statusMap[transaction.status]} size={"sm-status"} className="mx-auto" />
+                      </td>
+                      <td className="px-2 py-2 font-semibold">
+                        {new Intl.NumberFormat("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        }).format(transaction.amount)}
+                      </td>
+                      <td className="flex flex-col px-2 py-2">
+                        <span className="text-xs font-semibold">{transaction.code}</span>
+                        <span className="text-xs text-N3">{`${transaction.date}, ${transaction.time}`}</span>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
       <div className="grid grid-cols-4 gap-5">
         <section className="col-span-4 min-[1480px]:col-span-3">
@@ -318,7 +371,7 @@ export const Main: FC = (): ReactElement => {
           </div>
         </section>
 
-        <section className="max-[1480px]:hidden">
+        <section className="max-[1479px]:hidden">
           <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Top Membership</h2>
           <div className="overflow-hidden rounded-lg border border-N2">
             <div className="overflow-auto">
@@ -353,6 +406,41 @@ export const Main: FC = (): ReactElement => {
           </div>
         </section>
       </div>
+
+      <section className="w-full min-[1480px]:hidden">
+        <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Top Membership</h2>
+        <div className="overflow-hidden rounded-lg border border-N2">
+          <div className="overflow-auto">
+            <table className="w-full">
+              <thead className="sticky top-0 z-10 bg-N2">
+                <tr className="text-center">
+                  <th className="px-4 py-4">Rank</th>
+                  <th className="px-4 py-4">Member</th>
+                  <th className="px-4 py-4">Point</th>
+                </tr>
+              </thead>
+              <tbody>
+                {membership
+                  ?.sort((a, b) => b.point - a.point)
+                  .slice(0, 3)
+                  .map((member, index) => (
+                    <tr key={member.id} className="text-center">
+                      <td className="px-2 py-2">
+                        <span
+                          className={`mx-auto flex h-[30px] w-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
+                        >
+                          {index + 1}
+                        </span>
+                      </td>
+                      <td className="whitespace-nowrap px-2 py-2">{member.name}</td>
+                      <td className="whitespace-nowrap px-2 py-2">{member.point}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
