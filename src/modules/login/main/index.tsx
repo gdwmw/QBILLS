@@ -2,7 +2,7 @@
 
 import { Button, Input } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import logoQbills from "@/public/assets/images/logos/brown/logo-1.png";
+import logoQbills from "@/public/assets/images/logos/brown/logo-1.webp";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";

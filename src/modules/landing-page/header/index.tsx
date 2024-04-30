@@ -2,9 +2,9 @@
 
 import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";
-import logoQbills1 from "@/public/assets/images/logos/white/logo-2.png";
-import logoQbills2 from "@/public/assets/images/logos/white/logo-4.png";
-import logoQbills3 from "@/public/assets/images/logos/white/logo-5.png";
+import logoQbills1 from "@/public/assets/images/logos/white/logo-2.webp";
+import logoQbills2 from "@/public/assets/images/logos/white/logo-4.webp";
+import logoQbills3 from "@/public/assets/images/logos/white/logo-5.webp";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, ReactElement } from "react";

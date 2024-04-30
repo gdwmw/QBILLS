@@ -1,9 +1,9 @@
 "use client";
 
 import { IconButton } from "@/components";
-import logoQbills1 from "@/public/assets/images/logos/brown/logo-2.png";
-import logoQbills2 from "@/public/assets/images/logos/brown/logo-4.png";
-import logoQbills3 from "@/public/assets/images/logos/brown/logo-5.png";
+import logoQbills1 from "@/public/assets/images/logos/brown/logo-2.webp";
+import logoQbills2 from "@/public/assets/images/logos/brown/logo-4.webp";
+import logoQbills3 from "@/public/assets/images/logos/brown/logo-5.webp";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";

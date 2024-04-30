@@ -1,5 +1,5 @@
 import detailProductBackground from "@/public/assets/images/detail-product/detail-product.svg";
-import logoQbills1 from "@/public/assets/images/logos/white/logo-2.png";
+import logoQbills1 from "@/public/assets/images/logos/white/logo-2.webp";
 import { IProduct } from "@/utils";
 import Image from "next/image";
 import { FC, ReactElement } from "react";
