@@ -1,5 +1,9 @@
 const URL = process.env.NEXT_PUBLIC_TRANSACTION;
 
+if (!URL) {
+  throw new Error("The URL is not defined. Please check your environment variables.");
+}
+
 export interface ITransaction {
   id: string;
   code: string;
@@ -13,10 +17,6 @@ export interface ITransaction {
 }
 
 export const GETTransaction = async (): Promise<ITransaction[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -26,20 +26,17 @@ export const GETTransaction = async (): Promise<ITransaction[]> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch: Transaction");
+      throw new Error(`Failed to fetch: Transaction with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to fetch: Transaction");
+    console.log(error);
+    throw error;
   }
 };
 
 export const POSTTransaction = async (data: ITransaction): Promise<ITransaction> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -59,20 +56,17 @@ export const POSTTransaction = async (data: ITransaction): Promise<ITransaction>
     });
 
     if (!res.ok) {
-      throw new Error("Failed to post: Transaction");
+      throw new Error(`Failed to post: Transaction with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to post: Transaction");
+    console.log(error);
+    throw error;
   }
 };
 
 export const PUTTransaction = async (data: ITransaction): Promise<ITransaction> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -92,20 +86,17 @@ export const PUTTransaction = async (data: ITransaction): Promise<ITransaction> 
     });
 
     if (!res.ok) {
-      throw new Error("Failed to put: Transaction");
+      throw new Error(`Failed to put: Transaction with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to put: Transaction");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETETransaction = async (id: string): Promise<ITransaction> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -115,20 +106,17 @@ export const DELETETransaction = async (id: string): Promise<ITransaction> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to delete: Transaction");
+      throw new Error(`Failed to delete: Transaction with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to delete: Transaction");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEMultipleTransaction = async (ids: string[]): Promise<ITransaction[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
@@ -140,7 +128,7 @@ export const DELETEMultipleTransaction = async (ids: string[]): Promise<ITransac
         });
 
         if (!res.ok) {
-          throw new Error(`Failed to delete: Transaction with id ${id}`);
+          throw new Error(`Failed to delete: Transaction with id ${id} and status ${res.status}`);
         }
 
         return await res.json();
@@ -149,6 +137,7 @@ export const DELETEMultipleTransaction = async (ids: string[]): Promise<ITransac
 
     return results;
   } catch (error) {
-    throw new Error("Failed to delete: Transactions");
+    console.log(error);
+    throw error;
   }
 };

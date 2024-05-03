@@ -1,5 +1,9 @@
 const URL = process.env.NEXT_PUBLIC_CASHIER_ACCOUNT;
 
+if (!URL) {
+  throw new Error("The URL is not defined. Please check your environment variables.");
+}
+
 export interface ICashierAccount {
   id: string;
   name: string;
@@ -9,10 +13,6 @@ export interface ICashierAccount {
 }
 
 export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -22,20 +22,17 @@ export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch: Cashier Account");
+      throw new Error(`Failed to fetch: Cashier Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to fetch: Cashier Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -46,20 +43,17 @@ export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashie
     });
 
     if (!res.ok) {
-      throw new Error("Failed to post: Cashier Account");
+      throw new Error(`Failed to post: Cashier Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to post: Cashier Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -70,20 +64,17 @@ export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashier
     });
 
     if (!res.ok) {
-      throw new Error("Failed to put: Cashier Account");
+      throw new Error(`Failed to put: Cashier Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to put: Cashier Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETECashierAccount = async (id: string): Promise<ICashierAccount> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -93,20 +84,17 @@ export const DELETECashierAccount = async (id: string): Promise<ICashierAccount>
     });
 
     if (!res.ok) {
-      throw new Error("Failed to delete: Cashier Account");
+      throw new Error(`Failed to delete: Cashier Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to delete: Cashier Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEMultipleCashierAccount = async (ids: string[]): Promise<ICashierAccount[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
@@ -118,7 +106,7 @@ export const DELETEMultipleCashierAccount = async (ids: string[]): Promise<ICash
         });
 
         if (!res.ok) {
-          throw new Error(`Failed to delete: Cashier Account with id ${id}`);
+          throw new Error(`Failed to delete: Cashier Account with id ${id} and status ${res.status}`);
         }
 
         return await res.json();
@@ -127,6 +115,7 @@ export const DELETEMultipleCashierAccount = async (ids: string[]): Promise<ICash
 
     return results;
   } catch (error) {
-    throw new Error("Failed to delete: Cashier Accounts");
+    console.log(error);
+    throw error;
   }
 };

@@ -1,5 +1,9 @@
 const URL = process.env.NEXT_PUBLIC_ADMIN_ACCOUNT;
 
+if (!URL) {
+  throw new Error("The URL is not defined. Please check your environment variables.");
+}
+
 export interface IAdminAccount {
   id: string;
   name: string;
@@ -9,10 +13,6 @@ export interface IAdminAccount {
 }
 
 export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -22,20 +22,17 @@ export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch: Admin Account");
+      throw new Error(`Failed to fetch: Admin Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to fetch: Admin Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const POSTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -46,20 +43,17 @@ export const POSTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccou
     });
 
     if (!res.ok) {
-      throw new Error("Failed to post: Admin Account");
+      throw new Error(`Failed to post: Admin Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to post: Admin Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -70,20 +64,17 @@ export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccoun
     });
 
     if (!res.ok) {
-      throw new Error("Failed to put: Admin Account");
+      throw new Error(`Failed to put: Admin Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to put: Admin Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -93,20 +84,17 @@ export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => 
     });
 
     if (!res.ok) {
-      throw new Error("Failed to delete: Admin Account");
+      throw new Error(`Failed to delete: Admin Account with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to delete: Admin Account");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEMultipleAdminAccount = async (ids: string[]): Promise<IAdminAccount[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
@@ -118,7 +106,7 @@ export const DELETEMultipleAdminAccount = async (ids: string[]): Promise<IAdminA
         });
 
         if (!res.ok) {
-          throw new Error(`Failed to delete: Admin Account with id ${id}`);
+          throw new Error(`Failed to delete: Admin Account with id ${id} and status ${res.status}`);
         }
 
         return await res.json();
@@ -127,6 +115,7 @@ export const DELETEMultipleAdminAccount = async (ids: string[]): Promise<IAdminA
 
     return results;
   } catch (error) {
-    throw new Error("Failed to delete: Admin Accounts");
+    console.log(error);
+    throw error;
   }
 };

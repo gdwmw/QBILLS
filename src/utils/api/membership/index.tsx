@@ -1,5 +1,9 @@
 const URL = process.env.NEXT_PUBLIC_MEMBERSHIP;
 
+if (!URL) {
+  throw new Error("The URL is not defined. Please check your environment variables.");
+}
+
 export interface IMembership {
   id: string;
   name: string;
@@ -8,10 +12,6 @@ export interface IMembership {
 }
 
 export const GETMembership = async (): Promise<IMembership[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -21,20 +21,17 @@ export const GETMembership = async (): Promise<IMembership[]> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch: Membership");
+      throw new Error(`Failed to fetch: Membership with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to fetch: Membership");
+    console.log(error);
+    throw error;
   }
 };
 
 export const POSTMembership = async (data: IMembership): Promise<IMembership> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -45,20 +42,17 @@ export const POSTMembership = async (data: IMembership): Promise<IMembership> =>
     });
 
     if (!res.ok) {
-      throw new Error("Failed to post: Membership");
+      throw new Error(`Failed to post: Membership with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to post: Membership");
+    console.log(error);
+    throw error;
   }
 };
 
 export const PUTMembership = async (data: IMembership): Promise<IMembership> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -69,20 +63,17 @@ export const PUTMembership = async (data: IMembership): Promise<IMembership> => 
     });
 
     if (!res.ok) {
-      throw new Error("Failed to put: Membership");
+      throw new Error(`Failed to put: Membership with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to put: Membership");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEMembership = async (id: string): Promise<IMembership> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -92,20 +83,17 @@ export const DELETEMembership = async (id: string): Promise<IMembership> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to delete: Membership");
+      throw new Error(`Failed to delete: Membership with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to delete: Membership");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEMultipleMembership = async (ids: string[]): Promise<IMembership[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
@@ -117,7 +105,7 @@ export const DELETEMultipleMembership = async (ids: string[]): Promise<IMembersh
         });
 
         if (!res.ok) {
-          throw new Error(`Failed to delete: Membership with id ${id}`);
+          throw new Error(`Failed to delete: Membership with id ${id} and status ${res.status}`);
         }
 
         return await res.json();
@@ -126,6 +114,7 @@ export const DELETEMultipleMembership = async (ids: string[]): Promise<IMembersh
 
     return results;
   } catch (error) {
-    throw new Error("Failed to delete: Memberships");
+    console.log(error);
+    throw error;
   }
 };

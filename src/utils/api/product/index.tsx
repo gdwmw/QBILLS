@@ -1,5 +1,9 @@
 const URL = process.env.NEXT_PUBLIC_PRODUCT;
 
+if (!URL) {
+  throw new Error("The URL is not defined. Please check your environment variables.");
+}
+
 export interface IProduct {
   id: string;
   code: string;
@@ -13,10 +17,6 @@ export interface IProduct {
 }
 
 export const GETProduct = async (): Promise<IProduct[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "GET",
@@ -26,20 +26,17 @@ export const GETProduct = async (): Promise<IProduct[]> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch: Product");
+      throw new Error(`Failed to fetch: Product with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to fetch: Product");
+    console.log(error);
+    throw error;
   }
 };
 
 export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(URL, {
       method: "POST",
@@ -59,20 +56,17 @@ export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to post: Product");
+      throw new Error(`Failed to post: Product with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to post: Product");
+    console.log(error);
+    throw error;
   }
 };
 
 export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(data.id)}`, {
       method: "PUT",
@@ -92,20 +86,17 @@ export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to put: Product");
+      throw new Error(`Failed to put: Product with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to put: Product");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEProduct = async (id: string): Promise<IProduct> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const res = await fetch(`${URL}/${parseInt(id)}`, {
       method: "DELETE",
@@ -115,20 +106,17 @@ export const DELETEProduct = async (id: string): Promise<IProduct> => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to delete: Product");
+      throw new Error(`Failed to delete: Product with status ${res.status}`);
     }
 
     return await res.json();
   } catch (error) {
-    throw new Error("Failed to delete: Product");
+    console.log(error);
+    throw error;
   }
 };
 
 export const DELETEMultipleProduct = async (ids: string[]): Promise<IProduct[]> => {
-  if (!URL) {
-    throw new Error("URL is not defined");
-  }
-
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
@@ -140,7 +128,7 @@ export const DELETEMultipleProduct = async (ids: string[]): Promise<IProduct[]> 
         });
 
         if (!res.ok) {
-          throw new Error(`Failed to delete: Product with id ${id}`);
+          throw new Error(`Failed to delete: Product with id ${id} and status ${res.status}`);
         }
 
         return await res.json();
@@ -149,6 +137,7 @@ export const DELETEMultipleProduct = async (ids: string[]): Promise<IProduct[]> 
 
     return results;
   } catch (error) {
-    throw new Error("Failed to delete: Products");
+    console.log(error);
+    throw error;
   }
 };
