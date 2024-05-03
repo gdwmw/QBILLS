@@ -21,6 +21,7 @@ export const FAQ: FC = (): ReactElement => {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 xl:gap-20 2xl:gap-40">
           <div className="space-y-5">
             <section
+              role="button"
               onClick={() => handleSetOpenFAQ(0, !openFAQ[0])}
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[0] ? "border-P4" : "border-N1"}`}
             >
@@ -37,6 +38,7 @@ export const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
+              role="button"
               onClick={() => handleSetOpenFAQ(1, !openFAQ[1])}
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[1] ? "border-P4" : "border-N1"}`}
             >
@@ -53,6 +55,7 @@ export const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
+              role="button"
               onClick={() => handleSetOpenFAQ(2, !openFAQ[2])}
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[2] ? "border-P4" : "border-N1"}`}
             >
@@ -71,6 +74,7 @@ export const FAQ: FC = (): ReactElement => {
 
           <div className="space-y-5">
             <section
+              role="button"
               onClick={() => handleSetOpenFAQ(3, !openFAQ[3])}
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[3] ? "border-P4" : "border-N1"}`}
             >
@@ -87,6 +91,7 @@ export const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
+              role="button"
               onClick={() => handleSetOpenFAQ(4, !openFAQ[4])}
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[4] ? "border-P4" : "border-N1"}`}
             >
@@ -103,6 +108,7 @@ export const FAQ: FC = (): ReactElement => {
             </section>
 
             <section
+              role="button"
               onClick={() => handleSetOpenFAQ(5, !openFAQ[5])}
               className={`flex cursor-pointer items-center justify-between rounded-lg border-2 bg-N1 p-5 shadow-md hover:border-P4 ${openFAQ[5] ? "border-P4" : "border-N1"}`}
             >
