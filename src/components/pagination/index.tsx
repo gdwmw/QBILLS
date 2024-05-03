@@ -21,10 +21,10 @@ export const Pagination: FC<T> = ({ startData, endData, total, currentPage, tota
 
         <section>
           <ul className="flex items-center gap-3">
-            <li onClick={onClickPrevPage}>
-              <span>
+            <li>
+              <button type="button" onClick={onClickPrevPage}>
                 <IoIosArrowBack className="cursor-pointer text-N3 hover:text-N7 active:scale-95" />
-              </span>
+              </button>
             </li>
 
             <li>
@@ -37,10 +37,10 @@ export const Pagination: FC<T> = ({ startData, endData, total, currentPage, tota
               <span className="text-sm">{totalPage}</span>
             </li>
 
-            <li onClick={onClickNextPage}>
-              <span>
+            <li>
+              <button type="button" onClick={onClickNextPage}>
                 <IoIosArrowForward className="cursor-pointer text-N3 hover:text-N7 active:scale-95" />
-              </span>
+              </button>
             </li>
           </ul>
         </section>
