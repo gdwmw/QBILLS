@@ -33,9 +33,9 @@ export const MobileNavbar: FC<T> = ({ authenticated }): ReactElement => {
 
   return (
     <>
-      <section onClick={toggleMenu} className="flex cursor-pointer items-center text-3xl text-N1 active:scale-95 lg:hidden">
+      <button type="button" onClick={toggleMenu} className="flex cursor-pointer items-center text-3xl text-N1 active:scale-95 lg:hidden">
         <GiHamburgerMenu />
-      </section>
+      </button>
 
       <section ref={menuRef} className={`fixed left-0 top-0 w-full bg-P4/70 py-20 backdrop-blur-md ${openMenu ? "lg:hidden" : "hidden lg:hidden"}`}>
         <div className="flex flex-col items-center gap-10">
