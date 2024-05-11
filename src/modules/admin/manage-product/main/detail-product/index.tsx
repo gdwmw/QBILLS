@@ -1,5 +1,5 @@
 import detailProductBackground from "@/public/assets/images/detail-product/detail-product.svg";
-import logoQbills1 from "@/public/assets/images/logos/white/logo-2.webp";
+import logoQBILLS1 from "@/public/assets/images/logos/white/logo-2.webp";
 import { IProduct } from "@/utils";
 import Image from "next/image";
 import { FC, ReactElement } from "react";
@@ -93,7 +93,7 @@ const DetailProduct: FC<T> = ({ selectedData }): ReactElement => {
             </div>
           </div>
 
-          <Image src={logoQbills1} alt="QBills" width={160} quality={30} priority className="absolute -bottom-14 -right-5 rotate-[60deg]" />
+          <Image src={logoQBILLS1} alt="QBILLS" width={160} quality={30} priority className="absolute -bottom-14 -right-5 rotate-[60deg]" />
 
           <Image src={detailProductBackground} alt="Image" priority className="w-full" />
         </div>

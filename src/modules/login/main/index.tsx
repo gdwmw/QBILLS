@@ -2,7 +2,7 @@
 
 import { Button, Input } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import logoQbills from "@/public/assets/images/logos/brown/logo-1.webp";
+import logoQBILLS from "@/public/assets/images/logos/brown/logo-1.webp";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
@@ -65,7 +65,7 @@ export const Main: FC = (): ReactElement => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex h-full max-h-[600px] w-full max-w-[500px] flex-col items-center justify-center gap-5 rounded-xl bg-N1 px-5 shadow-md"
       >
-        <Image src={logoQbills} alt="QBills" width={150} quality={30} priority />
+        <Image src={logoQBILLS} alt="QBILLS" width={150} quality={30} priority />
 
         <div className="space-y-1 text-center">
           <h1 className="text-2xl font-bold">Welcome Admin</h1>
@@ -110,7 +110,7 @@ export const Main: FC = (): ReactElement => {
           </Button>
         </div>
 
-        <span className="mt-1 text-xs text-N3">&copy; 2023 QBills. All rights reserved.</span>
+        <span className="mt-1 text-xs text-N3">&copy; 2023 QBILLS. All rights reserved.</span>
       </form>
     </main>
   );

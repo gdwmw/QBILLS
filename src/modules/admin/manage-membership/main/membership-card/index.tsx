@@ -1,7 +1,7 @@
 import cardBackground from "@/public/assets/images/card/membership-card.svg";
-import logoQbills1 from "@/public/assets/images/logos/white/logo-2.webp";
-import logoQbills2 from "@/public/assets/images/logos/white/logo-4.webp";
-import logoQbills3 from "@/public/assets/images/logos/white/logo-5.webp";
+import logoQBILLS1 from "@/public/assets/images/logos/white/logo-2.webp";
+import logoQBILLS2 from "@/public/assets/images/logos/white/logo-4.webp";
+import logoQBILLS3 from "@/public/assets/images/logos/white/logo-5.webp";
 import { IMembership } from "@/utils";
 import Image from "next/image";
 import { FC, ReactElement } from "react";
@@ -23,10 +23,10 @@ const MembershipCard: FC<T> = ({ selectedData }): ReactElement => {
         </button>
         <div className="absolute flex h-full w-full items-center justify-center pb-16 pr-[61px]">
           <div className="flex h-fit w-fit items-center justify-center gap-2">
-            <Image src={logoQbills1} alt="QBills" width={68} quality={30} priority />
+            <Image src={logoQBILLS1} alt="QBILLS" width={68} quality={30} priority />
             <div>
-              <Image src={logoQbills2} alt="QBills" width={187} quality={30} priority className="mx-auto mb-1" />
-              <Image src={logoQbills3} alt="QBills" width={221} quality={30} priority />
+              <Image src={logoQBILLS2} alt="QBILLS" width={187} quality={30} priority className="mx-auto mb-1" />
+              <Image src={logoQBILLS3} alt="QBILLS" width={221} quality={30} priority />
             </div>
           </div>
         </div>
