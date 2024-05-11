@@ -6,7 +6,7 @@ import { MdAddToPhotos } from "react-icons/md";
 export const About: FC = (): ReactElement => {
   return (
     <>
-      <section id="About-Us" className="bg-P1 py-36">
+      <section id="About" className="bg-P1 py-36">
         <div className="container mx-auto px-10">
           <div className="grid grid-rows-1 gap-20 lg:grid-cols-2 lg:grid-rows-none">
             <section className="flex flex-col justify-center gap-5">

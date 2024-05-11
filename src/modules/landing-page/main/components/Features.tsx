@@ -9,7 +9,7 @@ import { FC, ReactElement } from "react";
 export const Features: FC = (): ReactElement => {
   return (
     <>
-      <section id="Our-Feature" className="bg-P1 py-36">
+      <section id="Features" className="bg-P1 py-36">
         <div className="container mx-auto px-10">
           <h1 className="mb-36 text-center text-6xl font-semibold">Our Feature</h1>
 
