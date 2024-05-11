@@ -28,7 +28,7 @@ const MenuLink: FC<TMenuLink> = ({ href, label, onLinkClick }) => {
 };
 
 type TMobileNavbar = {
-  authenticated?: string;
+  authenticated: string | undefined;
 };
 
 export const MobileNavbar: FC<TMobileNavbar> = ({ authenticated }): ReactElement => {

@@ -32,7 +32,7 @@ const NavLink: FC<TNavLink> = ({ href, label, onLinkClick }) => {
 };
 
 type THeader = {
-  authenticated: string;
+  authenticated: string | undefined;
 };
 
 export const Header: FC<THeader> = ({ authenticated }): ReactElement => {
