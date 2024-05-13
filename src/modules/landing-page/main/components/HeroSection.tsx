@@ -8,6 +8,7 @@ export const HeroSection: FC = (): ReactElement => {
   return (
     <section id="Home" className="relative -z-10 h-screen w-full overflow-hidden bg-gradient-to-r from-P3 to-P4">
       <Image src={logoQBILLS1} alt="QBILLS" width={700} quality={30} priority className="absolute -top-24 left-10 -z-10 -rotate-12 opacity-25" />
+
       <Image
         src={logoQBILLS2}
         alt="QBILLS"

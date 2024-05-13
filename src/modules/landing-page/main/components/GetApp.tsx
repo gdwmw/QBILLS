@@ -12,11 +12,13 @@ export const GetApp: FC = (): ReactElement => {
         <div className="grid grid-rows-1 gap-20 lg:grid-cols-2 lg:grid-rows-none lg:gap-5">
           <section className="flex w-full max-w-[800px] flex-col justify-center gap-2">
             <h1 className="text-6xl font-semibold text-P4">QBILLS is available for iOS and Android</h1>
+
             <p className="w-full max-w-[700px] text-justify">
               Elevate your business strategy with our powerful Sales Report feature! Dive deep into your sales performance, understand trends, and
               make data-driven decisions effortlessly, all within your point-of-sale application. Monitor revenue streams and track profitability
               effortlessly. Understand where your sales are coming from and identify areas for growth.
             </p>
+
             <div className="-ml-0.5 mt-5 flex gap-3">
               <Link href={"/"}>
                 <Image src={AppStore} alt="App Store" width={180} quality={30} loading="lazy" className="active:scale-95" />
