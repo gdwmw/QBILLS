@@ -1,14 +1,13 @@
 "use client";
 
 import { ButtonCVA } from "@/components";
-import { cn } from "@/libs";
 import logoQBILLS1 from "@/public/assets/images/logos/white/logo-2.webp";
 import logoQBILLS2 from "@/public/assets/images/logos/white/logo-4.webp";
 import logoQBILLS3 from "@/public/assets/images/logos/white/logo-5.webp";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, ReactElement } from "react";
-import { MobileNavbar } from "./mobile-navbar";
+import { FC, FormEvent, ReactElement } from "react";
+import { LoginStatusButton, MobileNavbar } from "./components";
 
 const NAV_LINKS = [
   { href: "#Home", label: "Home" },
@@ -20,7 +19,7 @@ const NAV_LINKS = [
 type TNavLink = {
   href: string;
   label: string;
-  onLinkClick: (e: any, href: string) => void;
+  onLinkClick: (e: FormEvent, href: string) => void;
 };
 
 const NavLink: FC<TNavLink> = ({ href, label, onLinkClick }) => {
@@ -36,7 +35,7 @@ type THeader = {
 };
 
 export const Header: FC<THeader> = ({ authenticated }): ReactElement => {
-  function handleScroll(e: any, href: string) {
+  function handleScroll(e: FormEvent, href: string) {
     e.preventDefault();
     document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
   }
@@ -69,39 +68,7 @@ export const Header: FC<THeader> = ({ authenticated }): ReactElement => {
                   Get App
                 </Link>
               </div>
-              {authenticated ? (
-                <div className="w-36">
-                  <Link
-                    href={"/dashboard"}
-                    className={cn(
-                      ButtonCVA({
-                        outline: "white",
-                        size: "sm",
-                        widthFull: true,
-                        className: "border-2 py-[7px] font-bold hover:text-P4 active:text-P4",
-                      }),
-                    )}
-                  >
-                    Dashboard
-                  </Link>
-                </div>
-              ) : (
-                <div className="w-20">
-                  <Link
-                    href={"/login"}
-                    className={cn(
-                      ButtonCVA({
-                        outline: "white",
-                        size: "sm",
-                        widthFull: true,
-                        className: "border-2 py-[7px] font-bold hover:text-P4 active:text-P4",
-                      }),
-                    )}
-                  >
-                    Login
-                  </Link>
-                </div>
-              )}
+              <LoginStatusButton authenticated={authenticated} />
             </div>
           </section>
 

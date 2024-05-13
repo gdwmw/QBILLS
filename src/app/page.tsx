@@ -8,7 +8,7 @@ const LandingPage: FC = async (): Promise<ReactElement> => {
 
   return (
     <>
-      <Header authenticated={session?.user?.name} />
+      <Header authenticated={session?.user.role} />
       <Main />
       <Footer />
     </>

@@ -47,7 +47,7 @@ type TFAQSection = {
 };
 
 const FAQSection: FC<TFAQSection> = ({ data }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <section
