@@ -3,20 +3,20 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 type T = {
   startData: number;
-  endData: number;
-  total: number;
+  endData: number | undefined;
+  totalData: number | undefined;
   currentPage: number;
-  totalPage: number;
+  totalPage: number | undefined;
   onClickPrevPage: () => void;
   onClickNextPage: () => void;
 };
 
-export const Pagination: FC<T> = ({ startData, endData, total, currentPage, totalPage, onClickPrevPage, onClickNextPage }): ReactElement => {
+export const Pagination: FC<T> = ({ startData, endData, totalData, currentPage, totalPage, onClickPrevPage, onClickNextPage }): ReactElement => {
   return (
     <section className="mt-5 w-full border-t py-3">
       <div className="flex items-center justify-between">
         <section>
-          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} of ${total} result.`}</span>
+          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} of ${totalData} result.`}</span>
         </section>
 
         <section>
@@ -46,7 +46,7 @@ export const Pagination: FC<T> = ({ startData, endData, total, currentPage, tota
         </section>
 
         <section>
-          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} of ${total} result.`}</span>
+          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} of ${totalData} result.`}</span>
         </section>
       </div>
     </section>
