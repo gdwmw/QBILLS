@@ -1,5 +1,6 @@
 import { Button, Input } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
+import { useGlobalStates } from "@/states";
 import { IAdminAccount, PUTAdminAccount } from "@/utils";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -8,7 +9,6 @@ import { FC, ReactElement, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Output, minLength, object, string } from "valibot";
-import { useManageAdmin } from "..";
 
 const Schema = object({
   id: string(),
@@ -21,12 +21,12 @@ const Schema = object({
 type TUseForm = Output<typeof Schema>;
 
 type T = {
-  selectedData: IAdminAccount;
+  selectedData: IAdminAccount | null;
 };
 
 const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
   const queryClient = useQueryClient();
-  const { setOpenUpdateData } = useManageAdmin();
+  const { setOpenUpdateData } = useGlobalStates();
   const [visibility, setVisibility] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -37,11 +37,11 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
     reset,
   } = useForm<TUseForm>({
     defaultValues: {
-      id: selectedData.id,
-      name: selectedData.name,
-      username: selectedData.username,
-      password: selectedData.password,
-      role: selectedData.role,
+      id: selectedData?.id,
+      name: selectedData?.name,
+      username: selectedData?.username,
+      password: selectedData?.password,
+      role: selectedData?.role,
     },
     resolver: valibotResolver(Schema),
   });
