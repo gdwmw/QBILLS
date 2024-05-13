@@ -226,7 +226,7 @@ export const Main: FC = (): ReactElement => {
       <Pagination
         startData={indexOfLastData > 0 ? indexOfFirstData + 1 : 0}
         endData={(searchResult && Math.min(indexOfLastData, searchResult.length)) ?? 0}
-        total={searchResult?.length ?? 0}
+        totalData={searchResult?.length ?? 0}
         currentPage={currentPage ?? 0}
         totalPage={totalPage ?? 0}
         onClickPrevPage={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
