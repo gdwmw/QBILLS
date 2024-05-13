@@ -55,9 +55,9 @@ export const Main: FC = (): ReactElement => {
       setLoading(true);
       setTimeout(() => {
         router.push("/dashboard");
-      }, 1000);
+      }, 500);
     }
-  }, [session, router]);
+  }, [session.status]);
 
   return (
     <main className="flex h-screen w-screen items-center justify-center bg-P1 px-10">
