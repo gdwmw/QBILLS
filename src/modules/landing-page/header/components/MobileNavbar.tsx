@@ -4,34 +4,13 @@ import { ButtonCVA } from "@/components";
 import Link from "next/link";
 import { FC, FormEvent, ReactElement, useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { LoginStatusButton } from "./LoginStatusButton";
+import { LoginStatusButton, NavLinks } from "./";
 
-const NAV_LINKS = [
-  { href: "#Home", label: "Home" },
-  { href: "#About", label: "About" },
-  { href: "#Features", label: "Features" },
-  { href: "#FAQ", label: "FAQ" },
-];
-
-type TMenuLink = {
-  href: string;
-  label: string;
-  onLinkClick: (e: FormEvent, href: string) => void;
-};
-
-const MenuLink: FC<TMenuLink> = ({ href, label, onLinkClick }) => {
-  return (
-    <Link href={href} onClick={(e) => onLinkClick(e, href)} className={ButtonCVA({ ghost: "white", className: "font-semibold" })}>
-      {label}
-    </Link>
-  );
-};
-
-type TMobileNavbar = {
+type T = {
   authenticated: string | undefined;
 };
 
-export const MobileNavbar: FC<TMobileNavbar> = ({ authenticated }): ReactElement => {
+export const MobileNavbar: FC<T> = ({ authenticated }): ReactElement => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -70,9 +49,8 @@ export const MobileNavbar: FC<TMobileNavbar> = ({ authenticated }): ReactElement
 
       <section ref={menuRef} className={`fixed left-0 top-0 w-full bg-P4/70 py-20 backdrop-blur-md ${openMenu ? "lg:hidden" : "hidden lg:hidden"}`}>
         <div className="flex flex-col items-center gap-10">
-          {NAV_LINKS.map((link, index) => (
-            <MenuLink key={index} {...link} onLinkClick={handleLinkClick} />
-          ))}
+          <NavLinks handleScroll={handleLinkClick} />
+
           <div className="flex flex-col items-center justify-center gap-3">
             <div className="w-36">
               <Link
@@ -83,6 +61,7 @@ export const MobileNavbar: FC<TMobileNavbar> = ({ authenticated }): ReactElement
                 Get App
               </Link>
             </div>
+
             <LoginStatusButton authenticated={authenticated} />
           </div>
         </div>
