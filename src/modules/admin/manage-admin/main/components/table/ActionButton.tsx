@@ -18,7 +18,7 @@ export const ActionButton: FC<T> = ({ account, setSelectedData }): ReactElement 
   const [loading, setLoading] = useState<boolean>(false);
 
   const mutationDelete = useMutation({
-    mutationFn: (id: string) => DELETEAdminAccount(id),
+    mutationFn: DELETEAdminAccount,
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });

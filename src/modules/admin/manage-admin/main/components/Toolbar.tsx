@@ -18,7 +18,7 @@ export const Toolbar: FC<T> = ({ checkbox, setCheckbox, searchElement }): ReactE
   const [loading, setLoading] = useState<boolean>(false);
 
   const mutationMultipleDelete = useMutation({
-    mutationFn: (ids: string[]) => DELETEMultipleAdminAccount(ids),
+    mutationFn: DELETEMultipleAdminAccount,
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
