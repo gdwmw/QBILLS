@@ -70,8 +70,8 @@ export const MobileNavbar: FC<TMobileNavbar> = ({ authenticated }): ReactElement
 
       <section ref={menuRef} className={`fixed left-0 top-0 w-full bg-P4/70 py-20 backdrop-blur-md ${openMenu ? "lg:hidden" : "hidden lg:hidden"}`}>
         <div className="flex flex-col items-center gap-10">
-          {NAV_LINKS.map((link) => (
-            <MenuLink key={link.href} {...link} onLinkClick={handleLinkClick} />
+          {NAV_LINKS.map((link, index) => (
+            <MenuLink key={index} {...link} onLinkClick={handleLinkClick} />
           ))}
           <div className="flex flex-col items-center justify-center gap-3">
             <div className="w-36">

@@ -53,8 +53,8 @@ export const Header: FC<THeader> = ({ authenticated }): ReactElement => {
           </section>
 
           <section className="hidden items-center gap-24 lg:flex">
-            {NAV_LINKS.map((link) => (
-              <NavLink key={link.href} {...link} onLinkClick={handleScroll} />
+            {NAV_LINKS.map((link, index) => (
+              <NavLink key={index} {...link} onLinkClick={handleScroll} />
             ))}
             <div className="flex gap-3">
               <div className="w-36">
