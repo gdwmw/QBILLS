@@ -9,9 +9,12 @@ type T = {
   checkbox: string[];
   handleCheckbox: (id: string) => void;
   setSelectedData: (data: IAdminAccount) => void;
+  setCheckbox: (value: string[]) => void;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
 };
 
-export const Table: FC<T> = ({ data, checkbox, handleCheckbox, setSelectedData }): ReactElement => {
+export const Table: FC<T> = ({ data, checkbox, handleCheckbox, setSelectedData, setCheckbox, loading, setLoading }): ReactElement => {
   return (
     <section className="overflow-hidden rounded-lg border border-N2">
       <div className="max-h-[74vh] overflow-auto">
@@ -29,11 +32,14 @@ export const Table: FC<T> = ({ data, checkbox, handleCheckbox, setSelectedData }
             {data?.map((account, index) => (
               <TableBody
                 key={index}
-                account={account}
+                data={account}
                 index={index}
                 checkbox={checkbox}
                 handleCheckbox={handleCheckbox}
                 setSelectedData={setSelectedData}
+                setCheckbox={setCheckbox}
+                loading={loading}
+                setLoading={setLoading}
               />
             ))}
           </tbody>

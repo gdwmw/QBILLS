@@ -11,7 +11,7 @@ import { Schema } from "../Schema";
 type TUseForm = Output<typeof Schema>;
 
 type T = {
-  selectedData: IAdminAccount | null;
+  selectedData: IAdminAccount | undefined;
 };
 
 const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
@@ -37,18 +37,14 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
 
   const handleUpdate = useMutation({
     mutationFn: PUTAdminAccount,
-    onMutate: () => {
-      setLoading(true);
-    },
+    onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
       setOpenUpdateData(false);
       setLoading(false);
       reset();
     },
-    onError: () => {
-      setLoading(false);
-    },
+    onError: () => setLoading(false),
   });
 
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {

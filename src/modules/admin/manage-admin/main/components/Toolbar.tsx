@@ -4,18 +4,19 @@ import { useGlobalStates } from "@/states";
 import { DELETEMultipleAdminAccount } from "@/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { FC, ReactElement, ReactNode, useState } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 
 type T = {
   checkbox: string[];
-  setCheckbox: () => void;
+  setCheckbox: (value: string[]) => void;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
   searchElement: ReactNode;
 };
 
-export const Toolbar: FC<T> = ({ checkbox, setCheckbox, searchElement }): ReactElement => {
+export const Toolbar: FC<T> = ({ checkbox, setCheckbox, loading, setLoading, searchElement }): ReactElement => {
   const queryClient = useQueryClient();
   const { setOpenAddData } = useGlobalStates();
-  const [loading, setLoading] = useState<boolean>(false);
 
   const mutationMultipleDelete = useMutation({
     mutationFn: DELETEMultipleAdminAccount,
@@ -23,7 +24,7 @@ export const Toolbar: FC<T> = ({ checkbox, setCheckbox, searchElement }): ReactE
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
       setLoading(false);
-      setCheckbox();
+      setCheckbox([]);
     },
     onError: () => setLoading(false),
   });
@@ -41,24 +42,15 @@ export const Toolbar: FC<T> = ({ checkbox, setCheckbox, searchElement }): ReactE
         <Button
           type="button"
           solid={checkbox.length === 0 || loading ? "disabled" : "red"}
-          size={"sm"}
-          widthFull
           disabled={checkbox.length === 0 || loading}
           onClick={handleMultipleDelete}
-          className={`max-w-[120px] whitespace-nowrap font-semibold ${loading ? "cursor-wait" : ""}`}
+          className={`min-w-[120px] whitespace-nowrap font-semibold ${loading ? "cursor-wait" : ""}`}
         >
-          <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading ? "" : "hidden"} />
+          {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
           Delete ({checkbox.length})
         </Button>
 
-        <Button
-          type="button"
-          solid={"default"}
-          size={"sm"}
-          widthFull
-          onClick={() => setOpenAddData(true)}
-          className="max-w-[150px] whitespace-nowrap font-semibold"
-        >
+        <Button type="button" solid={"default"} onClick={() => setOpenAddData(true)} className="w-full max-w-[150px] whitespace-nowrap font-semibold">
           Add Account
         </Button>
       </div>

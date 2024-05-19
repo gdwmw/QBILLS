@@ -1,4 +1,4 @@
-import { maxLength, minLength, object, string } from "valibot";
+import { maxLength, minLength, object, Output, string } from "valibot";
 
 export const Schema = object({
   id: string(),
@@ -7,3 +7,5 @@ export const Schema = object({
   password: string([minLength(5, "Please enter password minimum 5 character."), maxLength(16, "Please enter password maximum 16 character.")]),
   role: string(),
 });
+
+export type TSchema = Output<typeof Schema>;

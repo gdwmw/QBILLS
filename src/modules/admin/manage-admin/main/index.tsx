@@ -20,7 +20,8 @@ export const Main: FC = (): ReactElement => {
 
   const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useGlobalStates();
   const [checkbox, setCheckbox] = useState<string[]>([]);
-  const [selectedData, setSelectedData] = useState<IAdminAccount | null>(null);
+  const [selectedData, setSelectedData] = useState<IAdminAccount | undefined>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleCheckbox = (id: string) => {
     setCheckbox((prev) => [...prev, id]);
@@ -56,11 +57,21 @@ export const Main: FC = (): ReactElement => {
       <main className="px-5">
         <Toolbar
           checkbox={checkbox}
-          setCheckbox={() => setCheckbox([])}
-          searchElement={<Input type="text" label="Search Account" {...register("search")} id="search-account" icon={<FaSearch />} />}
+          setCheckbox={setCheckbox}
+          loading={loading}
+          setLoading={setLoading}
+          searchElement={<Input type="text" label="Search Account" {...register("search")} icon={<FaSearch />} />}
         />
 
-        <Table data={currentData ?? []} checkbox={checkbox} handleCheckbox={handleCheckbox} setSelectedData={setSelectedData} />
+        <Table
+          data={currentData ?? []}
+          checkbox={checkbox}
+          handleCheckbox={handleCheckbox}
+          setSelectedData={setSelectedData}
+          setCheckbox={setCheckbox}
+          loading={loading}
+          setLoading={setLoading}
+        />
 
         <Pagination
           startData={startData}

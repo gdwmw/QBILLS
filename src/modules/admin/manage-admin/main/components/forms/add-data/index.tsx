@@ -4,11 +4,8 @@ import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FC, ReactElement, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Output } from "valibot";
 import { Form } from "../Form";
-import { Schema } from "../Schema";
-
-type TUseForm = Output<typeof Schema>;
+import { Schema, TSchema } from "../Schema";
 
 const AddData: FC = (): ReactElement => {
   const queryClient = useQueryClient();
@@ -20,7 +17,7 @@ const AddData: FC = (): ReactElement => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<TUseForm>({
+  } = useForm<TSchema>({
     defaultValues: {
       id: "",
       name: "",
@@ -33,21 +30,17 @@ const AddData: FC = (): ReactElement => {
 
   const handleAdd = useMutation({
     mutationFn: POSTAdminAccount,
-    onMutate: () => {
-      setLoading(true);
-    },
+    onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
       setOpenAddData(false);
       setLoading(false);
       reset();
     },
-    onError: () => {
-      setLoading(false);
-    },
+    onError: () => setLoading(false),
   });
 
-  const onSubmit: SubmitHandler<TUseForm> = async (data) => {
+  const onSubmit: SubmitHandler<TSchema> = async (data) => {
     handleAdd.mutate(data);
   };
 

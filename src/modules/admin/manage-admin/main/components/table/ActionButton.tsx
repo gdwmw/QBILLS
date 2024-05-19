@@ -4,24 +4,27 @@ import { useGlobalStates } from "@/states";
 import { DELETEAdminAccount, IAdminAccount } from "@/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { FC, ReactElement, useState } from "react";
+import { FC, ReactElement } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 type T = {
-  account: IAdminAccount;
+  data: IAdminAccount;
   setSelectedData: (data: IAdminAccount) => void;
+  setCheckbox: (value: string[]) => void;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
 };
 
-export const ActionButton: FC<T> = ({ account, setSelectedData }): ReactElement => {
+export const ActionButton: FC<T> = ({ data, setSelectedData, setCheckbox, loading, setLoading }): ReactElement => {
   const queryClient = useQueryClient();
   const { setOpenUpdateData } = useGlobalStates();
-  const [loading, setLoading] = useState<boolean>(false);
 
   const mutationDelete = useMutation({
     mutationFn: DELETEAdminAccount,
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
+      setCheckbox([]);
       setLoading(false);
     },
     onError: () => setLoading(false),
@@ -36,9 +39,8 @@ export const ActionButton: FC<T> = ({ account, setSelectedData }): ReactElement 
       <IconButton
         type="button"
         solid={"green"}
-        size={"sm"}
         onClick={() => {
-          setSelectedData({ ...account });
+          setSelectedData({ ...data });
           setOpenUpdateData(true);
         }}
       >
@@ -47,10 +49,9 @@ export const ActionButton: FC<T> = ({ account, setSelectedData }): ReactElement 
 
       <IconButton
         type="button"
-        solid={account.role === "superadmin" || loading ? "disabled" : "red"}
-        size={"sm"}
-        onClick={() => handleDelete(account.id)}
-        disabled={account.role === "superadmin" || loading}
+        solid={data.role === "superadmin" || loading ? "disabled" : "red"}
+        onClick={() => handleDelete(data.id)}
+        disabled={data.role === "superadmin" || loading}
         className={loading ? "cursor-wait" : ""}
       >
         {loading ? <Image src={loadingAnimation} alt="Loading..." width={16} quality={30} /> : <MdDelete />}

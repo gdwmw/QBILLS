@@ -25,20 +25,12 @@ export const Form: FC<T> = ({ label, buttonLabel, handleSubmit, onSubmit, regist
         <div className="flex h-full w-full flex-col items-center gap-3 rounded-lg border p-5">
           <h1 className="text-center text-2xl font-bold">{label}</h1>
           <div className="w-full space-y-3">
-            <Input
-              type="text"
-              label="Name"
-              {...register("name")}
-              id="name"
-              errorMessage={errors.name?.message}
-              variant={errors.name ? "error" : "default"}
-            />
+            <Input type="text" label="Name" {...register("name")} errorMessage={errors.name?.message} variant={errors.name ? "error" : "default"} />
 
             <Input
               type="text"
               label="Username"
               {...register("username")}
-              id="username"
               errorMessage={errors.username?.message}
               variant={errors.username ? "error" : "default"}
             />
@@ -47,38 +39,30 @@ export const Form: FC<T> = ({ label, buttonLabel, handleSubmit, onSubmit, regist
               type={visibility ? "text" : "password"}
               label="Password"
               {...register("password")}
-              id="password"
               icon={visibility ? <FaEye /> : <FaEyeSlash />}
               iconOnClick={() => setVisibility(!visibility)}
               errorMessage={errors.password?.message}
               variant={errors.password ? "error" : "default"}
             />
 
-            <Input type="text" label="Role" {...register("role")} id="role" variant={"disabled"} disabled />
+            <Input type="text" label="Role" {...register("role")} variant={"disabled"} disabled />
           </div>
 
           <div className="mt-3 flex w-full gap-3 font-semibold">
             <Button
               type="button"
-              outline={"default"}
-              size={"sm"}
-              widthFull
+              outline={loading ? "disabled" : "default"}
               onClick={() => {
                 setGlobalStates(false);
                 reset();
               }}
+              disabled={loading}
+              className="w-full"
             >
               Cancel
             </Button>
 
-            <Button
-              type="submit"
-              solid={loading ? "disabled" : "default"}
-              size={"sm"}
-              widthFull
-              disabled={loading}
-              className={loading ? "cursor-wait" : ""}
-            >
+            <Button type="submit" solid={loading ? "disabled" : "default"} disabled={loading} className={`w-full ${loading ? "cursor-wait" : ""}`}>
               {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
               {buttonLabel}
             </Button>
