@@ -77,7 +77,6 @@ export const Main: FC = (): ReactElement => {
             type="text"
             label="Username"
             {...register("username")}
-            id="username"
             errorMessage={errors.username?.message}
             variant={error || errors.username ? "error" : "default"}
           />
@@ -86,7 +85,6 @@ export const Main: FC = (): ReactElement => {
             type={visibility ? "text" : "password"}
             label="Password"
             {...register("password")}
-            id="password"
             icon={visibility ? <FaEye /> : <FaEyeSlash />}
             iconOnClick={() => setVisibility(!visibility)}
             errorMessage={errors.password?.message}
@@ -94,18 +92,16 @@ export const Main: FC = (): ReactElement => {
           />
         </div>
 
-        <span className={`select-none text-sm font-semibold text-E4 ${error ? "" : "hidden"}`}>Invalid Username And Password</span>
+        {error && <span className="select-none text-sm font-semibold text-E4">Invalid Username And Password</span>}
 
         <div className="w-full max-w-[400px]">
           <Button
             type="submit"
             solid={loading ? "disabled" : "default"}
-            size={"sm"}
-            widthFull
-            className={`font-semibold ${loading ? "cursor-wait" : ""}`}
+            className={`w-full font-semibold ${loading ? "cursor-wait" : ""}`}
             disabled={loading}
           >
-            <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading ? "" : "hidden"} />
+            {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
             LOGIN
           </Button>
         </div>
