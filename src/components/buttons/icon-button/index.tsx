@@ -37,7 +37,7 @@ const IconButtonCVA = cva("flex items-center justify-center rounded-xl border se
   },
 
   defaultVariants: {
-    size: "md",
+    size: "sm",
   },
 });
 

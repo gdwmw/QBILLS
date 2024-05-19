@@ -2,7 +2,7 @@ import { cn } from "@/libs";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, FC, ReactElement } from "react";
 
-const ButtonCVA = cva("flex items-center justify-center gap-2 select-none", {
+const ButtonCVA = cva("flex w-fit select-none items-center justify-center gap-2", {
   variants: {
     solid: {
       default: "rounded-lg border border-P4 bg-P4 text-N1 hover:border-P5 hover:bg-P5 active:scale-95 active:border-P6 active:bg-P6",
@@ -26,7 +26,7 @@ const ButtonCVA = cva("flex items-center justify-center gap-2 select-none", {
       yellow:
         "rounded-lg border border-W4 text-W4 hover:border-W5 hover:bg-W5 hover:text-N1 active:scale-95 active:border-W6 active:bg-W6 active:text-N1",
       red: "rounded-lg border border-E4 text-E4 hover:border-E5 hover:bg-E5 hover:text-N1 active:scale-95 active:border-E6 active:bg-E6 active:text-N1",
-      disabled: "cursor-not-allowed rounded-lg border border-N4 text-N3",
+      disabled: "cursor-not-allowed rounded-lg border border-N3 text-N6",
     },
 
     ghost: {
@@ -41,6 +41,7 @@ const ButtonCVA = cva("flex items-center justify-center gap-2 select-none", {
     },
 
     size: {
+      ghost: "h-fit px-0 py-0",
       sm: "h-fit px-3 py-2 text-sm",
       md: "h-fit px-4 py-2.5 text-base",
       lg: "h-fit px-5 py-3 text-lg",
@@ -48,23 +49,18 @@ const ButtonCVA = cva("flex items-center justify-center gap-2 select-none", {
       "2xl": "h-fit px-7 py-4 text-2xl",
       "3xl": "h-fit px-8 py-5 text-3xl",
     },
-
-    widthFull: {
-      true: "w-full",
-      false: "w-fit",
-    },
   },
 
   defaultVariants: {
-    widthFull: false,
+    size: "sm",
   },
 });
 
 interface I extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof ButtonCVA> {}
 
-const Button: FC<I> = ({ solid, outline, ghost, size, widthFull, className, children, ...props }): ReactElement => {
+const Button: FC<I> = ({ solid, outline, ghost, size, className, children, ...props }): ReactElement => {
   return (
-    <button className={cn(ButtonCVA({ solid, outline, ghost, size, widthFull, className }))} {...props}>
+    <button className={cn(ButtonCVA({ solid, outline, ghost, size, className }))} {...props}>
       {children}
     </button>
   );
