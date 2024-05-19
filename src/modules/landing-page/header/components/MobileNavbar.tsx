@@ -1,6 +1,7 @@
 "use client";
 
 import { ButtonCVA } from "@/components";
+import { cn } from "@/libs";
 import Link from "next/link";
 import { FC, FormEvent, ReactElement, useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -43,11 +44,14 @@ export const MobileNavbar: FC<T> = ({ authenticated }): ReactElement => {
 
   return (
     <>
-      <button type="button" onClick={toggleMenu} className="flex cursor-pointer items-center text-3xl text-N1 active:scale-95 lg:hidden">
+      <button type="button" onClick={toggleMenu} className="flex cursor-pointer items-center text-3xl text-N1 active:scale-95 min-[1225px]:hidden">
         <GiHamburgerMenu />
       </button>
 
-      <section ref={menuRef} className={`fixed left-0 top-0 w-full bg-P4/70 py-20 backdrop-blur-md ${openMenu ? "lg:hidden" : "hidden lg:hidden"}`}>
+      <section
+        ref={menuRef}
+        className={`fixed left-0 top-0 w-full bg-P4/70 py-20 backdrop-blur-md ${openMenu ? "min-[1225px]:hidden" : "hidden min-[1225px]:hidden"}`}
+      >
         <div className="flex flex-col items-center gap-10">
           <NavLinks handleScroll={handleLinkClick} />
 
@@ -56,7 +60,7 @@ export const MobileNavbar: FC<T> = ({ authenticated }): ReactElement => {
               <Link
                 href={"#Get-App"}
                 onClick={(event) => handleLinkClick(event, "#Get-App")}
-                className={ButtonCVA({ solid: "white", size: "sm", widthFull: true, className: "font-semibold text-P4" })}
+                className={cn(ButtonCVA({ solid: "white", className: "w-full font-semibold text-P4" }))}
               >
                 Get App
               </Link>

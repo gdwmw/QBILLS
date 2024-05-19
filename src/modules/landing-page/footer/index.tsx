@@ -1,4 +1,5 @@
 import { ButtonCVA, Logo } from "@/components";
+import { cn } from "@/libs";
 import Link from "next/link";
 import { FC, ReactElement } from "react";
 import { InfoSection } from "./components";
@@ -34,7 +35,7 @@ export const Footer: FC = (): ReactElement => {
           <div className="flex flex-col items-center justify-between gap-5 text-xs md:flex-row md:items-start">
             <div className="flex gap-10">
               {ROLES_LINK_DATA.map(({ href, label }, index) => (
-                <Link key={index} href={href} className={ButtonCVA({ ghost: "white", className: "whitespace-nowrap text-P2" })}>
+                <Link key={index} href={href} className={cn(ButtonCVA({ ghost: "white", size: "ghost", className: "whitespace-nowrap text-P2" }))}>
                   {label}
                 </Link>
               ))}

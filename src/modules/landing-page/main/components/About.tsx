@@ -26,7 +26,7 @@ export const About: FC = (): ReactElement => {
                     <MdAddToPhotos />
                   </i>
                   <h2 className="text-xl font-semibold">Create Order</h2>
-                  <p className="text-sm">You have the option to request food through the Qbilss POS application.</p>
+                  <p className="text-sm">You have the option to request food through the QBILLS POS application.</p>
                 </section>
 
                 <section className="w-full max-w-[335px] space-y-1">

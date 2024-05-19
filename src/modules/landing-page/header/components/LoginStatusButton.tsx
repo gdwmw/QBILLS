@@ -17,9 +17,7 @@ export const LoginStatusButton: FC<T> = ({ authenticated }): ReactElement => {
             className={cn(
               ButtonCVA({
                 outline: "white",
-                size: "sm",
-                widthFull: true,
-                className: "border-2 py-[7px] font-bold hover:text-P4 active:text-P4",
+                className: "w-full border-2 py-[7px] font-bold hover:text-P4 active:text-P4",
               }),
             )}
           >
@@ -33,9 +31,7 @@ export const LoginStatusButton: FC<T> = ({ authenticated }): ReactElement => {
             className={cn(
               ButtonCVA({
                 outline: "white",
-                size: "sm",
-                widthFull: true,
-                className: "border-2 py-[7px] font-bold hover:text-P4 active:text-P4",
+                className: "w-full border-2 py-[7px] font-bold hover:text-P4 active:text-P4",
               }),
             )}
           >

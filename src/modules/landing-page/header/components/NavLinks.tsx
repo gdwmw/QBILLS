@@ -1,4 +1,5 @@
 import { ButtonCVA } from "@/components";
+import { cn } from "@/libs";
 import Link from "next/link";
 import { FC, FormEvent, ReactElement } from "react";
 
@@ -17,17 +18,17 @@ type TLinks = {
 
 const Links: FC<TLinks> = ({ href, label, onLinkClick }) => {
   return (
-    <Link href={href} onClick={(e) => onLinkClick(e, href)} className={ButtonCVA({ ghost: "white", className: "font-semibold" })}>
+    <Link href={href} onClick={(e) => onLinkClick(e, href)} className={cn(ButtonCVA({ ghost: "white", size: "ghost", className: "font-semibold" }))}>
       {label}
     </Link>
   );
 };
 
-type T = {
+type TNavLinks = {
   handleScroll: (e: FormEvent, href: string) => void;
 };
 
-export const NavLinks: FC<T> = ({ handleScroll }): ReactElement => {
+export const NavLinks: FC<TNavLinks> = ({ handleScroll }): ReactElement => {
   return (
     <>
       {LINKS.map((link, index) => (

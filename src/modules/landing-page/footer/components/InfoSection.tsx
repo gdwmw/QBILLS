@@ -1,4 +1,5 @@
 import { ButtonCVA } from "@/components";
+import { cn } from "@/libs";
 import Link from "next/link";
 import { FC, ReactElement } from "react";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
@@ -42,7 +43,7 @@ const Section: FC<TSection> = ({ title, links }) => (
     <h1 className="text-2xl font-semibold text-N1">{title}</h1>
     <div className="space-y-3 text-xs">
       {links.map(({ href, label, icon }, index) => (
-        <Link key={index} href={href} className={ButtonCVA({ ghost: "white", className: "whitespace-nowrap" })}>
+        <Link key={index} href={href} className={cn(ButtonCVA({ ghost: "white", size: "ghost", className: "whitespace-nowrap" }))}>
           {icon}
           {label}
         </Link>
