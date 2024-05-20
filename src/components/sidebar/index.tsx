@@ -1,18 +1,20 @@
 "use client";
 
-import { IconButton } from "@/components";
-import logoQbills1 from "@/public/assets/images/logos/brown/logo-2.webp";
-import logoQbills2 from "@/public/assets/images/logos/brown/logo-4.webp";
-import logoQbills3 from "@/public/assets/images/logos/brown/logo-5.webp";
+import { FC, ReactElement, useState } from "react";
+
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, ReactElement, useState } from "react";
 import { FaAddressCard, FaChevronLeft, FaChevronRight, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
 import { IoDocumentText } from "react-icons/io5";
 import { MdAdminPanelSettings, MdDashboard } from "react-icons/md";
+
+import { IconButton } from "@/components";
+import logoQBILLS1 from "@/public/assets/images/logos/brown/logo-2.webp";
+import logoQBILLS2 from "@/public/assets/images/logos/brown/logo-4.webp";
+import logoQBILLS3 from "@/public/assets/images/logos/brown/logo-5.webp";
 
 type T = {
   role: string | undefined;
@@ -28,66 +30,66 @@ export const Sidebar: FC<T> = ({ role }): ReactElement => {
         className={`fixed left-0 top-0 z-20 h-dvh w-[300px] flex-col items-center gap-10 border-r bg-N1.1 px-5 py-10 ${open ? "flex" : "hidden lg:flex"}`}
       >
         <section className="flex h-fit w-fit items-center justify-center gap-2">
-          <Image src={logoQbills1} alt="QBills" width={40} quality={30} priority />
+          <Image alt="QBILLS" priority quality={30} src={logoQBILLS1} width={40} />
           <div>
-            <Image src={logoQbills2} alt="QBills" width={110} quality={30} priority className="mx-auto mb-1" />
-            <Image src={logoQbills3} alt="QBills" width={130} quality={30} priority />
+            <Image alt="QBILLS" className="mx-auto mb-1" priority quality={30} src={logoQBILLS2} width={110} />
+            <Image alt="QBILLS" priority quality={30} src={logoQBILLS3} width={130} />
           </div>
         </section>
 
         <section className="w-full space-y-3">
-          <Link href={"/dashboard"} className={pathname === "/dashboard" ? "sidebar-active" : "sidebar-button"}>
+          <Link className={pathname === "/dashboard" ? "sidebar-active" : "sidebar-button"} href={"/dashboard"}>
             <MdDashboard size={25} />
             Dashboard
           </Link>
 
           {role === "superadmin" && (
-            <Link href={"/manageadmin"} className={pathname === "/manageadmin" ? "sidebar-active" : "sidebar-button"}>
+            <Link className={pathname === "/manageadmin" ? "sidebar-active" : "sidebar-button"} href={"/manageadmin"}>
               <MdAdminPanelSettings size={25} />
               Manage Admin
             </Link>
           )}
 
-          <Link href={"/managecashier"} className={pathname === "/managecashier" ? "sidebar-active" : "sidebar-button"}>
+          <Link className={pathname === "/managecashier" ? "sidebar-active" : "sidebar-button"} href={"/managecashier"}>
             <FaUserCircle size={25} />
             Manage Cashier
           </Link>
 
-          <Link href={"/managemembership"} className={pathname === "/managemembership" ? "sidebar-active" : "sidebar-button"}>
+          <Link className={pathname === "/managemembership" ? "sidebar-active" : "sidebar-button"} href={"/managemembership"}>
             <FaAddressCard size={25} />
             Manage Membership
           </Link>
 
-          <Link href={"/manageproduct"} className={pathname === "/manageproduct" ? "sidebar-active" : "sidebar-button"}>
+          <Link className={pathname === "/manageproduct" ? "sidebar-active" : "sidebar-button"} href={"/manageproduct"}>
             <FaBoxesStacked size={25} />
             Manage Product
           </Link>
 
-          <Link href={"/transaction"} className={pathname === "/transaction" ? "sidebar-active" : "sidebar-button"}>
+          <Link className={pathname === "/transaction" ? "sidebar-active" : "sidebar-button"} href={"/transaction"}>
             <FaMoneyBillTransfer size={25} />
             Transaction
           </Link>
 
-          <Link href={"/report"} className={pathname === "/report" ? "sidebar-active" : "sidebar-button"}>
+          <Link className={pathname === "/report" ? "sidebar-active" : "sidebar-button"} href={"/report"}>
             <IoDocumentText size={25} />
             Report
           </Link>
         </section>
 
         <section className="mt-auto w-full">
-          <button type="button" onClick={() => signOut()} className="sidebar-button">
-            <FaSignOutAlt size={25} className="rotate-180" />
+          <button className="sidebar-button" onClick={() => signOut()} type="button">
+            <FaSignOutAlt className="rotate-180" size={25} />
             Logout
           </button>
         </section>
       </aside>
 
       <IconButton
-        type="button"
-        solid={"default"}
-        size={"sm"}
-        onClick={() => setOpen(!open)}
         className={`fixed top-1/2 z-20 block lg:hidden ${open ? "left-[312px]" : "left-3"}`}
+        onClick={() => setOpen(!open)}
+        size={"sm"}
+        solid={"default"}
+        type="button"
       >
         {open ? <FaChevronLeft /> : <FaChevronRight />}
       </IconButton>

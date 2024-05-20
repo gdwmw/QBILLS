@@ -1,7 +1,8 @@
 "use client";
 
-import { SessionProvider } from "next-auth/react";
 import { FC, ReactElement, ReactNode } from "react";
+
+import { SessionProvider } from "next-auth/react";
 
 type T = {
   children: ReactNode;

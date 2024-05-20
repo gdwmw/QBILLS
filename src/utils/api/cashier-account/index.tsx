@@ -7,18 +7,18 @@ if (!URL) {
 export interface ICashierAccount {
   id: string;
   name: string;
-  username: string;
   password: string;
   role: string;
+  username: string;
 }
 
 export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
   try {
     const res = await fetch(URL, {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
+      method: "GET",
     });
 
     if (!res.ok) {
@@ -35,11 +35,11 @@ export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
 export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
   try {
     const res = await fetch(URL, {
-      method: "POST",
+      body: JSON.stringify({ name: data.name, password: data.password, role: data.role, username: data.username }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: data.name, username: data.username, password: data.password, role: data.role }),
+      method: "POST",
     });
 
     if (!res.ok) {
@@ -55,12 +55,12 @@ export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashie
 
 export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(data.id)}`, {
-      method: "PUT",
+    const res = await fetch(`${URL}/${data.id}`, {
+      body: JSON.stringify({ name: data.name, password: data.password, role: data.role, username: data.username }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: data.name, username: data.username, password: data.password, role: data.role }),
+      method: "PUT",
     });
 
     if (!res.ok) {
@@ -76,11 +76,11 @@ export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashier
 
 export const DELETECashierAccount = async (id: string): Promise<ICashierAccount> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(id)}`, {
-      method: "DELETE",
+    const res = await fetch(`${URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
+      method: "DELETE",
     });
 
     if (!res.ok) {
@@ -98,11 +98,11 @@ export const DELETEMultipleCashierAccount = async (ids: string[]): Promise<ICash
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
-        const res = await fetch(`${URL}/${parseInt(id)}`, {
-          method: "DELETE",
+        const res = await fetch(`${URL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
+          method: "DELETE",
         });
 
         if (!res.ok) {

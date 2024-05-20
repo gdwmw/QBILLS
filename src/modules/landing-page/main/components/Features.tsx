@@ -1,15 +1,17 @@
+import { FC, ReactElement } from "react";
+
+import Image from "next/image";
+
 import Mockup2 from "@/public/assets/images/landing-page/our-feature/mockup-1.webp";
 import Mockup3 from "@/public/assets/images/landing-page/our-feature/mockup-2.webp";
 import Mockup4 from "@/public/assets/images/landing-page/our-feature/mockup-3.webp";
 import Mockup5 from "@/public/assets/images/landing-page/our-feature/mockup-4.webp";
 import Mockup6 from "@/public/assets/images/landing-page/our-feature/mockup-5.webp";
-import Image from "next/image";
-import { FC, ReactElement } from "react";
 
 export const Features: FC = (): ReactElement => {
   return (
     <>
-      <section id="Features" className="bg-P1 py-36">
+      <section className="bg-P1 py-36" id="Features">
         <div className="container mx-auto px-10">
           <h1 className="mb-36 text-center text-6xl font-semibold">Our Feature</h1>
 
@@ -23,13 +25,13 @@ export const Features: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Image src={Mockup2} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
+                <Image alt="Mockup" className="w-full max-w-[300px] md:max-w-[500px]" loading="lazy" quality={50} src={Mockup2} />
               </div>
             </section>
 
             <section className="grid grid-cols-1 gap-20 sm:grid-cols-2">
               <div className="hidden items-center justify-center sm:flex">
-                <Image src={Mockup3} alt="Mockup" width={500} quality={50} loading="lazy" />
+                <Image alt="Mockup" loading="lazy" quality={50} src={Mockup3} width={500} />
               </div>
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Manage Your Own Account Cashier</h2>
@@ -40,7 +42,7 @@ export const Features: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center sm:hidden">
-                <Image src={Mockup3} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px]" />
+                <Image alt="Mockup" className="w-full max-w-[300px]" loading="lazy" quality={50} src={Mockup3} />
               </div>
             </section>
 
@@ -53,13 +55,13 @@ export const Features: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Image src={Mockup4} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
+                <Image alt="Mockup" className="w-full max-w-[300px] md:max-w-[500px]" loading="lazy" quality={50} src={Mockup4} />
               </div>
             </section>
 
             <section className="grid grid-cols-1 gap-20 sm:grid-cols-2">
               <div className="hidden items-center justify-center sm:flex">
-                <Image src={Mockup5} alt="Mockup" width={500} quality={50} loading="lazy" />
+                <Image alt="Mockup" loading="lazy" quality={50} src={Mockup5} width={500} />
               </div>
               <div className="flex flex-col justify-center gap-1">
                 <h2 className="text-4xl font-semibold text-P4">Manage Membership from Dashboard</h2>
@@ -69,7 +71,7 @@ export const Features: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center sm:hidden">
-                <Image src={Mockup5} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
+                <Image alt="Mockup" className="w-full max-w-[300px] md:max-w-[500px]" loading="lazy" quality={50} src={Mockup5} />
               </div>
             </section>
 
@@ -83,7 +85,7 @@ export const Features: FC = (): ReactElement => {
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Image src={Mockup6} alt="Mockup" quality={50} loading="lazy" className="w-full max-w-[300px] md:max-w-[500px]" />
+                <Image alt="Mockup" className="w-full max-w-[300px] md:max-w-[500px]" loading="lazy" quality={50} src={Mockup6} />
               </div>
             </section>
           </div>

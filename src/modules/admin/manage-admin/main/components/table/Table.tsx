@@ -1,20 +1,22 @@
-import { IAdminAccount } from "@/utils";
 import { FC, ReactElement } from "react";
+
+import { IAdminAccount } from "@/utils";
+
 import { TableBody } from "./TableBody";
 
 const TABLE_HEAD = ["Checkbox", "Name", "Username", "Password", "Role", "Action"];
 
 type T = {
-  data: IAdminAccount[];
   checkbox: string[];
+  data: IAdminAccount[];
   handleCheckbox: (id: string) => void;
-  setSelectedData: (data: IAdminAccount) => void;
-  setCheckbox: (value: string[]) => void;
   loading: boolean;
+  setCheckbox: (value: string[]) => void;
   setLoading: (value: boolean) => void;
+  setSelectedData: (data: IAdminAccount) => void;
 };
 
-export const Table: FC<T> = ({ data, checkbox, handleCheckbox, setSelectedData, setCheckbox, loading, setLoading }): ReactElement => {
+export const Table: FC<T> = ({ checkbox, data, handleCheckbox, loading, setCheckbox, setLoading, setSelectedData }): ReactElement => {
   return (
     <section className="overflow-hidden rounded-lg border border-N2">
       <div className="max-h-[74vh] overflow-auto">
@@ -22,7 +24,7 @@ export const Table: FC<T> = ({ data, checkbox, handleCheckbox, setSelectedData, 
           <thead className="sticky top-0 z-10 bg-N2">
             <tr className="text-center">
               {TABLE_HEAD.map((label, index) => (
-                <th key={index} className="px-4 py-4">
+                <th className="px-4 py-4" key={index}>
                   {label}
                 </th>
               ))}
@@ -31,15 +33,15 @@ export const Table: FC<T> = ({ data, checkbox, handleCheckbox, setSelectedData, 
           <tbody>
             {data?.map((account, index) => (
               <TableBody
-                key={index}
-                data={account}
-                index={index}
                 checkbox={checkbox}
+                data={account}
                 handleCheckbox={handleCheckbox}
-                setSelectedData={setSelectedData}
-                setCheckbox={setCheckbox}
+                index={index}
+                key={index}
                 loading={loading}
+                setCheckbox={setCheckbox}
                 setLoading={setLoading}
+                setSelectedData={setSelectedData}
               />
             ))}
           </tbody>

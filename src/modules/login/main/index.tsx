@@ -1,20 +1,22 @@
 "use client";
 
-import { Button, Input } from "@/components";
-import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import logoQBILLS from "@/public/assets/images/logos/brown/logo-1.webp";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC, ReactElement, useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Output, minLength, object, string } from "valibot";
+import { minLength, object, Output, string } from "valibot";
+
+import { Button, Input } from "@/components";
+import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
+import logoQBILLS from "@/public/assets/images/logos/brown/logo-1.webp";
 
 const Schema = object({
-  username: string([minLength(1, "Please enter your username.")]),
   password: string([minLength(1, "Please enter your password.")]),
+  username: string([minLength(1, "Please enter your username.")]),
 });
 
 type TUseForm = Output<typeof Schema>;
@@ -27,18 +29,18 @@ export const Main: FC = (): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<TUseForm>({ resolver: valibotResolver(Schema) });
 
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
     setLoading(true);
     try {
       const res = await signIn(`credentials`, {
-        username: data.username,
         password: data.password,
         redirect: false,
+        username: data.username,
       });
       if (res?.error) {
         setError(true);
@@ -62,10 +64,10 @@ export const Main: FC = (): ReactElement => {
   return (
     <main className="flex h-screen w-screen items-center justify-center bg-P1 px-10">
       <form
-        onSubmit={handleSubmit(onSubmit)}
         className="flex h-full max-h-[600px] w-full max-w-[500px] flex-col items-center justify-center gap-5 rounded-xl bg-N1 px-5 shadow-md"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <Image src={logoQBILLS} alt="QBILLS" width={150} quality={30} priority />
+        <Image alt="QBILLS" priority quality={30} src={logoQBILLS} width={150} />
 
         <div className="space-y-1 text-center">
           <h1 className="text-2xl font-bold">Welcome Admin</h1>
@@ -74,20 +76,20 @@ export const Main: FC = (): ReactElement => {
 
         <div className="w-full max-w-[400px] space-y-3">
           <Input
-            type="text"
             label="Username"
+            type="text"
             {...register("username")}
             errorMessage={errors.username?.message}
             variant={error || errors.username ? "error" : "default"}
           />
 
           <Input
-            type={visibility ? "text" : "password"}
             label="Password"
+            type={visibility ? "text" : "password"}
             {...register("password")}
+            errorMessage={errors.password?.message}
             icon={visibility ? <FaEye /> : <FaEyeSlash />}
             iconOnClick={() => setVisibility(!visibility)}
-            errorMessage={errors.password?.message}
             variant={error || errors.password ? "error" : "default"}
           />
         </div>
@@ -96,12 +98,12 @@ export const Main: FC = (): ReactElement => {
 
         <div className="w-full max-w-[400px]">
           <Button
-            type="submit"
-            solid={loading ? "disabled" : "default"}
             className={`w-full font-semibold ${loading ? "cursor-wait" : ""}`}
             disabled={loading}
+            solid={loading ? "disabled" : "default"}
+            type="submit"
           >
-            {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
+            {loading && <Image alt="Loading..." quality={30} src={loadingAnimation} width={20} />}
             LOGIN
           </Button>
         </div>

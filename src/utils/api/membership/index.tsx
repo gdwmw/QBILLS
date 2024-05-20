@@ -14,10 +14,10 @@ export interface IMembership {
 export const GETMembership = async (): Promise<IMembership[]> => {
   try {
     const res = await fetch(URL, {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
+      method: "GET",
     });
 
     if (!res.ok) {
@@ -34,11 +34,11 @@ export const GETMembership = async (): Promise<IMembership[]> => {
 export const POSTMembership = async (data: IMembership): Promise<IMembership> => {
   try {
     const res = await fetch(URL, {
-      method: "POST",
+      body: JSON.stringify({ name: data.name, "phone-number": data["phone-number"], point: data.point }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: data.name, "phone-number": data["phone-number"], point: data.point }),
+      method: "POST",
     });
 
     if (!res.ok) {
@@ -54,12 +54,12 @@ export const POSTMembership = async (data: IMembership): Promise<IMembership> =>
 
 export const PUTMembership = async (data: IMembership): Promise<IMembership> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(data.id)}`, {
-      method: "PUT",
+    const res = await fetch(`${URL}/${data.id}`, {
+      body: JSON.stringify({ name: data.name, "phone-number": data["phone-number"], point: data.point }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: data.name, "phone-number": data["phone-number"], point: data.point }),
+      method: "PUT",
     });
 
     if (!res.ok) {
@@ -75,11 +75,11 @@ export const PUTMembership = async (data: IMembership): Promise<IMembership> => 
 
 export const DELETEMembership = async (id: string): Promise<IMembership> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(id)}`, {
-      method: "DELETE",
+    const res = await fetch(`${URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
+      method: "DELETE",
     });
 
     if (!res.ok) {
@@ -97,11 +97,11 @@ export const DELETEMultipleMembership = async (ids: string[]): Promise<IMembersh
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
-        const res = await fetch(`${URL}/${parseInt(id)}`, {
-          method: "DELETE",
+        const res = await fetch(`${URL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
+          method: "DELETE",
         });
 
         if (!res.ok) {

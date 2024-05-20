@@ -1,21 +1,23 @@
+import { FC, ReactElement } from "react";
+
+import Image from "next/image";
+
 import Mockup1 from "@/public/assets/images/landing-page/hero-section/mockup.webp";
 import logoQBILLS1 from "@/public/assets/images/logos/brown/logo-2.webp";
 import logoQBILLS2 from "@/public/assets/images/logos/white/logo-2.webp";
-import Image from "next/image";
-import { FC, ReactElement } from "react";
 
 export const HeroSection: FC = (): ReactElement => {
   return (
-    <section id="Home" className="relative -z-10 h-screen w-full overflow-hidden bg-gradient-to-r from-P3 to-P4">
-      <Image src={logoQBILLS1} alt="QBILLS" width={700} quality={30} priority className="absolute -top-24 left-10 -z-10 -rotate-12 opacity-25" />
+    <section className="relative -z-10 h-screen w-full overflow-hidden bg-gradient-to-r from-P3 to-P4" id="Home">
+      <Image alt="QBILLS" className="absolute -top-24 left-10 -z-10 -rotate-12 opacity-25" priority quality={30} src={logoQBILLS1} width={700} />
 
       <Image
-        src={logoQBILLS2}
         alt="QBILLS"
-        width={500}
-        quality={30}
-        priority
         className="absolute -bottom-40 right-0 -z-10 rotate-[168deg] opacity-15"
+        priority
+        quality={30}
+        src={logoQBILLS2}
+        width={500}
       />
 
       <div className="container mx-auto h-full w-full px-10">
@@ -33,7 +35,7 @@ export const HeroSection: FC = (): ReactElement => {
           </div>
 
           <div className="flex items-center justify-center lg:justify-end">
-            <Image src={Mockup1} alt="Mockup" quality={50} priority className="w-full max-w-[500px] lg:max-w-[700px]" />
+            <Image alt="Mockup" className="w-full max-w-[500px] lg:max-w-[700px]" priority quality={50} src={Mockup1} />
           </div>
         </div>
       </div>

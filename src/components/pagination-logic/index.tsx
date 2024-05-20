@@ -25,12 +25,12 @@ export const PaginationLogic = ({ data, dataPerPage }: T) => {
   };
   return {
     currentData,
-    totalPage,
-    startData,
-    endData,
-    totalData,
     currentPage,
-    prevPage,
+    endData,
     nextPage,
+    prevPage,
+    startData,
+    totalData,
+    totalPage,
   };
 };

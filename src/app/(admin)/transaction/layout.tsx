@@ -1,14 +1,15 @@
 import type { Metadata, Viewport } from "next";
+
 import { FC, ReactNode } from "react";
 
 export const viewport: Viewport = {
-  width: "device-width",
   initialScale: 0.5,
+  width: "device-width",
 };
 
 export const metadata: Metadata = {
-  title: "QBills | Transaction",
   description: "",
+  title: "Transaction",
 };
 
 type T = {

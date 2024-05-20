@@ -5,24 +5,24 @@ if (!URL) {
 }
 
 export interface ITransaction {
-  id: string;
-  code: string;
-  cashier: string;
-  customer: string;
-  payment: string;
-  date: string;
-  time: string;
   amount: number;
+  cashier: string;
+  code: string;
+  customer: string;
+  date: string;
+  id: string;
+  payment: string;
   status: string;
+  time: string;
 }
 
 export const GETTransaction = async (): Promise<ITransaction[]> => {
   try {
     const res = await fetch(URL, {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
+      method: "GET",
     });
 
     if (!res.ok) {
@@ -39,20 +39,20 @@ export const GETTransaction = async (): Promise<ITransaction[]> => {
 export const POSTTransaction = async (data: ITransaction): Promise<ITransaction> => {
   try {
     const res = await fetch(URL, {
-      method: "POST",
+      body: JSON.stringify({
+        amount: data.amount,
+        cashier: data.cashier,
+        code: data.code,
+        customer: data.customer,
+        date: data.date,
+        payment: data.payment,
+        status: data.status,
+        time: data.time,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        code: data.code,
-        cashier: data.cashier,
-        customer: data.customer,
-        payment: data.payment,
-        date: data.date,
-        time: data.time,
-        amount: data.amount,
-        status: data.status,
-      }),
+      method: "POST",
     });
 
     if (!res.ok) {
@@ -68,21 +68,21 @@ export const POSTTransaction = async (data: ITransaction): Promise<ITransaction>
 
 export const PUTTransaction = async (data: ITransaction): Promise<ITransaction> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(data.id)}`, {
-      method: "PUT",
+    const res = await fetch(`${URL}/${data.id}`, {
+      body: JSON.stringify({
+        amount: data.amount,
+        cashier: data.cashier,
+        code: data.code,
+        customer: data.customer,
+        date: data.date,
+        payment: data.payment,
+        status: data.status,
+        time: data.time,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        code: data.code,
-        cashier: data.cashier,
-        customer: data.customer,
-        payment: data.payment,
-        date: data.date,
-        time: data.time,
-        amount: data.amount,
-        status: data.status,
-      }),
+      method: "PUT",
     });
 
     if (!res.ok) {
@@ -98,11 +98,11 @@ export const PUTTransaction = async (data: ITransaction): Promise<ITransaction> 
 
 export const DELETETransaction = async (id: string): Promise<ITransaction> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(id)}`, {
-      method: "DELETE",
+    const res = await fetch(`${URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
+      method: "DELETE",
     });
 
     if (!res.ok) {
@@ -120,11 +120,11 @@ export const DELETEMultipleTransaction = async (ids: string[]): Promise<ITransac
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
-        const res = await fetch(`${URL}/${parseInt(id)}`, {
-          method: "DELETE",
+        const res = await fetch(`${URL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
+          method: "DELETE",
         });
 
         if (!res.ok) {

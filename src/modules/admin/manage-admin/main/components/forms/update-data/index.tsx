@@ -1,10 +1,13 @@
-import { useGlobalStates } from "@/states";
-import { IAdminAccount, PUTAdminAccount } from "@/utils";
-import { valibotResolver } from "@hookform/resolvers/valibot";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FC, ReactElement, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import { valibotResolver } from "@hookform/resolvers/valibot";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Output } from "valibot";
+
+import { useGlobalStates } from "@/states";
+import { IAdminAccount, PUTAdminAccount } from "@/utils";
+
 import { Form } from "../Form";
 import { Schema } from "../Schema";
 
@@ -20,23 +23,24 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
     reset,
   } = useForm<TUseForm>({
     defaultValues: {
       id: selectedData?.id,
       name: selectedData?.name,
-      username: selectedData?.username,
       password: selectedData?.password,
       role: selectedData?.role,
+      username: selectedData?.username,
     },
     resolver: valibotResolver(Schema),
   });
 
   const handleUpdate = useMutation({
     mutationFn: PUTAdminAccount,
+    onError: () => setLoading(false),
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
@@ -44,7 +48,6 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
       setLoading(false);
       reset();
     },
-    onError: () => setLoading(false),
   });
 
   const onSubmit: SubmitHandler<TUseForm> = async (data) => {
@@ -53,15 +56,15 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
 
   return (
     <Form
-      label="Update Admin Account"
       buttonLabel="Update"
+      errors={errors}
       handleSubmit={handleSubmit}
+      label="Update Admin Account"
+      loading={loading}
       onSubmit={onSubmit}
       register={register}
-      errors={errors}
-      loading={loading}
-      setGlobalStates={setOpenUpdateData}
       reset={reset}
+      setGlobalStates={setOpenUpdateData}
     />
   );
 };

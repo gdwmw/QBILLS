@@ -5,24 +5,24 @@ if (!URL) {
 }
 
 export interface IProduct {
-  id: string;
-  code: string;
-  name: string;
-  description: string;
   category: string;
-  size: string;
-  price: number;
-  stock: string;
+  code: string;
+  description: string;
+  id: string;
   image: any;
+  name: string;
+  price: number;
+  size: string;
+  stock: string;
 }
 
 export const GETProduct = async (): Promise<IProduct[]> => {
   try {
     const res = await fetch(URL, {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
+      method: "GET",
     });
 
     if (!res.ok) {
@@ -39,20 +39,20 @@ export const GETProduct = async (): Promise<IProduct[]> => {
 export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
   try {
     const res = await fetch(URL, {
-      method: "POST",
+      body: JSON.stringify({
+        category: data.category,
+        code: data.code,
+        description: data.description,
+        image: data.image,
+        name: data.name,
+        price: data.price,
+        size: data.size,
+        stock: data.stock,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        code: data.code,
-        name: data.name,
-        description: data.description,
-        category: data.category,
-        size: data.size,
-        price: data.price,
-        stock: data.stock,
-        image: data.image,
-      }),
+      method: "POST",
     });
 
     if (!res.ok) {
@@ -68,21 +68,21 @@ export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
 
 export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(data.id)}`, {
-      method: "PUT",
+    const res = await fetch(`${URL}/${data.id}`, {
+      body: JSON.stringify({
+        category: data.category,
+        code: data.code,
+        description: data.description,
+        image: data.image,
+        name: data.name,
+        price: data.price,
+        size: data.size,
+        stock: data.stock,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        code: data.code,
-        name: data.name,
-        description: data.description,
-        category: data.category,
-        size: data.size,
-        price: data.price,
-        stock: data.stock,
-        image: data.image,
-      }),
+      method: "PUT",
     });
 
     if (!res.ok) {
@@ -98,11 +98,11 @@ export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
 
 export const DELETEProduct = async (id: string): Promise<IProduct> => {
   try {
-    const res = await fetch(`${URL}/${parseInt(id)}`, {
-      method: "DELETE",
+    const res = await fetch(`${URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
+      method: "DELETE",
     });
 
     if (!res.ok) {
@@ -120,11 +120,11 @@ export const DELETEMultipleProduct = async (ids: string[]): Promise<IProduct[]> 
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
-        const res = await fetch(`${URL}/${parseInt(id)}`, {
-          method: "DELETE",
+        const res = await fetch(`${URL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
+          method: "DELETE",
         });
 
         if (!res.ok) {

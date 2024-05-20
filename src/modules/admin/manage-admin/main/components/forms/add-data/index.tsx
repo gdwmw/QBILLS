@@ -1,9 +1,12 @@
-import { useGlobalStates } from "@/states";
-import { POSTAdminAccount } from "@/utils";
-import { valibotResolver } from "@hookform/resolvers/valibot";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FC, ReactElement, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import { valibotResolver } from "@hookform/resolvers/valibot";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useGlobalStates } from "@/states";
+import { POSTAdminAccount } from "@/utils";
+
 import { Form } from "../Form";
 import { Schema, TSchema } from "../Schema";
 
@@ -13,23 +16,24 @@ const AddData: FC = (): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
     reset,
   } = useForm<TSchema>({
     defaultValues: {
       id: "",
       name: "",
-      username: "",
       password: "",
       role: "admin",
+      username: "",
     },
     resolver: valibotResolver(Schema),
   });
 
   const handleAdd = useMutation({
     mutationFn: POSTAdminAccount,
+    onError: () => setLoading(false),
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
@@ -37,7 +41,6 @@ const AddData: FC = (): ReactElement => {
       setLoading(false);
       reset();
     },
-    onError: () => setLoading(false),
   });
 
   const onSubmit: SubmitHandler<TSchema> = async (data) => {
@@ -46,15 +49,15 @@ const AddData: FC = (): ReactElement => {
 
   return (
     <Form
-      label="Add Admin Account"
       buttonLabel="Add"
+      errors={errors}
       handleSubmit={handleSubmit}
+      label="Add Admin Account"
+      loading={loading}
       onSubmit={onSubmit}
       register={register}
-      errors={errors}
-      loading={loading}
-      setGlobalStates={setOpenAddData}
       reset={reset}
+      setGlobalStates={setOpenAddData}
     />
   );
 };

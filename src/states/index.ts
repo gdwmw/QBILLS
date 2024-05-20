@@ -10,7 +10,7 @@ type Actions = {
   setOpenUpdateData: (param: boolean) => void;
 };
 
-export const useGlobalStates = create<States & Actions>((set) => ({
+export const useGlobalStates = create<Actions & States>((set) => ({
   openAddData: false,
   openUpdateData: false,
   setOpenAddData: (openAddData: boolean) => set({ openAddData }),

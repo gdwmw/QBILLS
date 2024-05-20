@@ -1,33 +1,35 @@
+import { FC, ReactElement } from "react";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Image from "next/image";
+import { MdDelete, MdEdit } from "react-icons/md";
+
 import { IconButton } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { useGlobalStates } from "@/states";
 import { DELETEAdminAccount, IAdminAccount } from "@/utils";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Image from "next/image";
-import { FC, ReactElement } from "react";
-import { MdDelete, MdEdit } from "react-icons/md";
 
 type T = {
   data: IAdminAccount;
-  setSelectedData: (data: IAdminAccount) => void;
-  setCheckbox: (value: string[]) => void;
   loading: boolean;
+  setCheckbox: (value: string[]) => void;
   setLoading: (value: boolean) => void;
+  setSelectedData: (data: IAdminAccount) => void;
 };
 
-export const ActionButton: FC<T> = ({ data, setSelectedData, setCheckbox, loading, setLoading }): ReactElement => {
+export const ActionButton: FC<T> = ({ data, loading, setCheckbox, setLoading, setSelectedData }): ReactElement => {
   const queryClient = useQueryClient();
   const { setOpenUpdateData } = useGlobalStates();
 
   const mutationDelete = useMutation({
     mutationFn: DELETEAdminAccount,
+    onError: () => setLoading(false),
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
       setCheckbox([]);
       setLoading(false);
     },
-    onError: () => setLoading(false),
   });
 
   const handleDelete = (id: string) => {
@@ -37,24 +39,24 @@ export const ActionButton: FC<T> = ({ data, setSelectedData, setCheckbox, loadin
   return (
     <>
       <IconButton
-        type="button"
-        solid={"green"}
         onClick={() => {
           setSelectedData({ ...data });
           setOpenUpdateData(true);
         }}
+        solid={"green"}
+        type="button"
       >
         <MdEdit />
       </IconButton>
 
       <IconButton
-        type="button"
-        solid={data.role === "superadmin" || loading ? "disabled" : "red"}
-        onClick={() => handleDelete(data.id)}
-        disabled={data.role === "superadmin" || loading}
         className={loading ? "cursor-wait" : ""}
+        disabled={data.role === "superadmin" || loading}
+        onClick={() => handleDelete(data.id)}
+        solid={data.role === "superadmin" || loading ? "disabled" : "red"}
+        type="button"
       >
-        {loading ? <Image src={loadingAnimation} alt="Loading..." width={16} quality={30} /> : <MdDelete />}
+        {loading ? <Image alt="Loading..." quality={30} src={loadingAnimation} width={16} /> : <MdDelete />}
       </IconButton>
     </>
   );

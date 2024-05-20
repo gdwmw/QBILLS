@@ -1,4 +1,4 @@
-import { withAuth, NextRequestWithAuth } from "next-auth/middleware";
+import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
 export default withAuth(

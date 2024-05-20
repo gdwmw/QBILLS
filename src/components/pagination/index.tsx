@@ -1,17 +1,18 @@
 import { FC, ReactElement } from "react";
+
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 type T = {
-  startData: number;
-  endData: number | undefined;
-  totalData: number | undefined;
   currentPage: number;
-  totalPage: number | undefined;
-  onClickPrevPage: () => void;
+  endData: number | undefined;
   onClickNextPage: () => void;
+  onClickPrevPage: () => void;
+  startData: number;
+  totalData: number | undefined;
+  totalPage: number | undefined;
 };
 
-export const Pagination: FC<T> = ({ startData, endData, totalData, currentPage, totalPage, onClickPrevPage, onClickNextPage }): ReactElement => {
+export const Pagination: FC<T> = ({ currentPage, endData, onClickNextPage, onClickPrevPage, startData, totalData, totalPage }): ReactElement => {
   return (
     <section className="mt-5 w-full border-t py-3">
       <div className="flex items-center justify-between">
@@ -22,7 +23,7 @@ export const Pagination: FC<T> = ({ startData, endData, totalData, currentPage, 
         <section>
           <ul className="flex items-center gap-3">
             <li>
-              <button type="button" onClick={onClickPrevPage}>
+              <button onClick={onClickPrevPage} type="button">
                 <IoIosArrowBack className="cursor-pointer text-N3 hover:text-N7 active:scale-95" />
               </button>
             </li>
@@ -38,7 +39,7 @@ export const Pagination: FC<T> = ({ startData, endData, totalData, currentPage, 
             </li>
 
             <li>
-              <button type="button" onClick={onClickNextPage}>
+              <button onClick={onClickNextPage} type="button">
                 <IoIosArrowForward className="cursor-pointer text-N3 hover:text-N7 active:scale-95" />
               </button>
             </li>

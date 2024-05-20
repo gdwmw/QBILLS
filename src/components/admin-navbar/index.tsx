@@ -1,9 +1,11 @@
 "use client";
 
-import { IconButton } from "@/components";
-import { usePathname } from "next/navigation";
 import { FC, ReactElement, useEffect, useState } from "react";
+
+import { usePathname } from "next/navigation";
 import { IoIosNotifications } from "react-icons/io";
+
+import { IconButton } from "@/components";
 
 type TTitleData = {
   [key: string]: string;
@@ -13,10 +15,10 @@ const titleData: TTitleData = {
   "/dashboard": "Dashboard",
   "/manageadmin": "Manage Admin",
   "/managecashier": "Manage Cashier",
-  "/manageproduct": "Manage Product",
   "/managemembership": "Manage Membership",
-  "/transaction": "Transaction",
+  "/manageproduct": "Manage Product",
   "/report": "Report",
+  "/transaction": "Transaction",
 };
 
 interface I {
@@ -50,7 +52,7 @@ export const AdminNavbar: FC<T> = ({ user }): ReactElement => {
               {user?.role === "admin" ? "Admin" : user?.role === "superadmin" ? "Super Admin" : "Loading..."}
             </span>
           </div>
-          <IconButton solid={"default"} size={"sm"} className="ml-auto">
+          <IconButton className="ml-auto" size={"sm"} solid={"default"}>
             <IoIosNotifications size={20} />
           </IconButton>
         </section>

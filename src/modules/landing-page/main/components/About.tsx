@@ -1,4 +1,5 @@
 import { FC, ReactElement } from "react";
+
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
 import { MdAddToPhotos } from "react-icons/md";
@@ -6,7 +7,7 @@ import { MdAddToPhotos } from "react-icons/md";
 export const About: FC = (): ReactElement => {
   return (
     <>
-      <section id="About" className="bg-P1 py-36">
+      <section className="bg-P1 py-36" id="About">
         <div className="container mx-auto px-10">
           <div className="grid grid-rows-1 gap-20 lg:grid-cols-2 lg:grid-rows-none">
             <section className="flex flex-col justify-center gap-5">

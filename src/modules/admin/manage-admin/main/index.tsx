@@ -1,21 +1,24 @@
 "use client";
 
+import { FC, ReactElement, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { useQuery } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
+import { FaSearch } from "react-icons/fa";
+
 import { Input, Pagination, PaginationLogic } from "@/components";
 import { useGlobalStates } from "@/states";
 import { GETAdminAccount, IAdminAccount } from "@/utils";
-import { useQuery } from "@tanstack/react-query";
-import dynamic from "next/dynamic";
-import { FC, ReactElement, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { FaSearch } from "react-icons/fa";
+
 import { Table, Toolbar } from "./components";
 const AddData = dynamic(() => import("./components/forms/add-data"));
 const UpdateData = dynamic(() => import("./components/forms/update-data"));
 
 export const Main: FC = (): ReactElement => {
   const { data } = useQuery({
-    queryKey: ["GETAdminAccount"],
     queryFn: GETAdminAccount,
+    queryKey: ["GETAdminAccount"],
   });
 
   const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useGlobalStates();
@@ -40,7 +43,7 @@ export const Main: FC = (): ReactElement => {
     return dt.name.toLowerCase().includes(watch("search").toLowerCase()) || dt.username.toLowerCase().includes(watch("search").toLowerCase());
   });
 
-  const { currentData, totalPage, startData, endData, totalData, currentPage, prevPage, nextPage } = PaginationLogic({
+  const { currentData, currentPage, endData, nextPage, prevPage, startData, totalData, totalPage } = PaginationLogic({
     data: searchResult,
     dataPerPage: 30,
   });
@@ -57,30 +60,30 @@ export const Main: FC = (): ReactElement => {
       <main className="px-5">
         <Toolbar
           checkbox={checkbox}
-          setCheckbox={setCheckbox}
           loading={loading}
+          searchElement={<Input label="Search Account" type="text" {...register("search")} icon={<FaSearch />} />}
+          setCheckbox={setCheckbox}
           setLoading={setLoading}
-          searchElement={<Input type="text" label="Search Account" {...register("search")} icon={<FaSearch />} />}
         />
 
         <Table
-          data={currentData ?? []}
           checkbox={checkbox}
+          data={currentData ?? []}
           handleCheckbox={handleCheckbox}
-          setSelectedData={setSelectedData}
-          setCheckbox={setCheckbox}
           loading={loading}
+          setCheckbox={setCheckbox}
           setLoading={setLoading}
+          setSelectedData={setSelectedData}
         />
 
         <Pagination
-          startData={startData}
-          endData={endData}
-          totalData={totalData}
           currentPage={currentPage}
-          totalPage={totalPage}
-          onClickPrevPage={prevPage}
+          endData={endData}
           onClickNextPage={nextPage}
+          onClickPrevPage={prevPage}
+          startData={startData}
+          totalData={totalData}
+          totalPage={totalPage}
         />
       </main>
       {openAddData && <AddData />}

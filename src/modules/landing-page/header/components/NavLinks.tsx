@@ -1,7 +1,9 @@
+import { FC, FormEvent, ReactElement } from "react";
+
+import Link from "next/link";
+
 import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";
-import Link from "next/link";
-import { FC, FormEvent, ReactElement } from "react";
 
 const LINKS = [
   { href: "#Home", label: "Home" },
@@ -18,7 +20,7 @@ type TLinks = {
 
 const Links: FC<TLinks> = ({ href, label, onLinkClick }) => {
   return (
-    <Link href={href} onClick={(e) => onLinkClick(e, href)} className={cn(ButtonCVA({ ghost: "white", size: "ghost", className: "font-semibold" }))}>
+    <Link className={cn(ButtonCVA({ className: "font-semibold", ghost: "white", size: "ghost" }))} href={href} onClick={(e) => onLinkClick(e, href)}>
       {label}
     </Link>
   );

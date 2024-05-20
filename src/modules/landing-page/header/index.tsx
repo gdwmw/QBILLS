@@ -1,9 +1,12 @@
 "use client";
 
+import { FC, FormEvent, ReactElement } from "react";
+
+import Link from "next/link";
+
 import { ButtonCVA, Logo } from "@/components";
 import { cn } from "@/libs";
-import Link from "next/link";
-import { FC, FormEvent, ReactElement } from "react";
+
 import { LoginStatusButton, MobileNavbar, NavLinks } from "./components";
 
 type T = {
@@ -28,8 +31,8 @@ export const Header: FC<T> = ({ authenticated }): ReactElement => {
             <div className="flex gap-3">
               <div className="w-36">
                 <Link
+                  className={cn(ButtonCVA({ className: "w-full font-semibold text-P4", solid: "white" }))}
                   href={"#Get-App"}
-                  className={cn(ButtonCVA({ solid: "white", className: "w-full font-semibold text-P4" }))}
                   onClick={(event) => {
                     handleScroll(event, "#Get-App");
                   }}

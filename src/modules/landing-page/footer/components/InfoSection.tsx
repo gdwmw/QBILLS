@@ -1,8 +1,10 @@
+import { FC, ReactElement } from "react";
+
+import Link from "next/link";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+
 import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";
-import Link from "next/link";
-import { FC, ReactElement } from "react";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const INFO_LINK_DATA = {
   Archiact: [
@@ -20,30 +22,30 @@ const INFO_LINK_DATA = {
     { href: "/", label: "Analyze Sales Report" },
   ],
   "Social Media": [
-    { href: "/", label: "Facebook", icon: <FaFacebookF /> },
-    { href: "/", label: "Instagram", icon: <FaInstagram /> },
-    { href: "/", label: "YouTube", icon: <FaYoutube /> },
+    { href: "/", icon: <FaFacebookF />, label: "Facebook" },
+    { href: "/", icon: <FaInstagram />, label: "Instagram" },
+    { href: "/", icon: <FaYoutube />, label: "YouTube" },
   ],
 };
 
 type TSection = {
-  title: string;
   links: {
     href: string;
-    label: string;
     icon?: ReactElement;
+    label: string;
   }[];
+  title: string;
 };
 
-const Section: FC<TSection> = ({ title, links }) => (
+const Section: FC<TSection> = ({ links, title }) => (
   <section className="space-y-2">
     <div className="bg-P1">
       <div className="h-px w-full rounded-full bg-N1 md:min-w-44" />
     </div>
     <h1 className="text-2xl font-semibold text-N1">{title}</h1>
     <div className="space-y-3 text-xs">
-      {links.map(({ href, label, icon }, index) => (
-        <Link key={index} href={href} className={cn(ButtonCVA({ ghost: "white", size: "ghost", className: "whitespace-nowrap" }))}>
+      {links.map(({ href, icon, label }, index) => (
+        <Link className={cn(ButtonCVA({ className: "whitespace-nowrap", ghost: "white", size: "ghost" }))} href={href} key={index}>
           {icon}
           {label}
         </Link>
@@ -56,7 +58,7 @@ export const InfoSection: FC = (): ReactElement => {
   return (
     <div className="flex flex-col gap-20 md:flex-row">
       {Object.entries(INFO_LINK_DATA).map(([title, links], index) => (
-        <Section key={index} title={title} links={links} />
+        <Section key={index} links={links} title={title} />
       ))}
     </div>
   );
