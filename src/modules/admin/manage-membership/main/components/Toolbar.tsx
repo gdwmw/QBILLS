@@ -1,9 +1,10 @@
-import { FC, ReactElement, ReactNode } from "react";
+import { FC, ReactElement } from "react";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import { FaSearch } from "react-icons/fa";
 
-import { Button } from "@/components";
+import { Button, Input } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { useGlobalStates } from "@/states";
 import { DELETEMultipleMembership } from "@/utils";
@@ -11,12 +12,12 @@ import { DELETEMultipleMembership } from "@/utils";
 type T = {
   checkbox: string[];
   loading: boolean;
-  searchElement: ReactNode;
+  register: any;
   setCheckbox: (value: string[]) => void;
   setLoading: (value: boolean) => void;
 };
 
-export const Toolbar: FC<T> = ({ checkbox, loading, searchElement, setCheckbox, setLoading }): ReactElement => {
+export const Toolbar: FC<T> = ({ checkbox, loading, register, setCheckbox, setLoading }): ReactElement => {
   const queryClient = useQueryClient();
   const { setOpenAddDataForm } = useGlobalStates();
 
@@ -39,7 +40,9 @@ export const Toolbar: FC<T> = ({ checkbox, loading, searchElement, setCheckbox, 
     <section>
       <div className="flex items-center gap-3 py-5">
         <h2 className="hidden whitespace-nowrap text-xl font-semibold md:block">Membership List</h2>
-        <div className="-mt-1.5 ml-auto w-full md:max-w-[350px]">{searchElement}</div>
+        <div className="-mt-1.5 ml-auto w-full md:max-w-[350px]">
+          <Input label="Search Member" type="text" {...register("search")} icon={<FaSearch />} />
+        </div>
 
         <Button
           className={`min-w-[120px] whitespace-nowrap font-semibold ${loading ? "cursor-wait" : ""}`}
