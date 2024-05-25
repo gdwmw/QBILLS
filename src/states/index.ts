@@ -1,18 +1,18 @@
 import { create } from "zustand";
 
 type States = {
-  openAddData?: boolean;
-  openUpdateData?: boolean;
+  openAddDataForm?: boolean;
+  openUpdateDataForm?: boolean;
 };
 
 type Actions = {
-  setOpenAddData: (param: boolean) => void;
-  setOpenUpdateData: (param: boolean) => void;
+  setOpenAddDataForm: (param: boolean) => void;
+  setOpenUpdateDataForm: (param: boolean) => void;
 };
 
 export const useGlobalStates = create<Actions & States>((set) => ({
-  openAddData: false,
-  openUpdateData: false,
-  setOpenAddData: (openAddData: boolean) => set({ openAddData }),
-  setOpenUpdateData: (openUpdateData: boolean) => set({ openUpdateData }),
+  openAddDataForm: false,
+  openUpdateDataForm: false,
+  setOpenAddDataForm: (openAddDataForm: boolean) => set({ openAddDataForm }),
+  setOpenUpdateDataForm: (openUpdateDataForm: boolean) => set({ openUpdateDataForm }),
 }));
