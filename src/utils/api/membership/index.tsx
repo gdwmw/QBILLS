@@ -7,7 +7,7 @@ if (!URL) {
 export interface IMembership {
   id: string;
   name: string;
-  "phone-number": number;
+  "phone-number": string;
   point: number;
 }
 
