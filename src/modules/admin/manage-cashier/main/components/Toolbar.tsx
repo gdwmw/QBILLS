@@ -18,7 +18,7 @@ type T = {
 
 export const Toolbar: FC<T> = ({ checkbox, loading, searchElement, setCheckbox, setLoading }): ReactElement => {
   const queryClient = useQueryClient();
-  const { setOpenAddData } = useGlobalStates();
+  const { setOpenAddDataForm } = useGlobalStates();
 
   const mutationMultipleDelete = useMutation({
     mutationFn: DELETEMultipleCashierAccount,
@@ -52,7 +52,12 @@ export const Toolbar: FC<T> = ({ checkbox, loading, searchElement, setCheckbox, 
           Delete ({checkbox.length})
         </Button>
 
-        <Button className="w-full max-w-[150px] whitespace-nowrap font-semibold" onClick={() => setOpenAddData(true)} solid={"default"} type="button">
+        <Button
+          className="w-full max-w-[150px] whitespace-nowrap font-semibold"
+          onClick={() => setOpenAddDataForm(true)}
+          solid={"default"}
+          type="button"
+        >
           Add Account
         </Button>
       </div>
