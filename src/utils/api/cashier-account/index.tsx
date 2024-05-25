@@ -35,7 +35,7 @@ export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
 export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
   try {
     const res = await fetch(URL, {
-      body: JSON.stringify({ name: data.name, password: data.password, role: data.role, username: data.username }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
@@ -56,7 +56,7 @@ export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashie
 export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
   try {
     const res = await fetch(`${URL}/${data.id}`, {
-      body: JSON.stringify({ name: data.name, password: data.password, role: data.role, username: data.username }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },

@@ -35,7 +35,7 @@ export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
 export const POSTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
   try {
     const res = await fetch(URL, {
-      body: JSON.stringify({ name: data.name, password: data.password, role: data.role, username: data.username }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
@@ -56,7 +56,7 @@ export const POSTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccou
 export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
   try {
     const res = await fetch(`${URL}/${data.id}`, {
-      body: JSON.stringify({ name: data.name, password: data.password, role: data.role, username: data.username }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },

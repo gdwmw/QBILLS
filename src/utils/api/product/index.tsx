@@ -39,16 +39,7 @@ export const GETProduct = async (): Promise<IProduct[]> => {
 export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
   try {
     const res = await fetch(URL, {
-      body: JSON.stringify({
-        category: data.category,
-        code: data.code,
-        description: data.description,
-        image: data.image,
-        name: data.name,
-        price: data.price,
-        size: data.size,
-        stock: data.stock,
-      }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
@@ -69,16 +60,7 @@ export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
 export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
   try {
     const res = await fetch(`${URL}/${data.id}`, {
-      body: JSON.stringify({
-        category: data.category,
-        code: data.code,
-        description: data.description,
-        image: data.image,
-        name: data.name,
-        price: data.price,
-        size: data.size,
-        stock: data.stock,
-      }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },

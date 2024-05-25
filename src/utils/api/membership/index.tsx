@@ -34,7 +34,7 @@ export const GETMembership = async (): Promise<IMembership[]> => {
 export const POSTMembership = async (data: IMembership): Promise<IMembership> => {
   try {
     const res = await fetch(URL, {
-      body: JSON.stringify({ name: data.name, "phone-number": data["phone-number"], point: data.point }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
@@ -55,7 +55,7 @@ export const POSTMembership = async (data: IMembership): Promise<IMembership> =>
 export const PUTMembership = async (data: IMembership): Promise<IMembership> => {
   try {
     const res = await fetch(`${URL}/${data.id}`, {
-      body: JSON.stringify({ name: data.name, "phone-number": data["phone-number"], point: data.point }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },

@@ -39,16 +39,7 @@ export const GETTransaction = async (): Promise<ITransaction[]> => {
 export const POSTTransaction = async (data: ITransaction): Promise<ITransaction> => {
   try {
     const res = await fetch(URL, {
-      body: JSON.stringify({
-        amount: data.amount,
-        cashier: data.cashier,
-        code: data.code,
-        customer: data.customer,
-        date: data.date,
-        payment: data.payment,
-        status: data.status,
-        time: data.time,
-      }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
@@ -69,16 +60,7 @@ export const POSTTransaction = async (data: ITransaction): Promise<ITransaction>
 export const PUTTransaction = async (data: ITransaction): Promise<ITransaction> => {
   try {
     const res = await fetch(`${URL}/${data.id}`, {
-      body: JSON.stringify({
-        amount: data.amount,
-        cashier: data.cashier,
-        code: data.code,
-        customer: data.customer,
-        date: data.date,
-        payment: data.payment,
-        status: data.status,
-        time: data.time,
-      }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
