@@ -58,13 +58,7 @@ export const Main: FC = (): ReactElement => {
   return (
     <>
       <main className="px-5">
-        <Toolbar
-          checkbox={checkbox}
-          loading={loading}
-          searchElement={<Input label="Search Account" type="text" {...register("search")} icon={<FaSearch />} />}
-          setCheckbox={setCheckbox}
-          setLoading={setLoading}
-        />
+        <Toolbar checkbox={checkbox} loading={loading} register={register} setCheckbox={setCheckbox} setLoading={setLoading} />
 
         <Table
           checkbox={checkbox}
