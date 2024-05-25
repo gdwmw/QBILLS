@@ -14,10 +14,10 @@ import { Schema } from "./Schema";
 type TUseForm = Output<typeof Schema>;
 
 type T = {
-  selectedData: IAdminAccount | undefined;
+  data: IAdminAccount | undefined;
 };
 
-const UpdateDataForm: FC<T> = ({ selectedData }): ReactElement => {
+const UpdateDataForm: FC<T> = ({ data }): ReactElement => {
   const queryClient = useQueryClient();
   const { setOpenUpdateDataForm } = useGlobalStates();
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,13 +28,7 @@ const UpdateDataForm: FC<T> = ({ selectedData }): ReactElement => {
     register,
     reset,
   } = useForm<TUseForm>({
-    defaultValues: {
-      id: selectedData?.id,
-      name: selectedData?.name,
-      password: selectedData?.password,
-      role: selectedData?.role,
-      username: selectedData?.username,
-    },
+    defaultValues: { ...data },
     resolver: valibotResolver(Schema),
   });
 

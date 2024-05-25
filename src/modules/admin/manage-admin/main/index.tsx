@@ -87,7 +87,7 @@ export const Main: FC = (): ReactElement => {
         />
       </main>
       {openAddDataForm && <AddDataForm />}
-      {openUpdateDataForm && <UpdateDataForm selectedData={selectedData} />}
+      {openUpdateDataForm && <UpdateDataForm data={selectedData} />}
     </>
   );
 };
