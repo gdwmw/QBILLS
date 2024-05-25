@@ -8,8 +8,8 @@ import { Output } from "valibot";
 import { useGlobalStates } from "@/states";
 import { IAdminAccount, PUTAdminAccount } from "@/utils";
 
-import { Form } from "../Form";
-import { Schema } from "../Schema";
+import { Form } from "./Form";
+import { Schema } from "./Schema";
 
 type TUseForm = Output<typeof Schema>;
 
@@ -17,9 +17,9 @@ type T = {
   selectedData: IAdminAccount | undefined;
 };
 
-const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
+const UpdateDataForm: FC<T> = ({ selectedData }): ReactElement => {
   const queryClient = useQueryClient();
-  const { setOpenUpdateData } = useGlobalStates();
+  const { setOpenUpdateDataForm } = useGlobalStates();
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
@@ -44,7 +44,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
-      setOpenUpdateData(false);
+      setOpenUpdateDataForm(false);
       setLoading(false);
       reset();
     },
@@ -64,9 +64,9 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
       onSubmit={onSubmit}
       register={register}
       reset={reset}
-      setGlobalStates={setOpenUpdateData}
+      setGlobalStates={setOpenUpdateDataForm}
     />
   );
 };
 
-export default UpdateData;
+export default UpdateDataForm;

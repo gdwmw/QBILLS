@@ -19,7 +19,7 @@ type T = {
 
 export const ActionButton: FC<T> = ({ data, loading, setCheckbox, setLoading, setSelectedData }): ReactElement => {
   const queryClient = useQueryClient();
-  const { setOpenUpdateData } = useGlobalStates();
+  const { setOpenUpdateDataForm } = useGlobalStates();
 
   const mutationDelete = useMutation({
     mutationFn: DELETEAdminAccount,
@@ -41,7 +41,7 @@ export const ActionButton: FC<T> = ({ data, loading, setCheckbox, setLoading, se
       <IconButton
         onClick={() => {
           setSelectedData({ ...data });
-          setOpenUpdateData(true);
+          setOpenUpdateDataForm(true);
         }}
         solid={"green"}
         type="button"

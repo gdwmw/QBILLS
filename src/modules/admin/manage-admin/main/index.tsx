@@ -12,8 +12,8 @@ import { useGlobalStates } from "@/states";
 import { GETAdminAccount, IAdminAccount } from "@/utils";
 
 import { Table, Toolbar } from "./components";
-const AddData = dynamic(() => import("./components/forms/add-data"));
-const UpdateData = dynamic(() => import("./components/forms/update-data"));
+const AddDataForm = dynamic(() => import("./components/forms/AddDataForm"));
+const UpdateDataForm = dynamic(() => import("./components/forms/UpdateDataForm"));
 
 export const Main: FC = (): ReactElement => {
   const { data } = useQuery({
@@ -21,7 +21,7 @@ export const Main: FC = (): ReactElement => {
     queryKey: ["GETAdminAccount"],
   });
 
-  const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useGlobalStates();
+  const { openAddDataForm, openUpdateDataForm, setOpenAddDataForm, setOpenUpdateDataForm } = useGlobalStates();
   const [checkbox, setCheckbox] = useState<string[]>([]);
   const [selectedData, setSelectedData] = useState<IAdminAccount | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -50,8 +50,8 @@ export const Main: FC = (): ReactElement => {
 
   useEffect(() => {
     return () => {
-      setOpenAddData(false);
-      setOpenUpdateData(false);
+      setOpenAddDataForm(false);
+      setOpenUpdateDataForm(false);
     };
   }, []);
 
@@ -86,8 +86,8 @@ export const Main: FC = (): ReactElement => {
           totalPage={totalPage}
         />
       </main>
-      {openAddData && <AddData />}
-      {openUpdateData && <UpdateData selectedData={selectedData} />}
+      {openAddDataForm && <AddDataForm />}
+      {openUpdateDataForm && <UpdateDataForm selectedData={selectedData} />}
     </>
   );
 };

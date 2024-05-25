@@ -7,12 +7,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useGlobalStates } from "@/states";
 import { POSTAdminAccount } from "@/utils";
 
-import { Form } from "../Form";
-import { Schema, TSchema } from "../Schema";
+import { Form } from "./Form";
+import { Schema, TSchema } from "./Schema";
 
-const AddData: FC = (): ReactElement => {
+const AddDataForm: FC = (): ReactElement => {
   const queryClient = useQueryClient();
-  const { setOpenAddData } = useGlobalStates();
+  const { setOpenAddDataForm } = useGlobalStates();
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
@@ -37,7 +37,7 @@ const AddData: FC = (): ReactElement => {
     onMutate: () => setLoading(true),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["GETAdminAccount"] });
-      setOpenAddData(false);
+      setOpenAddDataForm(false);
       setLoading(false);
       reset();
     },
@@ -57,9 +57,9 @@ const AddData: FC = (): ReactElement => {
       onSubmit={onSubmit}
       register={register}
       reset={reset}
-      setGlobalStates={setOpenAddData}
+      setGlobalStates={setOpenAddDataForm}
     />
   );
 };
 
-export default AddData;
+export default AddDataForm;
