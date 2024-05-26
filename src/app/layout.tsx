@@ -30,8 +30,6 @@ type T = {
 };
 
 const RootLayout: FC<T> = ({ children }): ReactElement => {
-  console.log("© 2023 QBILLS. All rights reserved.");
-  console.log("Created by Gede Dewo Wahyu M.W with 🖤");
   return (
     <ReactQueryProvider>
       <html className="scroll-smooth" lang="en">

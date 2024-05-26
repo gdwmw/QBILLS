@@ -1,5 +1,7 @@
 import { FC, ReactElement } from "react";
 
+import { Copyright } from "@/components";
+
 import { About, FAQ, Features, GetApp, HeroSection } from "./components";
 
 export const Main: FC = (): ReactElement => {
@@ -10,6 +12,7 @@ export const Main: FC = (): ReactElement => {
       <Features />
       <FAQ />
       <GetApp />
+      <Copyright />
     </main>
   );
 };
