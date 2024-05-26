@@ -40,8 +40,10 @@ export const TextArea: FC<I> = forwardRef<HTMLTextAreaElement, I>(({ className, 
     <section className="space-y-1">
       <fieldset className={cn(TextAreaFieldsetCVA({ variant }))}>
         <legend className={cn(TextAreaLegendCVA({ variant }))}>{label}</legend>
+
         <textarea className={`w-full rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed ${className}`} ref={ref} {...props} />
       </fieldset>
+
       {errorMessage && <span className="ml-1 text-xs text-E4">{errorMessage}</span>}
     </section>
   );

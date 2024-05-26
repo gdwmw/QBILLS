@@ -48,10 +48,12 @@ export const AdminNavbar: FC<T> = ({ user }): ReactElement => {
           <div className="hidden h-10 w-10 rounded-full bg-P4 sm:block" />
           <div className="hidden w-full max-w-[185px] flex-col sm:flex">
             <span className="truncate font-semibold">{user?.name ?? "Loading..."}</span>
+
             <span className="whitespace-nowrap text-xs font-semibold">
               {user?.role === "admin" ? "Admin" : user?.role === "superadmin" ? "Super Admin" : "Loading..."}
             </span>
           </div>
+
           <IconButton className="ml-auto" size={"sm"} solid={"default"}>
             <IoIosNotifications size={20} />
           </IconButton>

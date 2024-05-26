@@ -41,10 +41,12 @@ export const Select: FC<I> = forwardRef<HTMLSelectElement, I>(({ children, error
     <section className="space-y-1">
       <fieldset className={cn(SelectFieldsetCVA({ variant }))}>
         <legend className={cn(SelectLegendCVA({ variant }))}>{label}</legend>
+
         <select className="w-full cursor-pointer rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed" ref={ref} {...props}>
           {children}
         </select>
       </fieldset>
+
       {errorMessage && <span className="ml-1 text-xs text-E4">{errorMessage}</span>}
     </section>
   );

@@ -3,7 +3,6 @@
 import { FC, ReactElement, useState } from "react";
 
 import { signOut } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaAddressCard, FaChevronLeft, FaChevronRight, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
@@ -12,9 +11,8 @@ import { IoDocumentText } from "react-icons/io5";
 import { MdAdminPanelSettings, MdDashboard } from "react-icons/md";
 
 import { IconButton } from "@/components";
-import logoQBILLS1 from "@/public/assets/images/logos/brown/logo-2.webp";
-import logoQBILLS2 from "@/public/assets/images/logos/brown/logo-4.webp";
-import logoQBILLS3 from "@/public/assets/images/logos/brown/logo-5.webp";
+
+import { Logo } from "../logo";
 
 type T = {
   role: string | undefined;
@@ -29,13 +27,7 @@ export const Sidebar: FC<T> = ({ role }): ReactElement => {
       <aside
         className={`fixed left-0 top-0 z-20 h-dvh w-[300px] flex-col items-center gap-10 border-r bg-N1.1 px-5 py-10 ${open ? "flex" : "hidden lg:flex"}`}
       >
-        <section className="flex h-fit w-fit items-center justify-center gap-2">
-          <Image alt="QBILLS" priority quality={30} src={logoQBILLS1} width={40} />
-          <div>
-            <Image alt="QBILLS" className="mx-auto mb-1" priority quality={30} src={logoQBILLS2} width={110} />
-            <Image alt="QBILLS" priority quality={30} src={logoQBILLS3} width={130} />
-          </div>
-        </section>
+        <Logo varian="brown" />
 
         <section className="w-full space-y-3">
           <Link className={pathname === "/dashboard" ? "sidebar-active" : "sidebar-button"} href={"/dashboard"}>

@@ -55,8 +55,10 @@ export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ errorMessage, ico
     <section className="space-y-1">
       <fieldset className={cn(InputFieldsetCVA({ variant }))}>
         <legend className={cn(InputLegendCVA({ variant }))}>{label}</legend>
+
         <div className="flex items-center justify-center">
           <input className="w-full rounded-sm bg-transparent px-1 outline-none disabled:cursor-not-allowed" ref={ref} {...props} />
+
           {icon && (
             <button className={cn(InputIconCVA({ variant }))} disabled={variant === "disabled"} onClick={iconOnClick} type="button">
               {icon}
@@ -64,6 +66,7 @@ export const Input: FC<I> = forwardRef<HTMLInputElement, I>(({ errorMessage, ico
           )}
         </div>
       </fieldset>
+
       {errorMessage && <span className="ml-1 text-xs text-E4">{errorMessage}</span>}
     </section>
   );
