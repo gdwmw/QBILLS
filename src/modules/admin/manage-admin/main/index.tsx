@@ -5,9 +5,8 @@ import { useForm } from "react-hook-form";
 
 import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-import { FaSearch } from "react-icons/fa";
 
-import { Input, Pagination, PaginationLogic } from "@/components";
+import { Pagination, PaginationLogic } from "@/components";
 import { useGlobalStates } from "@/states";
 import { GETAdminAccount, IAdminAccount } from "@/utils";
 
