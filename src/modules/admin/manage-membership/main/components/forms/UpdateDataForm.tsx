@@ -3,15 +3,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Output } from "valibot";
 
 import { useGlobalStates } from "@/states";
 import { IMembership, PUTMembership } from "@/utils";
 
 import { Form } from "./Form";
-import { Schema } from "./Schema";
-
-type TUseForm = Output<typeof Schema>;
+import { Schema, TSchema } from "./Schema";
 
 type T = {
   data: IMembership | undefined;
@@ -27,7 +24,7 @@ const UpdateDataForm: FC<T> = ({ data }): ReactElement => {
     handleSubmit,
     register,
     reset,
-  } = useForm<TUseForm>({
+  } = useForm<TSchema>({
     defaultValues: { ...data },
     resolver: valibotResolver(Schema),
   });
@@ -44,7 +41,7 @@ const UpdateDataForm: FC<T> = ({ data }): ReactElement => {
     },
   });
 
-  const onSubmit: SubmitHandler<TUseForm> = async (data) => {
+  const onSubmit: SubmitHandler<TSchema> = async (data) => {
     handleUpdate.mutate(data);
   };
 
