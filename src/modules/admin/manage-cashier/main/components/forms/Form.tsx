@@ -10,19 +10,19 @@ type T = {
   buttonLabel: string;
   errors: any;
   handleSubmit: (e: any) => FormEventHandler<HTMLFormElement>;
-  label: string;
   loading: boolean;
   onSubmit: (e: any) => void;
   register: any;
   reset: () => void;
   setGlobalStates: (e: boolean) => void;
+  title: string;
 };
 
-export const Form: FC<T> = ({ buttonLabel, errors, handleSubmit, label, loading, onSubmit, register, reset, setGlobalStates }): ReactElement => {
+export const Form: FC<T> = ({ buttonLabel, errors, handleSubmit, loading, onSubmit, register, reset, setGlobalStates, title }): ReactElement => {
   const [visibility, setVisibility] = useState<boolean>(false);
 
   return (
-    <Modal label={label} maxWidth={500} onSubmit={handleSubmit(onSubmit)}>
+    <Modal maxWidth={500} onSubmit={handleSubmit(onSubmit)} title={title}>
       <div className="w-full space-y-3">
         <Input label="Name" type="text" {...register("name")} errorMessage={errors.name?.message} variant={errors.name ? "error" : "default"} />
 

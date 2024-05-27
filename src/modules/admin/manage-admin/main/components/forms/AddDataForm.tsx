@@ -52,12 +52,12 @@ const AddDataForm: FC = (): ReactElement => {
       buttonLabel="Add"
       errors={errors}
       handleSubmit={handleSubmit}
-      label="Add Admin Account"
       loading={loading}
       onSubmit={onSubmit}
       register={register}
       reset={reset}
       setGlobalStates={setOpenAddDataForm}
+      title="Add Admin Account"
     />
   );
 };

@@ -10,12 +10,12 @@ type T = {
   errors: any;
   handleSubmit: (e: any) => FormEventHandler<HTMLFormElement>;
   imageURL: string;
-  label: string;
   loading: boolean;
   onSubmit: (e: any) => void;
   register: any;
   reset: () => void;
   setGlobalStates: (e: boolean) => void;
+  title: string;
   watch: any;
 };
 
@@ -24,16 +24,16 @@ export const Form: FC<T> = ({
   errors,
   handleSubmit,
   imageURL,
-  label,
   loading,
   onSubmit,
   register,
   reset,
   setGlobalStates,
+  title,
   watch,
 }): ReactElement => {
   return (
-    <Modal label={label} maxWidth={800} onSubmit={handleSubmit(onSubmit)}>
+    <Modal maxWidth={800} onSubmit={handleSubmit(onSubmit)} title={title}>
       <div className="grid w-full grid-cols-2 gap-5">
         <div className="space-y-3">
           <Input label="Code" type="text" {...register("code")} errorMessage={errors.code?.message} variant={errors.code ? "error" : "default"} />

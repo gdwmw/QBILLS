@@ -94,12 +94,12 @@ const AddDataForm: FC = (): ReactElement => {
       errors={errors}
       handleSubmit={handleSubmit}
       imageURL={imageURL}
-      label="Add Product"
       loading={loading}
       onSubmit={onSubmit}
       register={register}
       reset={reset}
       setGlobalStates={setOpenAddDataForm}
+      title="Add Product"
       watch={watch}
     />
   );

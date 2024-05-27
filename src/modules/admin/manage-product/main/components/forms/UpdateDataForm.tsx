@@ -90,12 +90,12 @@ const UpdateDataForm: FC<T> = ({ data }): ReactElement => {
       errors={errors}
       handleSubmit={handleSubmit}
       imageURL={imageURL}
-      label="Update Product"
       loading={loading}
       onSubmit={onSubmit}
       register={register}
       reset={reset}
       setGlobalStates={setOpenUpdateDataForm}
+      title="Update Product"
       watch={watch}
     />
   );

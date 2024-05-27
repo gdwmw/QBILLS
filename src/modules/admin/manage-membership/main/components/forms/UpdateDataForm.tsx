@@ -50,12 +50,12 @@ const UpdateDataForm: FC<T> = ({ data }): ReactElement => {
       buttonLabel="Update"
       errors={errors}
       handleSubmit={handleSubmit}
-      label="Update Membership"
       loading={loading}
       onSubmit={onSubmit}
       register={register}
       reset={reset}
       setGlobalStates={setOpenUpdateDataForm}
+      title="Update Membership"
     />
   );
 };

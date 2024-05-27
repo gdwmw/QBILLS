@@ -51,12 +51,12 @@ const AddDataForm: FC = (): ReactElement => {
       buttonLabel="Add"
       errors={errors}
       handleSubmit={handleSubmit}
-      label="Add Membership"
       loading={loading}
       onSubmit={onSubmit}
       register={register}
       reset={reset}
       setGlobalStates={setOpenAddDataForm}
+      title="Add Membership"
     />
   );
 };
