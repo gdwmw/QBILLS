@@ -13,7 +13,7 @@ import { GETProduct, IProduct } from "@/utils";
 import { Table, Toolbar } from "./components";
 const AddDataForm = dynamic(() => import("./components/forms/AddDataForm"));
 const UpdateDataForm = dynamic(() => import("./components/forms/UpdateDataForm"));
-const CardDetailProduct = dynamic(() => import("./components/CardDetailProduct"));
+const DetailProductCard = dynamic(() => import("./components/DetailProductCard"));
 
 export const Main: FC = (): ReactElement => {
   const { data } = useQuery({
@@ -83,7 +83,7 @@ export const Main: FC = (): ReactElement => {
       </main>
       {openAddDataForm && <AddDataForm />}
       {openUpdateDataForm && <UpdateDataForm data={selectedData} />}
-      {openCard && <CardDetailProduct data={selectedData} />}
+      {openCard && <DetailProductCard data={selectedData} />}
     </>
   );
 };

@@ -13,7 +13,7 @@ type T = {
   data: IProduct | undefined;
 };
 
-const CardDetailProduct: FC<T> = ({ data }): ReactElement => {
+const DetailProductCard: FC<T> = ({ data }): ReactElement => {
   const { setOpenCard } = useGlobalStates();
 
   return (
@@ -101,4 +101,4 @@ const CardDetailProduct: FC<T> = ({ data }): ReactElement => {
   );
 };
 
-export default CardDetailProduct;
+export default DetailProductCard;
