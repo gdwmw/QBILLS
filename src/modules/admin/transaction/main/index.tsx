@@ -1,17 +1,19 @@
 "use client";
 
-import { Button, Chip, IconButton, Input, Pagination, Select } from "@/components";
-import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { DELETEMultipleTransaction, DELETETransaction, GETTransaction, ITransaction } from "@/utils";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { FC, ReactElement, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { FaCheckCircle, FaClock, FaSearch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdAccountBalanceWallet, MdDelete, MdEdit } from "react-icons/md";
 import { create } from "zustand";
+
+import { Button, Chip, IconButton, Input, Pagination, Select } from "@/components";
+import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
+import { DELETEMultipleTransaction, DELETETransaction, GETTransaction, ITransaction } from "@/utils";
 const AddData = dynamic(() => import("./add-data"));
 const UpdateData = dynamic(() => import("./update-data"));
 
@@ -25,7 +27,7 @@ type Actions = {
   setOpenUpdateData: (param: boolean) => void;
 };
 
-export const useTransaction = create<States & Actions>((set) => ({
+export const useTransaction = create<Actions & States>((set) => ({
   openAddData: false,
   openUpdateData: false,
   setOpenAddData: (openAddData: boolean) => set({ openAddData }),
@@ -35,11 +37,11 @@ export const useTransaction = create<States & Actions>((set) => ({
 export const Main: FC = (): ReactElement => {
   const queryClient = useQueryClient();
   const { openAddData, openUpdateData, setOpenAddData, setOpenUpdateData } = useTransaction();
-  const { register, watch } = useForm<{ search: string; startDate: Date; endDate: Date; status: string }>({
+  const { register, watch } = useForm<{ endDate: Date; search: string; startDate: Date; status: string }>({
     defaultValues: {
+      endDate: new Date(),
       search: "",
       startDate: new Date("0001-01-01"),
-      endDate: new Date(),
       status: "",
     },
   });
@@ -47,23 +49,23 @@ export const Main: FC = (): ReactElement => {
   const [checkbox, setCheckbox] = useState<string[]>([]);
   const [checkboxCount, setCheckboxCount] = useState<number>(0);
   const [selectedData, setSelectedData] = useState<ITransaction>({
-    id: "",
-    code: "",
-    cashier: "",
-    customer: "",
-    payment: "",
-    date: "",
-    time: "",
     amount: 0,
+    cashier: "",
+    code: "",
+    customer: "",
+    date: "",
+    id: "",
+    payment: "",
     status: "",
+    time: "",
   });
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState<boolean[]>([false]);
   const [editMode, setEditMode] = useState<boolean>(false);
 
   const { data } = useQuery({
-    queryKey: ["GETTransaction"],
     queryFn: GETTransaction,
+    queryKey: ["GETTransaction"],
   });
 
   const mutationDelete = useMutation({
@@ -155,7 +157,7 @@ export const Main: FC = (): ReactElement => {
   const currentData = searchResult?.slice(indexOfFirstData, indexOfLastData);
   const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
 
-  function calculateCurrentMonthlyTotal(transactions: { date: string; amount: number; status: string }[]) {
+  function calculateCurrentMonthlyTotal(transactions: { amount: number; date: string; status: string }[]) {
     let currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
     for (let transaction of transactions) {
@@ -179,10 +181,10 @@ export const Main: FC = (): ReactElement => {
     return count;
   }
 
-  const statusMap: { [key: string]: "default" | "success" | "pending" | "canceled" | "selected" | "disabled" | null | undefined } = {
-    success: "success",
-    pending: "pending",
+  const statusMap: { [key: string]: "canceled" | "default" | "disabled" | "pending" | "selected" | "success" | null | undefined } = {
     canceled: "canceled",
+    pending: "pending",
+    success: "success",
   };
 
   return (
@@ -194,24 +196,22 @@ export const Main: FC = (): ReactElement => {
               <h2 className="hidden whitespace-nowrap text-xl font-semibold md:block">Transaction List</h2>
               <div className="ml-auto flex gap-3">
                 <Button
-                  type="button"
-                  solid={checkboxCount === 0 || loading[0] ? "disabled" : "red"}
-                  size={"sm"}
-                  widthFull
+                  className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
                   disabled={checkboxCount === 0 || loading[0]}
                   onClick={handleMultipleDelete}
-                  className={`max-w-[120px] whitespace-nowrap font-semibold ${loading[0] ? "cursor-wait" : ""}`}
+                  size={"sm"}
+                  solid={checkboxCount === 0 || loading[0] ? "disabled" : "red"}
+                  type="button"
                 >
-                  <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} className={loading[0] ? "" : "hidden"} />
+                  <Image alt="Loading..." className={loading[0] ? "" : "hidden"} quality={30} src={loadingAnimation} width={20} />
                   Delete ({checkboxCount})
                 </Button>
                 <Button
-                  type="button"
-                  solid={"default"}
-                  size={"sm"}
-                  widthFull
-                  onClick={() => setOpenAddData(true)}
                   className="max-w-[150px] whitespace-nowrap font-semibold"
+                  onClick={() => setOpenAddData(true)}
+                  size={"sm"}
+                  solid={"default"}
+                  type="button"
                 >
                   Add Transaction
                 </Button>
@@ -225,16 +225,16 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
+                  <MdAccountBalanceWallet className="-ml-[6px] -mt-[6px] text-I4" size={50} />
                 </div>
                 <span className="font-semibold text-N3">Total Monthly Per.{` (${calculateCurrentMonthlyTotal(data || []).month})`}</span>
                 <br />
                 <span className="text-2xl font-semibold">
                   {new Intl.NumberFormat("id-ID", {
-                    style: "currency",
                     currency: "IDR",
-                    minimumFractionDigits: 0,
                     maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                    style: "currency",
                   }).format(calculateCurrentMonthlyTotal(data || []).total)}
                 </span>
               </div>
@@ -243,7 +243,7 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <FaCheckCircle size={38} className="-ml-[1px] mb-px text-S4" />
+                  <FaCheckCircle className="-ml-[1px] mb-px text-S4" size={38} />
                 </div>
                 <span className="font-semibold text-N3">Success</span>
                 <br />
@@ -256,7 +256,7 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <FaClock size={38} className="-ml-[1px] mb-px text-W4" />
+                  <FaClock className="-ml-[1px] mb-px text-W4" size={38} />
                 </div>
                 <span className="font-semibold text-N3">Pending</span>
                 <br />
@@ -267,7 +267,7 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <IoMdCloseCircle size={46} className="-ml-[4px] -mt-[4px] text-E4" />
+                  <IoMdCloseCircle className="-ml-[4px] -mt-[4px] text-E4" size={46} />
                 </div>
                 <span className="font-semibold text-N3">Canceled</span>
                 <br />
@@ -279,14 +279,14 @@ export const Main: FC = (): ReactElement => {
 
         <section className="grid w-full grid-rows-2 items-center gap-3 overflow-y-auto md:flex">
           <div className="w-full">
-            <Input type="text" label="Search Transaction" {...register("search")} id="search-transaction" icon={<FaSearch />}></Input>
+            <Input label="Search Transaction" type="text" {...register("search")} icon={<FaSearch />} id="search-transaction"></Input>
           </div>
           <div className="flex w-full gap-3">
             <div className="w-full min-w-[162px]">
-              <Input type="date" label="Start Date" {...register("startDate")} id="startDate" variant={"default"} />
+              <Input label="Start Date" type="date" {...register("startDate")} id="startDate" variant={"default"} />
             </div>
             <div className="w-full min-w-[162px]">
-              <Input type="date" label="End Date" {...register("endDate")} id="endDate" variant={"default"} />
+              <Input label="End Date" type="date" {...register("endDate")} id="endDate" variant={"default"} />
             </div>
             <div className="w-full min-w-[162px]">
               <Select label="Status" {...register("status")} id="status">
@@ -325,15 +325,15 @@ export const Main: FC = (): ReactElement => {
                     return bHours * 60 + bMinutes - (aHours * 60 + aMinutes);
                   })
                   .map((transaction, index) => (
-                    <tr key={transaction.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
+                    <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={transaction.id}>
                       {editMode && (
                         <td className="px-2 py-2">
                           <input
-                            type="checkbox"
+                            checked={checkbox.includes(transaction.id)}
                             id={`checkbox-id-${index}`}
                             name={`checkbox-name-${index}`}
-                            checked={checkbox.includes(transaction.id)}
                             onChange={() => handleCheckbox(transaction.id)}
+                            type="checkbox"
                           />
                         </td>
                       )}
@@ -346,49 +346,49 @@ export const Main: FC = (): ReactElement => {
                       </td>
                       <td className="whitespace-nowrap px-2 py-2">
                         {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
                           currency: "IDR",
-                          minimumFractionDigits: 0,
                           maximumFractionDigits: 0,
+                          minimumFractionDigits: 0,
+                          style: "currency",
                         }).format(transaction.amount)}
                       </td>
                       <td className="px-2 py-2">
-                        <Chip label={transaction.status} status={statusMap[transaction.status]} size={"sm-status"} className="mx-auto" />
+                        <Chip className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
                       </td>
                       {editMode && (
                         <td className="px-2 py-2">
                           <div className="flex justify-center gap-2">
                             <IconButton
-                              type="button"
-                              solid={"green"}
-                              size={"sm"}
                               onClick={() => {
                                 setSelectedData({
-                                  id: transaction.id,
-                                  code: transaction.code,
-                                  cashier: transaction.cashier,
-                                  customer: transaction.customer,
-                                  payment: transaction.payment,
-                                  date: transaction.date,
-                                  time: transaction.time,
                                   amount: transaction.amount,
+                                  cashier: transaction.cashier,
+                                  code: transaction.code,
+                                  customer: transaction.customer,
+                                  date: transaction.date,
+                                  id: transaction.id,
+                                  payment: transaction.payment,
                                   status: transaction.status,
+                                  time: transaction.time,
                                 });
                                 setOpenUpdateData(true);
                               }}
+                              size={"sm"}
+                              solid={"green"}
+                              type="button"
                             >
                               <MdEdit />
                             </IconButton>
 
                             <IconButton
-                              type="button"
-                              solid={loading[index + 1] ? "disabled" : "red"}
-                              size={"sm"}
-                              onClick={() => handleDelete(transaction.id, index + 1)}
-                              disabled={loading[index + 1]}
                               className={loading[index + 1] ? "cursor-wait" : ""}
+                              disabled={loading[index + 1]}
+                              onClick={() => handleDelete(transaction.id, index + 1)}
+                              size={"sm"}
+                              solid={loading[index + 1] ? "disabled" : "red"}
+                              type="button"
                             >
-                              {loading[index + 1] ? <Image src={loadingAnimation} alt="Loading..." width={16} quality={30} /> : <MdDelete />}
+                              {loading[index + 1] ? <Image alt="Loading..." quality={30} src={loadingAnimation} width={16} /> : <MdDelete />}
                             </IconButton>
                           </div>
                         </td>
@@ -402,17 +402,17 @@ export const Main: FC = (): ReactElement => {
       </div>
 
       <Pagination
-        startData={indexOfLastData > 0 ? indexOfFirstData + 1 : 0}
-        endData={(searchResult && Math.min(indexOfLastData, searchResult.length)) ?? 0}
-        totalData={searchResult?.length ?? 0}
         currentPage={currentPage ?? 0}
-        totalPage={totalPage ?? 0}
-        onClickPrevPage={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        endData={(searchResult && Math.min(indexOfLastData, searchResult.length)) ?? 0}
         onClickNextPage={() => {
           if (totalPage !== undefined) {
             setCurrentPage((prev) => Math.min(prev + 1, totalPage));
           }
         }}
+        onClickPrevPage={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        startData={indexOfLastData > 0 ? indexOfFirstData + 1 : 0}
+        totalData={searchResult?.length ?? 0}
+        totalPage={totalPage ?? 0}
       />
 
       {openAddData && <AddData />}

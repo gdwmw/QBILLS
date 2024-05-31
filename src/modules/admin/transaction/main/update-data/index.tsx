@@ -1,25 +1,28 @@
-import { Button, Input, Select } from "@/components";
-import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { ITransaction, PUTTransaction } from "@/utils";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { FC, ReactElement, useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { IoTime } from "react-icons/io5";
-import { Output, minLength, minValue, number, object, string } from "valibot";
+import { minLength, minValue, number, object, Output, string } from "valibot";
+
+import { Button, Input, Select } from "@/components";
+import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
+import { ITransaction, PUTTransaction } from "@/utils";
+
 import { useTransaction } from "..";
 
 const Schema = object({
-  id: string(),
-  code: string([minLength(10, "Please enter code minimum 10 character.")]),
-  cashier: string([minLength(5, "Please enter cashier minimum 5 character.")]),
-  customer: string([minLength(5, "Please enter customer minimum 5 character.")]),
-  payment: string([minLength(1, "Please choose one of the options.")]),
-  date: string([minLength(1, "Please enter the date.")]),
-  time: string([minLength(1, "Please set the time.")]),
   amount: number([minValue(1, "Please enter amount minimum 1 number.")]),
+  cashier: string([minLength(5, "Please enter cashier minimum 5 character.")]),
+  code: string([minLength(10, "Please enter code minimum 10 character.")]),
+  customer: string([minLength(5, "Please enter customer minimum 5 character.")]),
+  date: string([minLength(1, "Please enter the date.")]),
+  id: string(),
+  payment: string([minLength(1, "Please choose one of the options.")]),
   status: string([minLength(1, "Please choose one of the options.")]),
+  time: string([minLength(1, "Please set the time.")]),
 });
 
 type TUseForm = Output<typeof Schema>;
@@ -35,22 +38,22 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
   const [realTime, setRealTime] = useState<string>("");
 
   const {
-    register,
-    setValue,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
     reset,
+    setValue,
   } = useForm<TUseForm>({
     defaultValues: {
-      id: selectedData.id,
-      code: selectedData.code,
-      cashier: selectedData.cashier,
-      customer: selectedData.customer,
-      payment: selectedData.payment,
-      date: selectedData.date,
-      time: selectedData.time,
       amount: selectedData.amount,
+      cashier: selectedData.cashier,
+      code: selectedData.code,
+      customer: selectedData.customer,
+      date: selectedData.date,
+      id: selectedData.id,
+      payment: selectedData.payment,
       status: selectedData.status,
+      time: selectedData.time,
     },
     resolver: valibotResolver(Schema),
   });
@@ -81,42 +84,42 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
 
   return (
     <section className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-N7/30 px-5 backdrop-blur-sm">
-      <form onSubmit={handleSubmit(onSubmit)} className="h-fit w-full max-w-[500px] rounded-xl bg-N1 p-5 shadow-md">
+      <form className="h-fit w-full max-w-[500px] rounded-xl bg-N1 p-5 shadow-md" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex h-full w-full flex-col items-center gap-3 rounded-lg border p-5">
           <h1 className="text-center text-2xl font-bold">Update Transaction</h1>
           <div className="w-full space-y-3">
             <Input
-              type="text"
               label="Code"
+              type="text"
               {...register("code")}
-              id="code"
               errorMessage={errors.code?.message}
+              id="code"
               variant={errors.code ? "error" : "default"}
             />
 
             <Input
-              type="text"
               label="Cashier"
+              type="text"
               {...register("cashier")}
-              id="cashier"
               errorMessage={errors.cashier?.message}
+              id="cashier"
               variant={errors.cashier ? "error" : "default"}
             />
 
             <Input
-              type="text"
               label="Customer"
+              type="text"
               {...register("customer")}
-              id="customer"
               errorMessage={errors.customer?.message}
+              id="customer"
               variant={errors.customer ? "error" : "default"}
             />
 
             <Select
               label="Payment"
               {...register("payment")}
-              id="payment"
               errorMessage={errors.payment?.message}
+              id="payment"
               variant={errors.payment ? "error" : "default"}
             >
               <option value="Cash">Cash</option>
@@ -131,48 +134,48 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
             </Select>
 
             <Input
-              type="date"
               label="Date"
+              type="date"
               {...register("date")}
-              id="date"
               errorMessage={errors.date?.message}
+              id="date"
               variant={errors.date ? "error" : "default"}
             />
 
             <div className="flex w-full gap-3">
               <div className="w-full">
                 <Input
-                  type="text"
                   label="Time"
+                  type="text"
                   {...register("time")}
-                  id="time"
-                  errorMessage={errors.time?.message}
-                  variant={errors.time ? "error" : "disabled"}
                   disabled
+                  errorMessage={errors.time?.message}
+                  id="time"
+                  variant={errors.time ? "error" : "disabled"}
                 />
               </div>
 
               <div className="mt-[7px] min-w-max">
-                <Button type="button" solid={"default"} size={"sm"} onClick={() => setValue("time", realTime)} className="font-semibold">
+                <Button className="font-semibold" onClick={() => setValue("time", realTime)} size={"sm"} solid={"default"} type="button">
                   <IoTime size={25} />
                 </Button>
               </div>
             </div>
 
             <Input
-              type="number"
               label="Amount"
+              type="number"
               {...register("amount", { valueAsNumber: true })}
-              id="amount"
               errorMessage={errors.amount?.message}
+              id="amount"
               variant={errors.amount ? "error" : "default"}
             />
 
             <Select
               label="Status"
               {...register("status")}
-              id="status"
               errorMessage={errors.status?.message}
+              id="status"
               variant={errors.status ? "error" : "default"}
             >
               <option value="pending">Pending</option>
@@ -182,26 +185,18 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
           </div>
           <div className="mt-3 flex w-full gap-3 font-semibold">
             <Button
-              type="button"
-              outline={"default"}
-              size={"sm"}
-              widthFull
               onClick={() => {
                 setOpenUpdateData(false);
                 reset();
               }}
+              outline={"default"}
+              size={"sm"}
+              type="button"
             >
               Cancel
             </Button>
-            <Button
-              type="submit"
-              solid={loading ? "disabled" : "default"}
-              size={"sm"}
-              widthFull
-              disabled={loading}
-              className={loading ? "cursor-wait" : ""}
-            >
-              {loading && <Image src={loadingAnimation} alt="Loading..." width={20} quality={30} />}
+            <Button className={loading ? "cursor-wait" : ""} disabled={loading} size={"sm"} solid={loading ? "disabled" : "default"} type="submit">
+              {loading && <Image alt="Loading..." quality={30} src={loadingAnimation} width={20} />}
               Update
             </Button>
           </div>

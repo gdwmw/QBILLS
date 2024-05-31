@@ -1,43 +1,45 @@
 "use client";
 
-import { Chip } from "@/components";
-import { GETCashierAccount, GETMembership, GETProduct, GETTransaction } from "@/utils";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+
 import { useQuery } from "@tanstack/react-query";
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from "chart.js";
 import Image from "next/image";
-import { FC, ReactElement, useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked } from "react-icons/fa6";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { RiSwapBoxFill } from "react-icons/ri";
 
+import { Chip } from "@/components";
+import { GETCashierAccount, GETMembership, GETProduct, GETTransaction } from "@/utils";
+
 export const Main: FC = (): ReactElement => {
   const { data: cashier } = useQuery({
-    queryKey: ["GETCashierAccount"],
     queryFn: GETCashierAccount,
+    queryKey: ["GETCashierAccount"],
   });
 
   const { data: product } = useQuery({
-    queryKey: ["GETProduct"],
     queryFn: GETProduct,
+    queryKey: ["GETProduct"],
   });
 
   const { data: membership } = useQuery({
-    queryKey: ["GETMembership"],
     queryFn: GETMembership,
+    queryKey: ["GETMembership"],
   });
 
   const { data: transaction } = useQuery({
-    queryKey: ["GETTransaction"],
     queryFn: GETTransaction,
+    queryKey: ["GETTransaction"],
   });
 
   const quantity = [50, 35, 20];
 
   const [height, setHeight] = useState(0);
 
-  function calculateCurrentMonthlyTotal(transactions: { date: string; amount: number; status: string }[]) {
+  function calculateCurrentMonthlyTotal(transactions: { amount: number; date: string; status: string }[]) {
     let currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
     for (let transaction of transactions) {
@@ -69,27 +71,27 @@ export const Main: FC = (): ReactElement => {
 
   const labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const data = {
-    labels,
     datasets: [
       {
-        label: "Income This Year",
-        data: labels.map(() => getRandomNumber(1000000, 20000000)),
-        borderColor: "rgb(190, 132, 101)",
         backgroundColor: "rgba(190, 132, 101, 0.5)",
+        borderColor: "rgb(190, 132, 101)",
+        data: labels.map(() => getRandomNumber(1000000, 20000000)),
+        label: "Income This Year",
       },
       {
-        label: "Income Last Year",
-        data: labels.map(() => getRandomNumber(1000000, 20000000)),
-        borderColor: "rgb(230, 230, 230)",
         backgroundColor: "rgba(230, 230, 230, 0.5)",
+        borderColor: "rgb(230, 230, 230)",
+        data: labels.map(() => getRandomNumber(1000000, 20000000)),
+        label: "Income Last Year",
       },
     ],
+    labels,
   };
 
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
   const options = {
-    responsive: true,
     plugins: {},
+    responsive: true,
   };
 
   useEffect(() => {
@@ -104,31 +106,31 @@ export const Main: FC = (): ReactElement => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  const statusMap: { [key: string]: "default" | "success" | "pending" | "canceled" | "selected" | "disabled" | null | undefined } = {
-    success: "success",
-    pending: "pending",
+  const statusMap: { [key: string]: "canceled" | "default" | "disabled" | "pending" | "selected" | "success" | null | undefined } = {
     canceled: "canceled",
+    pending: "pending",
+    success: "success",
   };
 
   return (
     <main className="space-y-5 px-5 pb-5">
-      <div id="take-height" className="mt-5 grid grid-cols-4 gap-5">
+      <div className="mt-5 grid grid-cols-4 gap-5" id="take-height">
         <div className="col-span-4 space-y-5 min-[1480px]:col-span-3">
           <section className="w-full gap-5 max-[1479px]:grid max-[1479px]:grid-cols-2 min-[1480px]:flex">
             <div className="w-full gap-5 max-[1479px]:space-y-5 min-[1480px]:flex">
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
-                    <MdAccountBalanceWallet size={50} className="-ml-[6px] -mt-[6px] text-I4" />
+                    <MdAccountBalanceWallet className="-ml-[6px] -mt-[6px] text-I4" size={50} />
                   </div>
                   <span className="font-semibold text-N3">Revenue Per. {`(${monthlyTotal.month})`}</span>
                   <br />
                   <span className="text-2xl font-semibold">
                     {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
                       currency: "IDR",
-                      minimumFractionDigits: 0,
                       maximumFractionDigits: 0,
+                      minimumFractionDigits: 0,
+                      style: "currency",
                     }).format(monthlyTotal.total)}
                   </span>
                 </div>
@@ -137,7 +139,7 @@ export const Main: FC = (): ReactElement => {
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
-                    <RiSwapBoxFill size={50} className="-ml-[4px] -mt-[6px] text-S4" />
+                    <RiSwapBoxFill className="-ml-[4px] -mt-[6px] text-S4" size={50} />
                   </div>
                   <span className="whitespace-nowrap font-semibold text-N3">Total Order</span>
                   <br />
@@ -150,7 +152,7 @@ export const Main: FC = (): ReactElement => {
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
-                    <FaBoxesStacked size={43} className="-mt-[3px] text-W4" />
+                    <FaBoxesStacked className="-mt-[3px] text-W4" size={43} />
                   </div>
                   <span className="whitespace-nowrap font-semibold text-N3">Total Product</span>
                   <br />
@@ -161,7 +163,7 @@ export const Main: FC = (): ReactElement => {
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
-                    <FaUserCircle size={38} className="text-E4" />
+                    <FaUserCircle className="text-E4" size={38} />
                   </div>
                   <span className="whitespace-nowrap font-semibold text-N3">Total Cashier</span>
                   <br />
@@ -174,13 +176,13 @@ export const Main: FC = (): ReactElement => {
           <section>
             <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Income Flow</h2>
             <div className="rounded-lg border p-10">
-              <Line options={options} data={data} />
+              <Line data={data} options={options} />
             </div>
           </section>
         </div>
 
         <section className="max-[1479px]:hidden">
-          <h2 className="mb-3 whitespace-nowrap text-xl font-semibold ">Recent Transaction</h2>
+          <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Recent Transaction</h2>
           <div className="overflow-hidden rounded-lg border border-N2">
             <div className="overflow-auto" style={{ maxHeight: height }}>
               <table className="w-full">
@@ -201,7 +203,7 @@ export const Main: FC = (): ReactElement => {
                       return bHours * 60 + bMinutes - (aHours * 60 + aMinutes);
                     })
                     .map((transaction, index) => (
-                      <tr key={transaction.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
+                      <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={transaction.id}>
                         <td className="px-2 py-2">
                           <div
                             className={`mx-auto flex h-5 w-5 items-center justify-center rounded-full ${transaction.status === "success" && "bg-S1 text-S5"} ${transaction.status === "pending" && "bg-W1 text-W5"} ${transaction.status === "canceled" && "bg-E1 text-E5"}`}
@@ -216,9 +218,9 @@ export const Main: FC = (): ReactElement => {
                             <div className="mr-auto">Rp</div>
                             <div>
                               {new Intl.NumberFormat("id-ID", {
-                                style: "decimal",
-                                minimumFractionDigits: 0,
                                 maximumFractionDigits: 0,
+                                minimumFractionDigits: 0,
+                                style: "decimal",
                               }).format(transaction.amount)}
                             </div>
                           </div>
@@ -237,7 +239,7 @@ export const Main: FC = (): ReactElement => {
       </div>
 
       <section className="w-full min-[1480px]:hidden">
-        <h2 className="mb-3 whitespace-nowrap text-xl font-semibold ">Recent Transaction</h2>
+        <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Recent Transaction</h2>
         <div className="overflow-hidden rounded-lg border border-N2">
           <div className="max-h-[300px] overflow-auto">
             <table className="w-full">
@@ -258,16 +260,16 @@ export const Main: FC = (): ReactElement => {
                     return bHours * 60 + bMinutes - (aHours * 60 + aMinutes);
                   })
                   .map((transaction, index) => (
-                    <tr key={transaction.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
+                    <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={transaction.id}>
                       <td className="px-2 py-2">
-                        <Chip label={transaction.status} status={statusMap[transaction.status]} size={"sm-status"} className="mx-auto" />
+                        <Chip className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
                       </td>
                       <td className="px-2 py-2 font-semibold">
                         {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
                           currency: "IDR",
-                          minimumFractionDigits: 0,
                           maximumFractionDigits: 0,
+                          minimumFractionDigits: 0,
+                          style: "currency",
                         }).format(transaction.amount)}
                       </td>
                       <td className="flex flex-col px-2 py-2">
@@ -301,7 +303,7 @@ export const Main: FC = (): ReactElement => {
                 </thead>
                 <tbody>
                   {product?.slice(0, 3).map((product, index) => (
-                    <tr key={product.id} className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
+                    <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={product.id}>
                       <td className="px-2 py-2">
                         <span
                           className={`mx-auto flex h-[30px] w-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
@@ -311,12 +313,12 @@ export const Main: FC = (): ReactElement => {
                       </td>
                       <td className="flex items-center justify-center gap-2 whitespace-nowrap px-2 py-2">
                         <Image
-                          src={product.image}
                           alt="Image"
-                          width={0}
+                          className="h-fit max-h-[30px] w-fit max-w-[30px] rounded-md"
                           height={0}
                           quality={30}
-                          className="h-fit max-h-[30px] w-fit max-w-[30px] rounded-md"
+                          src={product.image}
+                          width={0}
                         />
                         {product.name}
                       </td>
@@ -348,19 +350,19 @@ export const Main: FC = (): ReactElement => {
                       </td>
                       <td className="whitespace-nowrap px-2 py-2">
                         {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
                           currency: "IDR",
-                          minimumFractionDigits: 0,
                           maximumFractionDigits: 0,
+                          minimumFractionDigits: 0,
+                          style: "currency",
                         }).format(product.price)}
                       </td>
                       <td className="whitespace-nowrap px-2 py-2">{quantity[index]}</td>
                       <td className="whitespace-nowrap px-2 py-2">
                         {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
                           currency: "IDR",
-                          minimumFractionDigits: 0,
                           maximumFractionDigits: 0,
+                          minimumFractionDigits: 0,
+                          style: "currency",
                         }).format(product.price * quantity[index])}
                       </td>
                     </tr>
@@ -388,7 +390,7 @@ export const Main: FC = (): ReactElement => {
                     ?.sort((a, b) => b.point - a.point)
                     .slice(0, 3)
                     .map((member, index) => (
-                      <tr key={member.id} className="text-center">
+                      <tr className="text-center" key={member.id}>
                         <td className="px-2 py-2">
                           <span
                             className={`mx-auto flex h-[30px] w-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
@@ -424,7 +426,7 @@ export const Main: FC = (): ReactElement => {
                   ?.sort((a, b) => b.point - a.point)
                   .slice(0, 3)
                   .map((member, index) => (
-                    <tr key={member.id} className="text-center">
+                    <tr className="text-center" key={member.id}>
                       <td className="px-2 py-2">
                         <span
                           className={`mx-auto flex h-[30px] w-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
