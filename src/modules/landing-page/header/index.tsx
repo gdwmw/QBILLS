@@ -10,10 +10,10 @@ import { cn } from "@/libs";
 import { LoginStatusButton, MobileNavbar, NavLinks } from "./components";
 
 type T = {
-  authenticated: string | undefined;
+  authStatus: boolean | null;
 };
 
-export const Header: FC<T> = ({ authenticated }): ReactElement => {
+export const Header: FC<T> = ({ authStatus }): ReactElement => {
   function handleScroll(e: FormEvent, href: string) {
     e.preventDefault();
     document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
@@ -41,11 +41,11 @@ export const Header: FC<T> = ({ authenticated }): ReactElement => {
                 </Link>
               </div>
 
-              <LoginStatusButton authenticated={authenticated} />
+              <LoginStatusButton authStatus={authStatus} />
             </div>
           </section>
 
-          <MobileNavbar authenticated={authenticated} />
+          <MobileNavbar authStatus={authStatus} />
         </div>
       </nav>
     </header>

@@ -7,7 +7,7 @@ import { cn } from "@/libs";
 
 import { InfoSection } from "./components";
 
-const ROLES_LINK_DATA = [
+const RULES_LINK_DATA = [
   { href: "/", label: "Terms of Service" },
   { href: "/", label: "Privacy Policy" },
   { href: "/", label: "Manage Cookies" },
@@ -37,7 +37,7 @@ export const Footer: FC = (): ReactElement => {
         <div className="container mx-auto px-5">
           <div className="flex flex-col items-center justify-between gap-5 text-xs md:flex-row md:items-start">
             <div className="flex gap-10">
-              {ROLES_LINK_DATA.map(({ href, label }, index) => (
+              {RULES_LINK_DATA.map(({ href, label }, index) => (
                 <Link className={cn(ButtonCVA({ className: "whitespace-nowrap text-P2", ghost: "white", size: "ghost" }))} href={href} key={index}>
                   {label}
                 </Link>

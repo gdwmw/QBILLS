@@ -6,11 +6,6 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { IconButton } from "@/components";
 
-interface FAQItem {
-  answer: string;
-  question: string;
-}
-
 const FAQ_DATA = [
   {
     answer:
@@ -45,10 +40,11 @@ const FAQ_DATA = [
 ];
 
 type TFAQSection = {
-  data: FAQItem;
+  answer: string;
+  question: string;
 };
 
-const FAQSection: FC<TFAQSection> = ({ data }) => {
+const FAQSection: FC<TFAQSection> = ({ answer, question }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -58,8 +54,8 @@ const FAQSection: FC<TFAQSection> = ({ data }) => {
       role="button"
     >
       <div className="space-y-3">
-        <p className="pr-5">{data.question}</p>
-        <p className={`pr-5 text-sm text-N4 ${isOpen ? "" : "hidden"}`}>{data.answer}</p>
+        <p className="pr-5">{question}</p>
+        <p className={`pr-5 text-sm text-N4 ${isOpen ? "" : "hidden"}`}>{answer}</p>
       </div>
       <IconButton size={"md"} solid={"default"}>
         {isOpen ? <FaChevronUp /> : <FaChevronDown />}
@@ -78,12 +74,12 @@ export const FAQ: FC = (): ReactElement => {
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-10 xl:gap-20">
             <div className="space-y-5">
               {FAQ_DATA.slice(0, 3).map((faq, index) => (
-                <FAQSection data={faq} key={index} />
+                <FAQSection {...faq} key={index} />
               ))}
             </div>
             <div className="space-y-5">
               {FAQ_DATA.slice(3, 6).map((faq, index) => (
-                <FAQSection data={faq} key={index} />
+                <FAQSection {...faq} key={index} />
               ))}
             </div>
           </div>

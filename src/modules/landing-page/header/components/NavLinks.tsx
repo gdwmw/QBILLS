@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";
 
-const LINKS = [
+const LINKS_DATA = [
   { href: "#Home", label: "Home" },
   { href: "#About", label: "About" },
   { href: "#Features", label: "Features" },
@@ -33,7 +33,7 @@ type TNavLinks = {
 export const NavLinks: FC<TNavLinks> = ({ handleScroll }): ReactElement => {
   return (
     <>
-      {LINKS.map((link, index) => (
+      {LINKS_DATA.map((link, index) => (
         <Links key={index} {...link} onLinkClick={handleScroll} />
       ))}
     </>

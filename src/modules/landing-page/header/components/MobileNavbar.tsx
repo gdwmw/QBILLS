@@ -11,10 +11,10 @@ import { cn } from "@/libs";
 import { LoginStatusButton, NavLinks } from "./";
 
 type T = {
-  authenticated: string | undefined;
+  authStatus: boolean | null;
 };
 
-export const MobileNavbar: FC<T> = ({ authenticated }): ReactElement => {
+export const MobileNavbar: FC<T> = ({ authStatus }): ReactElement => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +69,7 @@ export const MobileNavbar: FC<T> = ({ authenticated }): ReactElement => {
               </Link>
             </div>
 
-            <LoginStatusButton authenticated={authenticated} />
+            <LoginStatusButton authStatus={authStatus} />
           </div>
         </div>
       </section>

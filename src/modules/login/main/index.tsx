@@ -15,11 +15,11 @@ import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import logoQBILLS from "@/public/assets/images/logos/brown/logo-1.webp";
 
 const Schema = object({
-  password: string([minLength(1, "Please enter your password.")]),
-  username: string([minLength(1, "Please enter your username.")]),
+  password: string([minLength(1, "Please enter your Password.")]),
+  username: string([minLength(1, "Please enter your Username.")]),
 });
 
-type TUseForm = Output<typeof Schema>;
+type TSchema = Output<typeof Schema>;
 
 export const Main: FC = (): ReactElement => {
   const session = useSession();
@@ -32,9 +32,9 @@ export const Main: FC = (): ReactElement => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<TUseForm>({ resolver: valibotResolver(Schema) });
+  } = useForm<TSchema>({ resolver: valibotResolver(Schema) });
 
-  const onSubmit: SubmitHandler<TUseForm> = async (data) => {
+  const onSubmit: SubmitHandler<TSchema> = async (data) => {
     setLoading(true);
     try {
       const res = await signIn(`credentials`, {
@@ -94,7 +94,7 @@ export const Main: FC = (): ReactElement => {
           />
         </div>
 
-        {error && <span className="select-none text-sm font-semibold text-E4">Invalid Username And Password</span>}
+        {error && <span className="select-none text-sm font-semibold text-E4">Invalid Username and Password</span>}
 
         <div className="w-full max-w-[400px]">
           <Button

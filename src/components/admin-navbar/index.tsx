@@ -7,11 +7,11 @@ import { IoIosNotifications } from "react-icons/io";
 
 import { IconButton } from "@/components";
 
-type TTitleData = {
+interface TTitleData {
   [key: string]: string;
-};
+}
 
-const titleData: TTitleData = {
+const TITLE_DATA: TTitleData = {
   "/dashboard": "Dashboard",
   "/manageadmin": "Manage Admin",
   "/managecashier": "Manage Cashier",
@@ -21,22 +21,22 @@ const titleData: TTitleData = {
   "/transaction": "Transaction",
 };
 
-interface I {
+interface ISession {
   id: string;
   name: string;
   role: string;
 }
 
-type T = {
-  user: I | undefined;
+type TAdminNavbar = {
+  session: ISession | undefined;
 };
 
-export const AdminNavbar: FC<T> = ({ user }): ReactElement => {
+export const AdminNavbar: FC<TAdminNavbar> = ({ session }): ReactElement => {
   const pathname = usePathname();
   const [title, setTitle] = useState<string>("Loading...");
 
   useEffect(() => {
-    setTitle(titleData[pathname] || "Example Page");
+    setTitle(TITLE_DATA[pathname]);
   }, [pathname]);
 
   return (
@@ -47,10 +47,19 @@ export const AdminNavbar: FC<T> = ({ user }): ReactElement => {
         <section className="flex w-full max-w-[335px] items-center gap-2">
           <div className="hidden h-10 w-10 rounded-full bg-P4 sm:block" />
           <div className="hidden w-full max-w-[185px] flex-col sm:flex">
-            <span className="truncate font-semibold">{user?.name ?? "Loading..."}</span>
+            <span className="truncate font-semibold">{session?.name ?? "Loading..."}</span>
 
             <span className="whitespace-nowrap text-xs font-semibold">
-              {user?.role === "admin" ? "Admin" : user?.role === "superadmin" ? "Super Admin" : "Loading..."}
+              {(() => {
+                switch (session?.role) {
+                  case "admin":
+                    return "Admin";
+                  case "superadmin":
+                    return "Super Admin";
+                  default:
+                    return "Loading...";
+                }
+              })()}
             </span>
           </div>
 

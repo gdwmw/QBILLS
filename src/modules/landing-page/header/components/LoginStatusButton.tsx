@@ -6,13 +6,13 @@ import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";
 
 type T = {
-  authenticated: string | undefined;
+  authStatus: boolean | null;
 };
 
-export const LoginStatusButton: FC<T> = ({ authenticated }): ReactElement => {
+export const LoginStatusButton: FC<T> = ({ authStatus }): ReactElement => {
   return (
     <>
-      {authenticated ? (
+      {authStatus ? (
         <div className="w-36">
           <Link
             className={cn(

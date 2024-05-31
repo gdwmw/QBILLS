@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactElement, useState } from "react";
+import { FC, ReactElement, ReactNode, useState } from "react";
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
@@ -14,11 +14,34 @@ import { IconButton } from "@/components";
 
 import { Logo } from "../logo";
 
-type T = {
-  role: string | undefined;
+type TNavItems = {
+  icon: ReactNode;
+  label: string;
+  path: string;
+  role?: string;
 };
 
-export const Sidebar: FC<T> = ({ role }): ReactElement => {
+const NAV_ITEMS: TNavItems[] = [
+  { icon: <MdDashboard size={25} />, label: "Dashboard", path: "/dashboard" },
+  { icon: <MdAdminPanelSettings size={25} />, label: "Manage Admin", path: "/manageadmin", role: "superadmin" },
+  { icon: <FaUserCircle size={25} />, label: "Manage Cashier", path: "/managecashier" },
+  { icon: <FaAddressCard size={25} />, label: "Manage Membership", path: "/managemembership" },
+  { icon: <FaBoxesStacked size={25} />, label: "Manage Product", path: "/manageproduct" },
+  { icon: <FaMoneyBillTransfer size={25} />, label: "Transaction", path: "/transaction" },
+  { icon: <IoDocumentText size={25} />, label: "Report", path: "/report" },
+];
+
+interface ISession {
+  id: string;
+  name: string;
+  role: string;
+}
+
+type TSidebar = {
+  session: ISession | undefined;
+};
+
+export const Sidebar: FC<TSidebar> = ({ session }): ReactElement => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -30,42 +53,14 @@ export const Sidebar: FC<T> = ({ role }): ReactElement => {
         <Logo varian="brown" />
 
         <section className="w-full space-y-3">
-          <Link className={pathname === "/dashboard" ? "sidebar-active" : "sidebar-button"} href={"/dashboard"}>
-            <MdDashboard size={25} />
-            Dashboard
-          </Link>
-
-          {role === "superadmin" && (
-            <Link className={pathname === "/manageadmin" ? "sidebar-active" : "sidebar-button"} href={"/manageadmin"}>
-              <MdAdminPanelSettings size={25} />
-              Manage Admin
-            </Link>
+          {NAV_ITEMS.map((item, index) =>
+            item.role && session?.role !== item.role ? null : (
+              <Link className={pathname === item.path ? "sidebar-active" : "sidebar-button"} href={item.path} key={index}>
+                {item.icon}
+                {item.label}
+              </Link>
+            ),
           )}
-
-          <Link className={pathname === "/managecashier" ? "sidebar-active" : "sidebar-button"} href={"/managecashier"}>
-            <FaUserCircle size={25} />
-            Manage Cashier
-          </Link>
-
-          <Link className={pathname === "/managemembership" ? "sidebar-active" : "sidebar-button"} href={"/managemembership"}>
-            <FaAddressCard size={25} />
-            Manage Membership
-          </Link>
-
-          <Link className={pathname === "/manageproduct" ? "sidebar-active" : "sidebar-button"} href={"/manageproduct"}>
-            <FaBoxesStacked size={25} />
-            Manage Product
-          </Link>
-
-          <Link className={pathname === "/transaction" ? "sidebar-active" : "sidebar-button"} href={"/transaction"}>
-            <FaMoneyBillTransfer size={25} />
-            Transaction
-          </Link>
-
-          <Link className={pathname === "/report" ? "sidebar-active" : "sidebar-button"} href={"/report"}>
-            <IoDocumentText size={25} />
-            Report
-          </Link>
         </section>
 
         <section className="mt-auto w-full">

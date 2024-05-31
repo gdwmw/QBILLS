@@ -14,9 +14,9 @@ const AdminLayout: FC<T> = async ({ children }): Promise<ReactElement> => {
 
   return (
     <>
-      <Sidebar role={session?.user?.role} />
+      <Sidebar session={session?.user} />
       <div className="lg:pl-[300px]">
-        <AdminNavbar user={session?.user} />
+        <AdminNavbar session={session?.user} />
         {children}
       </div>
     </>

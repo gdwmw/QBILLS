@@ -10,7 +10,7 @@ const LandingPage: FC = async (): Promise<ReactElement> => {
 
   return (
     <>
-      <Header authenticated={session?.user.role} />
+      <Header authStatus={session !== null} />
       <Main />
       <Footer />
     </>
