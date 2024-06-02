@@ -20,8 +20,8 @@ export const HeroSection: FC = (): ReactElement => {
         width={500}
       />
 
-      <div className="container mx-auto h-full w-full px-10">
-        <div className="flex h-full w-full grid-cols-2 flex-col items-center justify-center gap-20 lg:grid">
+      <div className="container mx-auto size-full px-10">
+        <div className="flex size-full grid-cols-2 flex-col items-center justify-center gap-20 lg:grid">
           <div className="flex flex-col justify-center gap-5 text-N1">
             <h1 className="text-lg font-bold md:text-xl lg:text-2xl">Point Of Sales</h1>
 

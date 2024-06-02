@@ -17,7 +17,7 @@ const SelectFieldsetCVA = cva("group w-full overflow-hidden rounded-md border-2 
   },
 });
 
-const SelectLegendCVA = cva("ml-3 select-none px-1 text-xs whitespace-nowrap font-semibold", {
+const SelectLegendCVA = cva("ml-3 select-none whitespace-nowrap px-1 text-xs font-semibold", {
   defaultVariants: {
     variant: "default",
   },

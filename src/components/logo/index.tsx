@@ -16,7 +16,7 @@ type T = {
 
 export const Logo: FC<T> = ({ size = 1, varian = "white" }): ReactElement => {
   return (
-    <section className="flex h-fit w-fit items-center justify-center gap-2">
+    <section className="flex size-fit items-center justify-center gap-2">
       {varian === "white" ? (
         <Image alt="QBILLS" priority quality={30} src={logoQBILLS1} width={40 * size} />
       ) : (

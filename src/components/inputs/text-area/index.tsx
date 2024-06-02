@@ -17,7 +17,7 @@ const TextAreaFieldsetCVA = cva("group w-full overflow-hidden rounded-md border-
   },
 });
 
-const TextAreaLegendCVA = cva("ml-3 select-none px-1 text-xs whitespace-nowrap font-semibold", {
+const TextAreaLegendCVA = cva("ml-3 select-none whitespace-nowrap px-1 text-xs font-semibold", {
   defaultVariants: {
     variant: "default",
   },

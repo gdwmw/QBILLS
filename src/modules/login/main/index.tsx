@@ -64,7 +64,7 @@ export const Main: FC = (): ReactElement => {
   return (
     <main className="flex h-screen w-screen items-center justify-center bg-P1 px-10">
       <form
-        className="flex h-full max-h-[600px] w-full max-w-[500px] flex-col items-center justify-center gap-5 rounded-xl bg-N1 px-5 shadow-md"
+        className="flex size-full max-h-[600px] max-w-[500px] flex-col items-center justify-center gap-5 rounded-xl bg-N1 px-5 shadow-md"
         onSubmit={handleSubmit(onSubmit)}
       >
         <Image alt="QBILLS" priority quality={30} src={logoQBILLS} width={150} />

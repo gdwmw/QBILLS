@@ -121,7 +121,7 @@ export const Main: FC = (): ReactElement => {
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
-                    <MdAccountBalanceWallet className="-ml-[6px] -mt-[6px] text-I4" size={50} />
+                    <MdAccountBalanceWallet className="ml-[-6px] mt-[-6px] text-I4" size={50} />
                   </div>
                   <span className="font-semibold text-N3">Revenue Per. {`(${monthlyTotal.month})`}</span>
                   <br />
@@ -139,7 +139,7 @@ export const Main: FC = (): ReactElement => {
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
-                    <RiSwapBoxFill className="-ml-[4px] -mt-[6px] text-S4" size={50} />
+                    <RiSwapBoxFill className="ml-[-4px] mt-[-6px] text-S4" size={50} />
                   </div>
                   <span className="whitespace-nowrap font-semibold text-N3">Total Order</span>
                   <br />
@@ -152,7 +152,7 @@ export const Main: FC = (): ReactElement => {
               <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
                 <div>
                   <div className="h-[40px] border border-N1">
-                    <FaBoxesStacked className="-mt-[3px] text-W4" size={43} />
+                    <FaBoxesStacked className="mt-[-3px] text-W4" size={43} />
                   </div>
                   <span className="whitespace-nowrap font-semibold text-N3">Total Product</span>
                   <br />
@@ -188,9 +188,9 @@ export const Main: FC = (): ReactElement => {
               <table className="w-full">
                 <thead className="sticky top-0 z-10 bg-N2">
                   <tr className="text-center">
-                    <th className="px-4 py-4">Status</th>
-                    <th className="px-4 py-4">Amount</th>
-                    <th className="px-4 py-4">Details</th>
+                    <th className="p-4">Status</th>
+                    <th className="p-4">Amount</th>
+                    <th className="p-4">Details</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -204,16 +204,16 @@ export const Main: FC = (): ReactElement => {
                     })
                     .map((transaction, index) => (
                       <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={transaction.id}>
-                        <td className="px-2 py-2">
+                        <td className="p-2">
                           <div
-                            className={`mx-auto flex h-5 w-5 items-center justify-center rounded-full ${transaction.status === "success" && "bg-S1 text-S5"} ${transaction.status === "pending" && "bg-W1 text-W5"} ${transaction.status === "canceled" && "bg-E1 text-E5"}`}
+                            className={`mx-auto flex size-5 items-center justify-center rounded-full ${transaction.status === "success" && "bg-S1 text-S5"} ${transaction.status === "pending" && "bg-W1 text-W5"} ${transaction.status === "canceled" && "bg-E1 text-E5"}`}
                           >
                             {transaction.status === "success" && "S"}
                             {transaction.status === "pending" && "P"}
                             {transaction.status === "canceled" && "C"}
                           </div>
                         </td>
-                        <td className="px-2 py-2 font-semibold">
+                        <td className="p-2 font-semibold">
                           <div className="flex justify-between">
                             <div className="mr-auto">Rp</div>
                             <div>
@@ -225,7 +225,7 @@ export const Main: FC = (): ReactElement => {
                             </div>
                           </div>
                         </td>
-                        <td className="flex flex-col px-2 py-2">
+                        <td className="flex flex-col p-2">
                           <span className="text-xs font-semibold">{transaction.code}</span>
                           <span className="text-xs text-N3">{`${transaction.date}, ${transaction.time}`}</span>
                         </td>
@@ -245,9 +245,9 @@ export const Main: FC = (): ReactElement => {
             <table className="w-full">
               <thead className="sticky top-0 z-10 bg-N2">
                 <tr className="text-center">
-                  <th className="px-4 py-4">Status</th>
-                  <th className="px-4 py-4">Amount</th>
-                  <th className="px-4 py-4">Details</th>
+                  <th className="p-4">Status</th>
+                  <th className="p-4">Amount</th>
+                  <th className="p-4">Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -261,10 +261,10 @@ export const Main: FC = (): ReactElement => {
                   })
                   .map((transaction, index) => (
                     <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={transaction.id}>
-                      <td className="px-2 py-2">
+                      <td className="p-2">
                         <Chip className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
                       </td>
-                      <td className="px-2 py-2 font-semibold">
+                      <td className="p-2 font-semibold">
                         {new Intl.NumberFormat("id-ID", {
                           currency: "IDR",
                           maximumFractionDigits: 0,
@@ -272,7 +272,7 @@ export const Main: FC = (): ReactElement => {
                           style: "currency",
                         }).format(transaction.amount)}
                       </td>
-                      <td className="flex flex-col px-2 py-2">
+                      <td className="flex flex-col p-2">
                         <span className="text-xs font-semibold">{transaction.code}</span>
                         <span className="text-xs text-N3">{`${transaction.date}, ${transaction.time}`}</span>
                       </td>
@@ -292,29 +292,29 @@ export const Main: FC = (): ReactElement => {
               <table className="w-full">
                 <thead className="sticky top-0 z-10 bg-N2">
                   <tr className="text-center">
-                    <th className="px-4 py-4">Rank</th>
-                    <th className="px-4 py-4">Product</th>
-                    <th className="px-4 py-4">Category</th>
-                    <th className="px-4 py-4">Size</th>
-                    <th className="px-4 py-4">Price</th>
-                    <th className="px-4 py-4">Quantity</th>
-                    <th className="px-4 py-4">Amount</th>
+                    <th className="p-4">Rank</th>
+                    <th className="p-4">Product</th>
+                    <th className="p-4">Category</th>
+                    <th className="p-4">Size</th>
+                    <th className="p-4">Price</th>
+                    <th className="p-4">Quantity</th>
+                    <th className="p-4">Amount</th>
                   </tr>
                 </thead>
                 <tbody>
                   {product?.slice(0, 3).map((product, index) => (
                     <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={product.id}>
-                      <td className="px-2 py-2">
+                      <td className="p-2">
                         <span
-                          className={`mx-auto flex h-[30px] w-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
+                          className={`mx-auto flex size-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
                         >
                           {index + 1}
                         </span>
                       </td>
-                      <td className="flex items-center justify-center gap-2 whitespace-nowrap px-2 py-2">
+                      <td className="flex items-center justify-center gap-2 whitespace-nowrap p-2">
                         <Image
                           alt="Image"
-                          className="h-fit max-h-[30px] w-fit max-w-[30px] rounded-md"
+                          className="size-fit max-h-[30px] max-w-[30px] rounded-md"
                           height={0}
                           quality={30}
                           src={product.image}
@@ -322,7 +322,7 @@ export const Main: FC = (): ReactElement => {
                         />
                         {product.name}
                       </td>
-                      <td className="whitespace-nowrap px-2 py-2">
+                      <td className="whitespace-nowrap p-2">
                         {(() => {
                           switch (product.category) {
                             case "coffee":
@@ -336,7 +336,7 @@ export const Main: FC = (): ReactElement => {
                           }
                         })()}
                       </td>
-                      <td className="whitespace-nowrap px-2 py-2">
+                      <td className="whitespace-nowrap p-2">
                         {(() => {
                           switch (product.size) {
                             case "small":
@@ -348,7 +348,7 @@ export const Main: FC = (): ReactElement => {
                           }
                         })()}
                       </td>
-                      <td className="whitespace-nowrap px-2 py-2">
+                      <td className="whitespace-nowrap p-2">
                         {new Intl.NumberFormat("id-ID", {
                           currency: "IDR",
                           maximumFractionDigits: 0,
@@ -356,8 +356,8 @@ export const Main: FC = (): ReactElement => {
                           style: "currency",
                         }).format(product.price)}
                       </td>
-                      <td className="whitespace-nowrap px-2 py-2">{quantity[index]}</td>
-                      <td className="whitespace-nowrap px-2 py-2">
+                      <td className="whitespace-nowrap p-2">{quantity[index]}</td>
+                      <td className="whitespace-nowrap p-2">
                         {new Intl.NumberFormat("id-ID", {
                           currency: "IDR",
                           maximumFractionDigits: 0,
@@ -380,9 +380,9 @@ export const Main: FC = (): ReactElement => {
               <table className="w-full">
                 <thead className="sticky top-0 z-10 bg-N2">
                   <tr className="text-center">
-                    <th className="px-4 py-4">Rank</th>
-                    <th className="px-4 py-4">Member</th>
-                    <th className="px-4 py-4">Point</th>
+                    <th className="p-4">Rank</th>
+                    <th className="p-4">Member</th>
+                    <th className="p-4">Point</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -391,15 +391,15 @@ export const Main: FC = (): ReactElement => {
                     .slice(0, 3)
                     .map((member, index) => (
                       <tr className="text-center" key={member.id}>
-                        <td className="px-2 py-2">
+                        <td className="p-2">
                           <span
-                            className={`mx-auto flex h-[30px] w-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
+                            className={`mx-auto flex size-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
                           >
                             {index + 1}
                           </span>
                         </td>
-                        <td className="whitespace-nowrap px-2 py-2">{member.name}</td>
-                        <td className="whitespace-nowrap px-2 py-2">{member.point}</td>
+                        <td className="whitespace-nowrap p-2">{member.name}</td>
+                        <td className="whitespace-nowrap p-2">{member.point}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -416,9 +416,9 @@ export const Main: FC = (): ReactElement => {
             <table className="w-full">
               <thead className="sticky top-0 z-10 bg-N2">
                 <tr className="text-center">
-                  <th className="px-4 py-4">Rank</th>
-                  <th className="px-4 py-4">Member</th>
-                  <th className="px-4 py-4">Point</th>
+                  <th className="p-4">Rank</th>
+                  <th className="p-4">Member</th>
+                  <th className="p-4">Point</th>
                 </tr>
               </thead>
               <tbody>
@@ -427,15 +427,15 @@ export const Main: FC = (): ReactElement => {
                   .slice(0, 3)
                   .map((member, index) => (
                     <tr className="text-center" key={member.id}>
-                      <td className="px-2 py-2">
+                      <td className="p-2">
                         <span
-                          className={`mx-auto flex h-[30px] w-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
+                          className={`mx-auto flex size-[30px] items-center justify-center rounded-full ${index === 0 ? "bg-W1 text-W5" : "bg-N2 text-N3"}`}
                         >
                           {index + 1}
                         </span>
                       </td>
-                      <td className="whitespace-nowrap px-2 py-2">{member.name}</td>
-                      <td className="whitespace-nowrap px-2 py-2">{member.point}</td>
+                      <td className="whitespace-nowrap p-2">{member.name}</td>
+                      <td className="whitespace-nowrap p-2">{member.point}</td>
                     </tr>
                   ))}
               </tbody>

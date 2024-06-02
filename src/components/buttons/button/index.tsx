@@ -38,7 +38,7 @@ const ButtonCVA = cva("flex w-fit select-none items-center justify-center gap-2"
     size: {
       "2xl": "h-fit px-7 py-4 text-2xl",
       "3xl": "h-fit px-8 py-5 text-3xl",
-      ghost: "h-fit px-0 py-0",
+      ghost: "h-fit p-0",
       lg: "h-fit px-5 py-3 text-lg",
       md: "h-fit px-4 py-2.5 text-base",
       sm: "h-fit px-3 py-2 text-sm",

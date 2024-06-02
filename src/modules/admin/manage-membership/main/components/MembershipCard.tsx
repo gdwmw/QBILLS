@@ -22,7 +22,7 @@ const MembershipCard: FC<T> = ({ data }): ReactElement => {
           <IoClose size={25} />
         </button>
 
-        <div className="absolute flex h-full w-full items-center justify-center pb-16 pr-[61px]">
+        <div className="absolute flex size-full items-center justify-center pb-16 pr-[61px]">
           <Logo size={1.6} />
         </div>
 

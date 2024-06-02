@@ -45,7 +45,7 @@ export const AdminNavbar: FC<TAdminNavbar> = ({ session }): ReactElement => {
         <h1 className="whitespace-nowrap text-2xl font-bold">{title}</h1>
 
         <section className="flex w-full max-w-[335px] items-center gap-2">
-          <div className="hidden h-10 w-10 rounded-full bg-P4 sm:block" />
+          <div className="hidden size-10 rounded-full bg-P4 sm:block" />
           <div className="hidden w-full max-w-[185px] flex-col sm:flex">
             <span className="truncate font-semibold">{session?.name ?? "Loading..."}</span>
 

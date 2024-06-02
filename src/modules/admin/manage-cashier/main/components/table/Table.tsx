@@ -24,7 +24,7 @@ export const Table: FC<T> = ({ checkbox, data, handleCheckbox, loading, setCheck
           <thead className="sticky top-0 z-10 bg-N2">
             <tr className="text-center">
               {TABLE_HEAD.map((label, index) => (
-                <th className="px-4 py-4" key={index}>
+                <th className="p-4" key={index}>
                   {label}
                 </th>
               ))}

@@ -11,14 +11,14 @@ const ChipCVA = cva("flex items-center justify-center rounded-full border", {
 
   variants: {
     size: {
-      "2xl": "h-fit w-fit gap-2 px-7 py-4 text-2xl",
-      "3xl": "h-fit w-fit gap-2 px-8 py-5 text-3xl",
-      lg: "h-fit w-fit gap-2 px-5 py-3 text-lg",
-      md: "h-fit w-fit gap-1 px-4 py-2.5 text-base",
+      "2xl": "size-fit gap-2 px-7 py-4 text-2xl",
+      "3xl": "size-fit gap-2 px-8 py-5 text-3xl",
+      lg: "size-fit gap-2 px-5 py-3 text-lg",
+      md: "size-fit gap-1 px-4 py-2.5 text-base",
       "md-status": "h-10 w-28 gap-1 text-sm",
-      sm: "h-fit w-fit gap-1 px-3 py-2 text-sm",
+      sm: "size-fit gap-1 px-3 py-2 text-sm",
       "sm-status": "h-7 w-24 gap-1 text-xs",
-      xl: "h-fit w-fit gap-2 px-6 py-3.5 text-xl",
+      xl: "size-fit gap-2 px-6 py-3.5 text-xl",
     },
 
     status: {

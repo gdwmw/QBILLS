@@ -17,7 +17,7 @@ const InputFieldsetCVA = cva("group w-full overflow-hidden rounded-md border-2 p
   },
 });
 
-const InputLegendCVA = cva("ml-3 select-none px-1 text-xs whitespace-nowrap font-semibold", {
+const InputLegendCVA = cva("ml-3 select-none whitespace-nowrap px-1 text-xs font-semibold", {
   defaultVariants: {
     variant: "default",
   },
@@ -37,7 +37,7 @@ const InputIconCVA = cva("mx-1", {
   variants: {
     variant: {
       default: "text-N3 hover:text-P4 active:scale-95 group-focus-within:text-P5",
-      disabled: "text-N4 cursor-not-allowed",
+      disabled: "cursor-not-allowed text-N4",
       error: "text-E4 active:scale-95",
     },
   },

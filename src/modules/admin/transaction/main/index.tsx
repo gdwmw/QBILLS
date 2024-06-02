@@ -225,7 +225,7 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <MdAccountBalanceWallet className="-ml-[6px] -mt-[6px] text-I4" size={50} />
+                  <MdAccountBalanceWallet className="ml-[-6px] mt-[-6px] text-I4" size={50} />
                 </div>
                 <span className="font-semibold text-N3">Total Monthly Per.{` (${calculateCurrentMonthlyTotal(data || []).month})`}</span>
                 <br />
@@ -243,7 +243,7 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <FaCheckCircle className="-ml-[1px] mb-px text-S4" size={38} />
+                  <FaCheckCircle className="-ml-px mb-px text-S4" size={38} />
                 </div>
                 <span className="font-semibold text-N3">Success</span>
                 <br />
@@ -256,7 +256,7 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <FaClock className="-ml-[1px] mb-px text-W4" size={38} />
+                  <FaClock className="-ml-px mb-px text-W4" size={38} />
                 </div>
                 <span className="font-semibold text-N3">Pending</span>
                 <br />
@@ -267,7 +267,7 @@ export const Main: FC = (): ReactElement => {
             <section className="flex h-[180px] w-full items-center rounded-lg border-2 px-10">
               <div>
                 <div className="h-[40px] border border-N1">
-                  <IoMdCloseCircle className="-ml-[4px] -mt-[4px] text-E4" size={46} />
+                  <IoMdCloseCircle className="ml-[-4px] mt-[-4px] text-E4" size={46} />
                 </div>
                 <span className="font-semibold text-N3">Canceled</span>
                 <br />
@@ -304,15 +304,15 @@ export const Main: FC = (): ReactElement => {
             <table className="w-full">
               <thead className="sticky top-0 z-10 bg-N2">
                 <tr className="text-center">
-                  {editMode && <th className="px-4 py-4">Checkbox</th>}
-                  <th className="px-4 py-4">Code</th>
-                  <th className="px-4 py-4">Cashier</th>
-                  <th className="px-4 py-4">Customer</th>
-                  <th className="px-4 py-4">Payment</th>
-                  <th className="px-4 py-4">Date - Time</th>
-                  <th className="px-4 py-4">Amount</th>
-                  <th className="px-4 py-4">Status</th>
-                  {editMode && <th className="px-4 py-4">Action</th>}
+                  {editMode && <th className="p-4">Checkbox</th>}
+                  <th className="p-4">Code</th>
+                  <th className="p-4">Cashier</th>
+                  <th className="p-4">Customer</th>
+                  <th className="p-4">Payment</th>
+                  <th className="p-4">Date - Time</th>
+                  <th className="p-4">Amount</th>
+                  <th className="p-4">Status</th>
+                  {editMode && <th className="p-4">Action</th>}
                 </tr>
               </thead>
               <tbody>
@@ -327,7 +327,7 @@ export const Main: FC = (): ReactElement => {
                   .map((transaction, index) => (
                     <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={transaction.id}>
                       {editMode && (
-                        <td className="px-2 py-2">
+                        <td className="p-2">
                           <input
                             checked={checkbox.includes(transaction.id)}
                             id={`checkbox-id-${index}`}
@@ -337,14 +337,14 @@ export const Main: FC = (): ReactElement => {
                           />
                         </td>
                       )}
-                      <td className="whitespace-nowrap px-2 py-2">{transaction.code}</td>
-                      <td className="whitespace-nowrap px-2 py-2">{transaction.cashier}</td>
-                      <td className="whitespace-nowrap px-2 py-2">{transaction.customer}</td>
-                      <td className="whitespace-nowrap px-2 py-2">{transaction.payment}</td>
-                      <td className="whitespace-nowrap px-2 py-2">
+                      <td className="whitespace-nowrap p-2">{transaction.code}</td>
+                      <td className="whitespace-nowrap p-2">{transaction.cashier}</td>
+                      <td className="whitespace-nowrap p-2">{transaction.customer}</td>
+                      <td className="whitespace-nowrap p-2">{transaction.payment}</td>
+                      <td className="whitespace-nowrap p-2">
                         {transaction.date} - {transaction.time}
                       </td>
-                      <td className="whitespace-nowrap px-2 py-2">
+                      <td className="whitespace-nowrap p-2">
                         {new Intl.NumberFormat("id-ID", {
                           currency: "IDR",
                           maximumFractionDigits: 0,
@@ -352,11 +352,11 @@ export const Main: FC = (): ReactElement => {
                           style: "currency",
                         }).format(transaction.amount)}
                       </td>
-                      <td className="px-2 py-2">
+                      <td className="p-2">
                         <Chip className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
                       </td>
                       {editMode && (
-                        <td className="px-2 py-2">
+                        <td className="p-2">
                           <div className="flex justify-center gap-2">
                             <IconButton
                               onClick={() => {

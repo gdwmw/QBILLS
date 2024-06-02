@@ -85,11 +85,11 @@ export const Form: FC<T> = ({
             variant={errors.image ? "error" : "default"}
           />
 
-          <fieldset className="group h-full max-h-[390px] w-full overflow-hidden rounded-md border-2 border-N2 px-1 pb-2 focus-within:border-P4">
+          <fieldset className="group size-full max-h-[390px] overflow-hidden rounded-md border-2 border-N2 px-1 pb-2 focus-within:border-P4">
             <legend className="ml-3 select-none whitespace-nowrap px-1 text-xs font-semibold text-N3 group-focus-within:text-P5">Preview</legend>
-            <div className="flex h-full w-full max-w-[337px] items-center justify-center">
+            <div className="flex size-full max-w-[337px] items-center justify-center">
               {imageURL || watch("image") ? (
-                <Image alt="Product Image" className="h-fit max-h-[352px] w-fit" height={0} quality={30} src={imageURL || watch("image")} width={0} />
+                <Image alt="Product Image" className="size-fit max-h-[352px]" height={0} quality={30} src={imageURL || watch("image")} width={0} />
               ) : null}
             </div>
           </fieldset>
