@@ -1,5 +1,5 @@
 {
-  "extends": ["plugin:perfectionist/recommended-alphabetical", "next/core-web-vitals"],
+  "extends": ["plugin:perfectionist/recommended-alphabetical", "plugin:tailwindcss/recommended", "next/core-web-vitals"],
   "plugins": ["perfectionist"],
   "rules": {
     "perfectionist/sort-imports": [
