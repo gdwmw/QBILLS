@@ -26,7 +26,7 @@ export const options: NextAuthOptions = {
       async authorize(credentials: any) {
         const { password, username } = credentials;
         try {
-          const res = await GETAdminAccount();
+          const res = await GETAdminAccount({});
           const user: IAdminAccount | undefined = res.find((data) => data.username === username && data.password === password);
           if (user) {
             return user;
