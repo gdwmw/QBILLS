@@ -1,12 +1,12 @@
 "use client";
 
 import { FC, ReactElement, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 
-import { Pagination, PaginationLogic } from "@/components";
+import { Pagination } from "@/components";
 import { useGlobalStates } from "@/states";
 import { GETAdminAccount, IAdminAccount } from "@/utils";
 
@@ -15,15 +15,36 @@ const AddDataForm = dynamic(() => import("./components/forms/AddDataForm"));
 const UpdateDataForm = dynamic(() => import("./components/forms/UpdateDataForm"));
 
 export const Main: FC = (): ReactElement => {
-  const { data } = useQuery({
-    queryFn: GETAdminAccount,
-    queryKey: ["GETAdminAccount"],
-  });
-
   const { openAddDataForm, openUpdateDataForm, setOpenAddDataForm, setOpenUpdateDataForm } = useGlobalStates();
   const [checkbox, setCheckbox] = useState<string[]>([]);
   const [selectedData, setSelectedData] = useState<IAdminAccount | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+
+  const { handleSubmit, register, reset, watch } = useForm<{ search: string }>({
+    defaultValues: {
+      search: "",
+    },
+  });
+
+  useEffect(() => {
+    if (!watch("search")) {
+      setSearch("");
+      setPage(1);
+    }
+  }, [watch("search")]);
+
+  const searchLogic = watch("search") ? search : "";
+  const { data } = useQuery({
+    queryFn: () => GETAdminAccount({ limit: 30, page: page, search: searchLogic }),
+    queryKey: ["GETAdminAccount", page, searchLogic],
+  });
+
+  const onSubmit: SubmitHandler<{ search: string }> = async (value) => {
+    setSearch(value.search);
+    setPage(1);
+  };
 
   const handleCheckbox = (id: string) => {
     setCheckbox((prev) => [...prev, id]);
@@ -32,23 +53,9 @@ export const Main: FC = (): ReactElement => {
     }
   };
 
-  const { register, watch } = useForm<{ search: string }>({
-    defaultValues: {
-      search: "",
-    },
-  });
-
-  const searchResult = data?.filter((dt) => {
-    return dt.name.toLowerCase().includes(watch("search").toLowerCase()) || dt.username.toLowerCase().includes(watch("search").toLowerCase());
-  });
-
-  const { currentData, currentPage, endData, nextPage, prevPage, startData, totalData, totalPage } = PaginationLogic({
-    data: searchResult,
-    dataPerPage: 30,
-  });
-
   useEffect(() => {
     return () => {
+      reset();
       setOpenAddDataForm(false);
       setOpenUpdateDataForm(false);
     };
@@ -57,11 +64,23 @@ export const Main: FC = (): ReactElement => {
   return (
     <>
       <main className="px-5">
-        <Toolbar checkbox={checkbox} loading={loading} register={register} setCheckbox={setCheckbox} setLoading={setLoading} />
+        <Toolbar
+          checkbox={checkbox}
+          handleSubmit={handleSubmit}
+          iconOnClick={() => {
+            setSearch(watch("search"));
+            setPage(1);
+          }}
+          loading={loading}
+          onSubmit={onSubmit}
+          register={register}
+          setCheckbox={setCheckbox}
+          setLoading={setLoading}
+        />
 
         <Table
           checkbox={checkbox}
-          data={currentData ?? []}
+          data={data ?? []}
           handleCheckbox={handleCheckbox}
           loading={loading}
           setCheckbox={setCheckbox}
@@ -70,13 +89,19 @@ export const Main: FC = (): ReactElement => {
         />
 
         <Pagination
-          currentPage={currentPage}
-          endData={endData}
-          onClickNextPage={nextPage}
-          onClickPrevPage={prevPage}
-          startData={startData}
-          totalData={totalData}
-          totalPage={totalPage}
+          currentPage={page}
+          endData={data?.length ?? 0}
+          onClickNextPage={() => {
+            if (data && data.length >= 30) {
+              setPage(page + 1);
+            }
+          }}
+          onClickPrevPage={() => {
+            if (page > 1) {
+              setPage(page - 1);
+            }
+          }}
+          startData={data && data.length > 0 ? 1 : 0}
         />
       </main>
       {openAddDataForm && <AddDataForm />}
