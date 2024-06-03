@@ -8,8 +8,8 @@ type T = {
   onClickNextPage: () => void;
   onClickPrevPage: () => void;
   startData: number;
-  totalData: number | undefined;
-  totalPage: number | undefined;
+  totalData?: number;
+  totalPage?: number;
 };
 
 export const Pagination: FC<T> = ({ currentPage, endData, onClickNextPage, onClickPrevPage, startData, totalData, totalPage }): ReactElement => {
@@ -17,13 +17,13 @@ export const Pagination: FC<T> = ({ currentPage, endData, onClickNextPage, onCli
     <section className="mt-5 w-full border-t py-3">
       <div className="flex items-center justify-between">
         <section>
-          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} of ${totalData} result.`}</span>
+          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} ${totalData ? "of " + totalData : ""} results.`}</span>
         </section>
 
         <section>
           <ul className="flex items-center gap-3">
             <li>
-              <button onClick={onClickPrevPage} type="button">
+              <button className="flex items-center" onClick={onClickPrevPage} type="button">
                 <IoIosArrowBack className="cursor-pointer text-N3 hover:text-N7 active:scale-95" />
               </button>
             </li>
@@ -31,15 +31,19 @@ export const Pagination: FC<T> = ({ currentPage, endData, onClickNextPage, onCli
             <li>
               <span className="text-sm">{currentPage}</span>
             </li>
-            <li>
-              <span className="text-N3">/</span>
-            </li>
-            <li>
-              <span className="text-sm">{totalPage}</span>
-            </li>
+            {totalPage && (
+              <>
+                <li>
+                  <span className="text-N3">/</span>
+                </li>
+                <li>
+                  <span className="text-sm">{totalPage}</span>
+                </li>
+              </>
+            )}
 
             <li>
-              <button onClick={onClickNextPage} type="button">
+              <button className="flex items-center" onClick={onClickNextPage} type="button">
                 <IoIosArrowForward className="cursor-pointer text-N3 hover:text-N7 active:scale-95" />
               </button>
             </li>
@@ -47,7 +51,7 @@ export const Pagination: FC<T> = ({ currentPage, endData, onClickNextPage, onCli
         </section>
 
         <section>
-          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} of ${totalData} result.`}</span>
+          <span className="text-sm font-semibold text-N3">{`Showing ${startData} - ${endData} ${totalData ? "of " + totalData : ""} results.`}</span>
         </section>
       </div>
     </section>
