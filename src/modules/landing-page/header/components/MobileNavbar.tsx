@@ -1,5 +1,3 @@
-"use client";
-
 import { FC, FormEvent, ReactElement, useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
