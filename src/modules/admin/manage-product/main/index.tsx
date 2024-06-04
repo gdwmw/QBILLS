@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 
 import { Pagination, PaginationLogic } from "@/components";
-import { useGlobalStates } from "@/states";
+import { useGlobalStates } from "@/hooks";
 import { GETProduct, IProduct } from "@/utils";
 
 import { Table, Toolbar } from "./components";

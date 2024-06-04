@@ -6,8 +6,8 @@ import { BiSolidDetail } from "react-icons/bi";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 import { IconButton } from "@/components";
+import { useGlobalStates } from "@/hooks";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { useGlobalStates } from "@/states";
 import { DELETEProduct, IProduct } from "@/utils";
 
 type T = {

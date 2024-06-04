@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { useGlobalStates } from "@/states";
+import { useGlobalStates } from "@/hooks";
 import { POSTProduct } from "@/utils";
 
 import { Form } from "./Form";

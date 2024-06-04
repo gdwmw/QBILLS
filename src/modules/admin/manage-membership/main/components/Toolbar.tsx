@@ -5,8 +5,8 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 
 import { Button, Input } from "@/components";
+import { useGlobalStates } from "@/hooks";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { useGlobalStates } from "@/states";
 import { DELETEMultipleMembership } from "@/utils";
 
 type T = {

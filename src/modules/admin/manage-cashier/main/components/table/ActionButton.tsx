@@ -5,8 +5,8 @@ import Image from "next/image";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 import { IconButton } from "@/components";
+import { useGlobalStates } from "@/hooks";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
-import { useGlobalStates } from "@/states";
 import { DELETECashierAccount, ICashierAccount } from "@/utils";
 
 type T = {

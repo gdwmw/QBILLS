@@ -4,9 +4,9 @@ import Image from "next/image";
 import { FaCoffee } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
+import { useGlobalStates } from "@/hooks";
 import detailProductBackground from "@/public/assets/images/card/detail-product.svg";
 import logoQBILLS1 from "@/public/assets/images/logos/white/logo-2.webp";
-import { useGlobalStates } from "@/states";
 import { IProduct } from "@/utils";
 
 type T = {
