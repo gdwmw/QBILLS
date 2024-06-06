@@ -3,6 +3,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+bun.lockb
 
 # testing
 /coverage
@@ -32,3 +33,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ignore files
+.gitignore
+.prettierignore
+
+# other
+/public
