@@ -1,7 +1,7 @@
 import { FC, ReactElement, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useGlobalStates } from "@/hooks";
@@ -27,7 +27,7 @@ const AddDataForm: FC = (): ReactElement => {
       "phone-number": "+",
       point: 0,
     },
-    resolver: valibotResolver(Schema),
+    resolver: zodResolver(Schema),
   });
 
   const handleAdd = useMutation({

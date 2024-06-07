@@ -1,11 +1,11 @@
 import { FC, ReactElement, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { IoTime } from "react-icons/io5";
-import { minLength, minValue, number, object, Output, string } from "valibot";
+import { z } from "zod";
 
 import { Button, Input, Select } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
@@ -13,19 +13,19 @@ import { ITransaction, POSTTransaction } from "@/utils";
 
 import { useTransaction } from "..";
 
-const Schema = object({
-  amount: number([minValue(1, "Please enter amount minimum 1 number.")]),
-  cashier: string([minLength(5, "Please enter cashier minimum 5 character.")]),
-  code: string([minLength(10, "Please enter code minimum 10 character.")]),
-  customer: string([minLength(5, "Please enter customer minimum 5 character.")]),
-  date: string([minLength(1, "Please enter the date.")]),
-  id: string(),
-  payment: string([minLength(1, "Please choose one of the options.")]),
-  status: string([minLength(1, "Please choose one of the options.")]),
-  time: string([minLength(1, "Please set the time.")]),
+const Schema = z.object({
+  amount: z.number().min(1, { message: "Please enter amount minimum 1 number." }),
+  cashier: z.string().min(5, { message: "Please enter cashier minimum 5 character." }),
+  code: z.string().min(10, { message: "Please enter code minimum 10 character." }),
+  customer: z.string().min(5, { message: "Please enter customer minimum 5 character." }),
+  date: z.string().min(1, { message: "Please enter the date." }),
+  id: z.string(),
+  payment: z.string().min(1, { message: "Please choose one of the options." }),
+  status: z.string().min(1, { message: "Please choose one of the options." }),
+  time: z.string().min(1, { message: "Please set the time." }),
 });
 
-type TUseForm = Output<typeof Schema>;
+type TUseForm = z.infer<typeof Schema>;
 
 const AddData: FC = (): ReactElement => {
   const queryClient = useQueryClient();
@@ -51,7 +51,7 @@ const AddData: FC = (): ReactElement => {
       status: "",
       time: "",
     },
-    resolver: valibotResolver(Schema),
+    resolver: zodResolver(Schema),
   });
 
   const handleAdd = useMutation({

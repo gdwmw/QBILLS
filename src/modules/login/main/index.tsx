@@ -3,23 +3,23 @@
 import { FC, ReactElement, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { minLength, object, Output, string } from "valibot";
+import { z } from "zod";
 
 import { Button, Input } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import logoQBILLS from "@/public/assets/images/logos/brown/logo-1.webp";
 
-const Schema = object({
-  password: string([minLength(1, "Please enter your Password.")]),
-  username: string([minLength(1, "Please enter your Username.")]),
+const Schema = z.object({
+  password: z.string().min(1, { message: "Please enter your Password." }),
+  username: z.string().min(1, { message: "Please enter your Username." }),
 });
 
-type TSchema = Output<typeof Schema>;
+type TSchema = z.infer<typeof Schema>;
 
 export const Main: FC = (): ReactElement => {
   const session = useSession();
@@ -32,7 +32,7 @@ export const Main: FC = (): ReactElement => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<TSchema>({ resolver: valibotResolver(Schema) });
+  } = useForm<TSchema>({ resolver: zodResolver(Schema) });
 
   const onSubmit: SubmitHandler<TSchema> = async (data) => {
     setLoading(true);

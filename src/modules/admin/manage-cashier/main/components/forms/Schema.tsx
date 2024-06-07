@@ -1,11 +1,11 @@
-import { maxLength, minLength, object, Output, string } from "valibot";
+import { z } from "zod";
 
-export const Schema = object({
-  id: string(),
-  name: string([minLength(3, "Please enter Name minimum 3 character."), maxLength(32, "Name maximum 32 character.")]),
-  password: string([minLength(8, "Please enter Password minimum 8 character."), maxLength(16, "Password maximum 16 character.")]),
-  role: string(),
-  username: string([minLength(5, "Please enter Username minimum 5 character."), maxLength(16, "Username maximum 16 character.")]),
+export const Schema = z.object({
+  id: z.string(),
+  name: z.string().min(3, { message: "Please enter Name minimum 3 character." }).max(32, { message: "Name maximum 32 character." }),
+  password: z.string().min(8, { message: "Please enter Password minimum 8 character." }).max(16, { message: "Password maximum 16 character." }),
+  role: z.string(),
+  username: z.string().min(5, { message: "Please enter Username minimum 5 character." }).max(16, { message: "Username maximum 16 character." }),
 });
 
-export type TSchema = Output<typeof Schema>;
+export type TSchema = z.infer<typeof Schema>;
