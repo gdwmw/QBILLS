@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 
 import { FC, ReactElement, ReactNode } from "react";
 
@@ -11,14 +11,7 @@ import "@/styles/globals.css";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
-export const viewport: Viewport = {
-  initialScale: 0.8,
-  width: "device-width",
-};
-
 export const metadata: Metadata = {
-  description:
-    "Elevate your sales strategy and delight customers with our state-of-the-art POS application, offering a seamless and user-friendly interface for enhanced transactions. QBILLS is here to be a solution for your business, features are available to make your work easier, use it now.",
   title: {
     default: "QBILLS | Landing Page",
     template: "QBILLS | %s",

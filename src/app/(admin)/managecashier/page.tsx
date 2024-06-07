@@ -1,9 +1,14 @@
 import { FC, ReactElement } from "react";
 
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { Metadata } from "next";
 
 import { Main } from "@/modules/admin/manage-cashier";
 import { GETCashierAccount } from "@/utils";
+
+export const metadata: Metadata = {
+  title: "Manage Cashier",
+};
 
 const ManageCashier: FC = async (): Promise<ReactElement> => {
   const queryClient = new QueryClient();
