@@ -4,6 +4,35 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
 import { MdAddToPhotos } from "react-icons/md";
 
+const FEATURES_DATA = [
+  { description: "You have the option to request food through the QBILLS POS application.", icon: <MdAddToPhotos />, title: "Create Order" },
+  {
+    description: "The use of membership provides its users with coupons, discounts, rewards, loyalty points.",
+    icon: <FaUserCircle />,
+    title: "Manage Account Cashier",
+  },
+  { description: "In the admin features there are product management features for coffee shops.", icon: <FaBoxesStacked />, title: "Manage Product" },
+  {
+    description: "The use of membership provides its users with coupons, discounts, rewards, loyalty points.",
+    icon: <FaMoneyBillTransfer />,
+    title: "Track Transaction History",
+  },
+];
+
+type TFeatureSection = {
+  description: string;
+  icon: ReactElement;
+  title: string;
+};
+
+const FeatureSection: FC<TFeatureSection> = ({ description, icon, title }) => (
+  <section className="w-full max-w-[335px] space-y-1">
+    <i className="text-3xl text-P4">{icon}</i>
+    <h2 className="text-xl font-semibold">{title}</h2>
+    <p className="text-sm">{description}</p>
+  </section>
+);
+
 export const About: FC = (): ReactElement => {
   return (
     <>
@@ -14,7 +43,7 @@ export const About: FC = (): ReactElement => {
               <h1 className="text-6xl font-semibold">About Us</h1>
 
               <p>
-                Elevate your sales strategy and delight customers with our state-of-the-art POS application, offering a seamless and user-friendly
+                Elevate your sales strategy and delight customers with our state of the art POS application, offering a seamless and user friendly
                 interface for enhanced transactions. QBILLS is here to be a solution for your business, features are available to make your work
                 easier, use it now.
               </p>
@@ -22,39 +51,15 @@ export const About: FC = (): ReactElement => {
 
             <div className="flex flex-col items-center gap-14">
               <div className="flex gap-5">
-                <section className="w-full max-w-[335px] space-y-1">
-                  <i className="text-3xl text-P4">
-                    <MdAddToPhotos />
-                  </i>
-                  <h2 className="text-xl font-semibold">Create Order</h2>
-                  <p className="text-sm">You have the option to request food through the QBILLS POS application.</p>
-                </section>
-
-                <section className="w-full max-w-[335px] space-y-1">
-                  <i className="text-3xl text-P4">
-                    <FaUserCircle />
-                  </i>
-                  <h2 className="text-xl font-semibold">Manage Account Cashier</h2>
-                  <p className="text-sm">The use of membership provides its users with coupons, discounts, rewards, loyalty points.</p>
-                </section>
+                {FEATURES_DATA.slice(0, 2).map((data, index) => (
+                  <FeatureSection key={index} {...data} />
+                ))}
               </div>
 
               <div className="flex gap-5">
-                <section className="w-full max-w-[335px] space-y-1">
-                  <i className="text-3xl text-P4">
-                    <FaBoxesStacked />
-                  </i>
-                  <h2 className="text-xl font-semibold">Manage Product</h2>
-                  <p className="text-sm">In the admin features there are product management features for coffee shops.</p>
-                </section>
-
-                <section className="w-full max-w-[335px] space-y-1">
-                  <i className="text-3xl text-P4">
-                    <FaMoneyBillTransfer />
-                  </i>
-                  <h2 className="text-xl font-semibold">Track Transaction History</h2>
-                  <p className="text-sm">The use of membership provides its users with coupons, discounts, rewards, loyalty points.</p>
-                </section>
+                {FEATURES_DATA.slice(2, 4).map((data, index) => (
+                  <FeatureSection key={index} {...data} />
+                ))}
               </div>
             </div>
           </div>
