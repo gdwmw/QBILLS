@@ -12,26 +12,12 @@ export const metadata: Metadata = {
 
 const Dashboard: FC = async (): Promise<ReactElement> => {
   const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryFn: GETCashierAccount,
-    queryKey: ["GETCashierAccount"],
-  });
-
-  await queryClient.prefetchQuery({
-    queryFn: GETMembership,
-    queryKey: ["GETMembership"],
-  });
-
-  await queryClient.prefetchQuery({
-    queryFn: GETProduct,
-    queryKey: ["GETProduct"],
-  });
-
-  await queryClient.prefetchQuery({
-    queryFn: GETTransaction,
-    queryKey: ["GETTransaction"],
-  });
+  await Promise.all([
+    queryClient.prefetchQuery({ queryFn: GETCashierAccount, queryKey: ["GETCashierAccount"] }),
+    queryClient.prefetchQuery({ queryFn: GETMembership, queryKey: ["GETMembership"] }),
+    queryClient.prefetchQuery({ queryFn: GETProduct, queryKey: ["GETProduct"] }),
+    queryClient.prefetchQuery({ queryFn: GETTransaction, queryKey: ["GETTransaction"] }),
+  ]);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
