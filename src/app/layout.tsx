@@ -24,14 +24,16 @@ type T = {
 
 const RootLayout: FC<T> = ({ children }): ReactElement => {
   return (
-    <ReactQueryProvider>
-      <html className="scroll-smooth" lang="en">
-        <body className={openSans.className}>
-          <NextAuthProvider>{children}</NextAuthProvider>
-          <SpeedInsights />
-        </body>
-      </html>
-    </ReactQueryProvider>
+    <html className="scroll-smooth" lang="en">
+      <body className={openSans.className}>
+        <ReactQueryProvider>
+          <NextAuthProvider>
+            <SpeedInsights />
+            {children}
+          </NextAuthProvider>
+        </ReactQueryProvider>
+      </body>
+    </html>
   );
 };
 
