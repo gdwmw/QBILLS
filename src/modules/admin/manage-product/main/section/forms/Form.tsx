@@ -2,7 +2,7 @@ import { FC, FormEventHandler, ReactElement } from "react";
 
 import Image from "next/image";
 
-import { Button, Input, Modal, Select, TextArea } from "@/components";
+import { Button, Input, Modal, SelectInput, TextAreaInput } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 
 type T = {
@@ -40,7 +40,7 @@ export const Form: FC<T> = ({
 
           <Input label="Name" type="text" {...register("name")} errorMessage={errors.name?.message} variant={errors.name ? "error" : "default"} />
 
-          <TextArea
+          <TextAreaInput
             label="Description"
             {...register("description")}
             className="max-h-[150px] min-h-[48px] w-full"
@@ -48,18 +48,23 @@ export const Form: FC<T> = ({
             variant={errors.description ? "error" : "default"}
           />
 
-          <Select label="Category" {...register("category")} errorMessage={errors.category?.message} variant={errors.category ? "error" : "default"}>
+          <SelectInput
+            label="Category"
+            {...register("category")}
+            errorMessage={errors.category?.message}
+            variant={errors.category ? "error" : "default"}
+          >
             <option value="coffee">Coffee</option>
             <option value="non-coffee">Non-Coffee</option>
             <option value="snack">Snack</option>
             <option value="meal">Meal</option>
-          </Select>
+          </SelectInput>
 
-          <Select label="Size" {...register("size")} errorMessage={errors.size?.message} variant={errors.size ? "error" : "default"}>
+          <SelectInput label="Size" {...register("size")} errorMessage={errors.size?.message} variant={errors.size ? "error" : "default"}>
             <option value="small">Small</option>
             <option value="medium">Medium</option>
             <option value="large">Large</option>
-          </Select>
+          </SelectInput>
 
           <Input
             label="Price"
@@ -69,10 +74,10 @@ export const Form: FC<T> = ({
             variant={errors.price ? "error" : "default"}
           />
 
-          <Select label="Stock" {...register("stock")} errorMessage={errors.stock?.message} variant={errors.stock ? "error" : "default"}>
+          <SelectInput label="Stock" {...register("stock")} errorMessage={errors.stock?.message} variant={errors.stock ? "error" : "default"}>
             <option value="available">Available</option>
             <option value="unavailable">Unavailable</option>
-          </Select>
+          </SelectInput>
         </div>
 
         <div className="space-y-3">

@@ -11,7 +11,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { MdAccountBalanceWallet, MdDelete, MdEdit } from "react-icons/md";
 import { create } from "zustand";
 
-import { Button, Chip, IconButton, Input, Pagination, Select } from "@/components";
+import { Button, ChipButton, IconButton, Input, Pagination, SelectInput } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { DELETEMultipleTransaction, DELETETransaction, GETTransaction, ITransaction } from "@/utils";
 const AddData = dynamic(() => import("./add-data"));
@@ -289,12 +289,12 @@ export const Main: FC = (): ReactElement => {
               <Input label="End Date" type="date" {...register("endDate")} id="endDate" variant={"default"} />
             </div>
             <div className="w-full min-w-[162px]">
-              <Select label="Status" {...register("status")} id="status">
+              <SelectInput label="Status" {...register("status")} id="status">
                 <option value=""></option>
                 <option value="success">Success</option>
                 <option value="pending">Pending</option>
                 <option value="canceled">Canceled</option>
-              </Select>
+              </SelectInput>
             </div>
           </div>
         </section>
@@ -353,7 +353,7 @@ export const Main: FC = (): ReactElement => {
                         }).format(transaction.amount)}
                       </td>
                       <td className="p-2">
-                        <Chip className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
+                        <ChipButton className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
                       </td>
                       {editMode && (
                         <td className="p-2">

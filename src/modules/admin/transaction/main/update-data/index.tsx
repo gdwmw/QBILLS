@@ -7,7 +7,7 @@ import Image from "next/image";
 import { IoTime } from "react-icons/io5";
 import { z } from "zod";
 
-import { Button, Input, Select } from "@/components";
+import { Button, Input, SelectInput } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";
 import { ITransaction, PUTTransaction } from "@/utils";
 
@@ -115,7 +115,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               variant={errors.customer ? "error" : "default"}
             />
 
-            <Select
+            <SelectInput
               label="Payment"
               {...register("payment")}
               errorMessage={errors.payment?.message}
@@ -131,7 +131,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               <option value="Bank BCA">Bank BCA</option>
               <option value="Bank BRI">Bank BRI</option>
               <option value="Bank BNI">Bank BNI</option>
-            </Select>
+            </SelectInput>
 
             <Input
               label="Date"
@@ -171,7 +171,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               variant={errors.amount ? "error" : "default"}
             />
 
-            <Select
+            <SelectInput
               label="Status"
               {...register("status")}
               errorMessage={errors.status?.message}
@@ -181,7 +181,7 @@ const UpdateData: FC<T> = ({ selectedData }): ReactElement => {
               <option value="pending">Pending</option>
               <option value="success">Success</option>
               <option value="canceled">Canceled</option>
-            </Select>
+            </SelectInput>
           </div>
           <div className="mt-3 flex w-full gap-3 font-semibold">
             <Button

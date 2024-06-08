@@ -11,7 +11,7 @@ import { FaBoxesStacked } from "react-icons/fa6";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { RiSwapBoxFill } from "react-icons/ri";
 
-import { Chip } from "@/components";
+import { ChipButton } from "@/components";
 import { GETCashierAccount, GETMembership, GETProduct, GETTransaction } from "@/utils";
 
 export const Main: FC = (): ReactElement => {
@@ -262,7 +262,7 @@ export const Main: FC = (): ReactElement => {
                   .map((transaction, index) => (
                     <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={transaction.id}>
                       <td className="p-2">
-                        <Chip className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
+                        <ChipButton className="mx-auto" label={transaction.status} size={"sm-status"} status={statusMap[transaction.status]} />
                       </td>
                       <td className="p-2 font-semibold">
                         {new Intl.NumberFormat("id-ID", {
