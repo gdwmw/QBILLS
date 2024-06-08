@@ -6,7 +6,7 @@ import Mockup1 from "@/public/assets/images/landing-page/hero-section/mockup.web
 import logoQBILLS1 from "@/public/assets/images/logos/brown/logo-2.webp";
 import logoQBILLS2 from "@/public/assets/images/logos/white/logo-2.webp";
 
-export const HeroSection: FC = (): ReactElement => {
+export const Hero: FC = (): ReactElement => {
   return (
     <section className="relative -z-10 h-screen w-full overflow-hidden bg-gradient-to-r from-P3 to-P4" id="Home">
       <Image alt="QBILLS" className="absolute -top-24 left-10 -z-10 -rotate-12 opacity-25" priority quality={30} src={logoQBILLS1} width={700} />

@@ -54,7 +54,7 @@ const Section: FC<TSection> = ({ links, title }) => (
   </section>
 );
 
-export const InfoSection: FC = (): ReactElement => {
+export const Information: FC = (): ReactElement => {
   return (
     <div className="flex flex-col gap-20 md:flex-row">
       {Object.entries(INFO_LINK_DATA).map(([title, links], index) => (

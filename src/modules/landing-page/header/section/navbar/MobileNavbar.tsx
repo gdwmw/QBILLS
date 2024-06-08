@@ -6,7 +6,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";
 
-import { LoginStatusButton, NavLinks } from "./";
+import { LoginStatusButton } from "./LoginStatusButton";
+import { NavLinks } from "./NavLinks";
 
 type T = {
   authStatus: boolean | null;

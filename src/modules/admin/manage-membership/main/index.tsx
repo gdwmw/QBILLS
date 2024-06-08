@@ -10,10 +10,10 @@ import { Pagination, PaginationLogic } from "@/components";
 import { useGlobalStates } from "@/hooks";
 import { GETMembership, IMembership } from "@/utils";
 
-import { Table, Toolbar } from "./components";
-const AddDataForm = dynamic(() => import("./components/forms/AddDataForm"));
-const UpdateDataForm = dynamic(() => import("./components/forms/UpdateDataForm"));
-const MembershipCard = dynamic(() => import("./components/MembershipCard"));
+import { Table, Toolbar } from "./section";
+const AddDataForm = dynamic(() => import("./section/forms/AddDataForm"));
+const UpdateDataForm = dynamic(() => import("./section/forms/UpdateDataForm"));
+const MembershipCard = dynamic(() => import("./section/card/MembershipCard"));
 
 export const Main: FC = (): ReactElement => {
   const { data } = useQuery({

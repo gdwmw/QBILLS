@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ButtonCVA, Logo } from "@/components";
 import { cn } from "@/libs";
 
-import { InfoSection } from "./components";
+import { Information } from "./section";
 
 const RULES_LINK_DATA = [
   { href: "/", label: "Terms of Service" },
@@ -28,7 +28,7 @@ export const Footer: FC = (): ReactElement => {
               </p>
             </section>
 
-            <InfoSection />
+            <Information />
           </div>
         </div>
       </section>
