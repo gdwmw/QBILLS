@@ -38,7 +38,7 @@ interface I extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof
   startIcon?: ReactNode;
 }
 
-export const Chip: FC<I> = ({ className, endIcon, label, size, startIcon, status, ...props }): ReactElement => {
+export const ChipButton: FC<I> = ({ className, endIcon, label, size, startIcon, status, ...props }): ReactElement => {
   return (
     <button className={cn(ChipCVA({ className, size, status }))} type="button" {...props}>
       {startIcon}

@@ -35,7 +35,7 @@ interface I extends TextareaHTMLAttributes<HTMLTextAreaElement>, VariantProps<ty
   label?: string;
 }
 
-export const TextArea: FC<I> = forwardRef<HTMLTextAreaElement, I>(({ className, errorMessage, label, variant, ...props }, ref): ReactElement => {
+export const TextAreaInput: FC<I> = forwardRef<HTMLTextAreaElement, I>(({ className, errorMessage, label, variant, ...props }, ref): ReactElement => {
   return (
     <section className="space-y-1">
       <fieldset className={cn(TextAreaFieldsetCVA({ variant }))}>
@@ -49,4 +49,4 @@ export const TextArea: FC<I> = forwardRef<HTMLTextAreaElement, I>(({ className, 
   );
 });
 
-TextArea.displayName = "TextArea";
+TextAreaInput.displayName = "TextAreaInput";

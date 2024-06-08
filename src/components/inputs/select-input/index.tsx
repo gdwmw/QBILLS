@@ -36,7 +36,7 @@ interface I extends SelectHTMLAttributes<HTMLSelectElement>, VariantProps<typeof
   label?: string;
 }
 
-export const Select: FC<I> = forwardRef<HTMLSelectElement, I>(({ children, errorMessage, label, variant, ...props }, ref): ReactElement => {
+export const SelectInput: FC<I> = forwardRef<HTMLSelectElement, I>(({ children, errorMessage, label, variant, ...props }, ref): ReactElement => {
   return (
     <section className="space-y-1">
       <fieldset className={cn(SelectFieldsetCVA({ variant }))}>
@@ -52,4 +52,4 @@ export const Select: FC<I> = forwardRef<HTMLSelectElement, I>(({ children, error
   );
 });
 
-Select.displayName = "Select";
+SelectInput.displayName = "SelectInput";
