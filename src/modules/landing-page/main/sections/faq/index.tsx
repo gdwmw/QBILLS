@@ -77,6 +77,7 @@ export const FAQ: FC = (): ReactElement => {
                 <FAQSection {...faq} key={index} />
               ))}
             </div>
+
             <div className="space-y-5">
               {FAQ_DATA.slice(3, 6).map((faq, index) => (
                 <FAQSection {...faq} key={index} />
