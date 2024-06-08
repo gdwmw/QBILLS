@@ -10,10 +10,10 @@ import { Pagination, PaginationLogic } from "@/components";
 import { useGlobalStates } from "@/hooks";
 import { GETProduct, IProduct } from "@/utils";
 
-import { Table, Toolbar } from "./section";
-const AddDataForm = dynamic(() => import("./section/forms/AddDataForm"));
-const UpdateDataForm = dynamic(() => import("./section/forms/UpdateDataForm"));
-const DetailProductCard = dynamic(() => import("./section/card/DetailProductCard"));
+import { Table, Toolbar } from "./sections";
+const AddDataForm = dynamic(() => import("./sections/form/AddDataForm"));
+const UpdateDataForm = dynamic(() => import("./sections/form/UpdateDataForm"));
+const DetailProductCard = dynamic(() => import("./sections/card/DetailProductCard"));
 
 export const Main: FC = (): ReactElement => {
   const { data } = useQuery({

@@ -10,9 +10,9 @@ import { Pagination, PaginationLogic } from "@/components";
 import { useGlobalStates } from "@/hooks";
 import { GETCashierAccount, ICashierAccount } from "@/utils";
 
-import { Table, Toolbar } from "./section";
-const AddDataForm = dynamic(() => import("./section/forms/AddDataForm"));
-const UpdateDataForm = dynamic(() => import("./section/forms/UpdateDataForm"));
+import { Table, Toolbar } from "./sections";
+const AddDataForm = dynamic(() => import("./sections/form/AddDataForm"));
+const UpdateDataForm = dynamic(() => import("./sections/form/UpdateDataForm"));
 
 export const Main: FC = (): ReactElement => {
   const { data } = useQuery({

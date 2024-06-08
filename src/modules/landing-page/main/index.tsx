@@ -2,7 +2,7 @@ import { FC, ReactElement } from "react";
 
 import { Copyright } from "@/components";
 
-import { About, FAQ, Features, GetApp, Hero } from "./section";
+import { About, FAQ, Features, GetApp, Hero } from "./sections";
 
 export const Main: FC = (): ReactElement => {
   return (

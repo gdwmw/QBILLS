@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react";
 
-import { Navbar } from "./section";
+import { Navbar } from "./sections";
 
 type T = {
   authStatus: boolean | null;

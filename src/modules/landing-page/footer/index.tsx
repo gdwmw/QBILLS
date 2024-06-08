@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ButtonCVA, Logo } from "@/components";
 import { cn } from "@/libs";
 
-import { Information } from "./section";
+import { Information } from "./sections";
 
 const RULES_LINK_DATA = [
   { href: "/", label: "Terms of Service" },
