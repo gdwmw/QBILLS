@@ -19,7 +19,7 @@ type T = {
 export const Table: FC<T> = ({ checkbox, data, handleCheckbox, loading, setCheckbox, setLoading, setSelectedData }): ReactElement => {
   return (
     <section className="overflow-hidden rounded-lg border border-N2">
-      <div className="max-h-[74vh] overflow-auto">
+      <div className="max-h-[74vh] min-h-[74vh] overflow-auto">
         <table className="w-full">
           <thead className="sticky top-0 z-10 bg-N2">
             <tr className="text-center">
