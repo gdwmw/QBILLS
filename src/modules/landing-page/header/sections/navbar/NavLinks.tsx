@@ -12,13 +12,13 @@ const LINKS_DATA = [
   { href: "#FAQ", label: "FAQ" },
 ];
 
-type TLinks = {
+type TLinkSection = {
   href: string;
   label: string;
   onLinkClick: (e: FormEvent, href: string) => void;
 };
 
-const Links: FC<TLinks> = ({ href, label, onLinkClick }): ReactElement => {
+const LinkSection: FC<TLinkSection> = ({ href, label, onLinkClick }): ReactElement => {
   return (
     <Link className={cn(ButtonCVA({ className: "font-semibold", ghost: "white", size: "ghost" }))} href={href} onClick={(e) => onLinkClick(e, href)}>
       {label}
@@ -34,7 +34,7 @@ export const NavLinks: FC<TNavLinks> = ({ handleScroll }): ReactElement => {
   return (
     <>
       {LINKS_DATA.map((link, index) => (
-        <Links key={index} {...link} onLinkClick={handleScroll} />
+        <LinkSection key={index} {...link} onLinkClick={handleScroll} />
       ))}
     </>
   );
