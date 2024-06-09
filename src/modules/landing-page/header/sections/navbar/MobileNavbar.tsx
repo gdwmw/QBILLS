@@ -21,15 +21,15 @@ export const MobileNavbar: FC<T> = ({ authStatus }): ReactElement => {
     setOpenMenu(!openMenu);
   };
 
-  function handleScroll(e: FormEvent, href: string) {
+  const handleScroll = (e: FormEvent, href: string) => {
     e.preventDefault();
     document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
-  }
+  };
 
-  function handleLinkClick(e: FormEvent, href: string) {
+  const handleLinkClick = (e: FormEvent, href: string) => {
     toggleMenu();
     handleScroll(e, href);
-  }
+  };
 
   const handleClickOutside = (event: MouseEvent) => {
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {

@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/libs";
 
-const IconButtonCVA = cva("flex select-none items-center justify-center rounded-xl border", {
+export const IconButtonCVA = cva("flex select-none items-center justify-center rounded-xl border", {
   defaultVariants: {
     size: "sm",
   },
@@ -45,12 +45,10 @@ const IconButtonCVA = cva("flex select-none items-center justify-center rounded-
 
 interface I extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof IconButtonCVA> {}
 
-const IconButton: FC<I> = ({ children, className, outline, size, solid, ...props }): ReactElement => {
+export const IconButton: FC<I> = ({ children, className, outline, size, solid, ...props }): ReactElement => {
   return (
     <button className={cn(IconButtonCVA({ className, outline, size, solid }))} type="button" {...props}>
       {children}
     </button>
   );
 };
-
-export { IconButton, IconButtonCVA };

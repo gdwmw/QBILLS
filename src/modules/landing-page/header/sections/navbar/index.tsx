@@ -16,10 +16,10 @@ type T = {
 };
 
 export const Navbar: FC<T> = ({ authStatus }): ReactElement => {
-  function handleScroll(e: FormEvent, href: string) {
+  const handleScroll = (e: FormEvent, href: string) => {
     e.preventDefault();
     document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
-  }
+  };
 
   return (
     <nav className="absolute left-0 top-0 w-full px-10 py-5">

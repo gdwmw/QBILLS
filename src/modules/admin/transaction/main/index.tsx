@@ -157,7 +157,7 @@ export const Main: FC = (): ReactElement => {
   const currentData = searchResult?.slice(indexOfFirstData, indexOfLastData);
   const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
 
-  function calculateCurrentMonthlyTotal(transactions: { amount: number; date: string; status: string }[]) {
+  const calculateCurrentMonthlyTotal = (transactions: { amount: number; date: string; status: string }[]) => {
     let currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
     for (let transaction of transactions) {
@@ -169,9 +169,9 @@ export const Main: FC = (): ReactElement => {
       }
     }
     return { month: currentMonth, total: currentMonthTotal };
-  }
+  };
 
-  function calculateStatus(transactions: { status: string }[], status: string) {
+  const calculateStatus = (transactions: { status: string }[], status: string) => {
     let count = 0;
     for (let transaction of transactions) {
       if (transaction.status === status) {
@@ -179,7 +179,7 @@ export const Main: FC = (): ReactElement => {
       }
     }
     return count;
-  }
+  };
 
   const statusMap: { [key: string]: "canceled" | "default" | "disabled" | "pending" | "selected" | "success" | null | undefined } = {
     canceled: "canceled",

@@ -18,7 +18,7 @@ type TLinks = {
   onLinkClick: (e: FormEvent, href: string) => void;
 };
 
-const Links: FC<TLinks> = ({ href, label, onLinkClick }) => {
+const Links: FC<TLinks> = ({ href, label, onLinkClick }): ReactElement => {
   return (
     <Link className={cn(ButtonCVA({ className: "font-semibold", ghost: "white", size: "ghost" }))} href={href} onClick={(e) => onLinkClick(e, href)}>
       {label}

@@ -44,7 +44,7 @@ type TFAQSection = {
   question: string;
 };
 
-const FAQSection: FC<TFAQSection> = ({ answer, question }) => {
+const FAQSection: FC<TFAQSection> = ({ answer, question }): ReactElement => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (

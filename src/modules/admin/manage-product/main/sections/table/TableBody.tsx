@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactElement } from "react";
 
 import Image from "next/image";
 
@@ -17,7 +17,7 @@ type T = {
   setSelectedData: (data: IProduct) => void;
 };
 
-export const TableBody: FC<T> = ({ checkbox, data, handleCheckbox, index, loading, setCheckbox, setLoading, setSelectedData }) => {
+export const TableBody: FC<T> = ({ checkbox, data, handleCheckbox, index, loading, setCheckbox, setLoading, setSelectedData }): ReactElement => {
   return (
     <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`}>
       <td className="p-2">

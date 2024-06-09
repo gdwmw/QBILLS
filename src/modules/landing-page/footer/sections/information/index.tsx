@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
@@ -31,7 +31,7 @@ const INFO_LINK_DATA = {
 type TSection = {
   links: {
     href: string;
-    icon?: ReactElement;
+    icon?: ReactNode;
     label: string;
   }[];
   title: string;

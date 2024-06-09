@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
@@ -21,11 +21,11 @@ const FEATURES_DATA = [
 
 type TFeatureSection = {
   description: string;
-  icon: ReactElement;
+  icon: ReactNode;
   title: string;
 };
 
-const FeatureSection: FC<TFeatureSection> = ({ description, icon, title }) => (
+const FeatureSection: FC<TFeatureSection> = ({ description, icon, title }): ReactElement => (
   <section className="w-full max-w-[335px] space-y-1">
     <i className="text-3xl text-P4">{icon}</i>
     <h2 className="text-xl font-semibold">{title}</h2>

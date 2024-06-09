@@ -39,7 +39,7 @@ export const Main: FC = (): ReactElement => {
 
   const [height, setHeight] = useState(0);
 
-  function calculateCurrentMonthlyTotal(transactions: { amount: number; date: string; status: string }[]) {
+  const calculateCurrentMonthlyTotal = (transactions: { amount: number; date: string; status: string }[]) => {
     let currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
     for (let transaction of transactions) {
@@ -51,15 +51,15 @@ export const Main: FC = (): ReactElement => {
       }
     }
     return { month: currentMonth, total: currentMonthTotal };
-  }
+  };
 
-  function sumQuantity() {
+  const sumQuantity = () => {
     return quantity.reduce((a, b) => a + b, 0);
-  }
+  };
 
-  function getRandomNumber(min: number, max: number): number {
+  const getRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  };
 
   let transactionsAfterDeduction = transaction?.map((t) => {
     let transactionAmount = t.amount;

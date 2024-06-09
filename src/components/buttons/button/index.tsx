@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/libs";
 
-const ButtonCVA = cva("flex w-fit select-none items-center justify-center gap-2", {
+export const ButtonCVA = cva("flex w-fit select-none items-center justify-center gap-2", {
   defaultVariants: {
     size: "sm",
   },
@@ -60,12 +60,10 @@ const ButtonCVA = cva("flex w-fit select-none items-center justify-center gap-2"
 
 interface I extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof ButtonCVA> {}
 
-const Button: FC<I> = ({ children, className, ghost, outline, size, solid, ...props }): ReactElement => {
+export const Button: FC<I> = ({ children, className, ghost, outline, size, solid, ...props }): ReactElement => {
   return (
     <button className={cn(ButtonCVA({ className, ghost, outline, size, solid }))} {...props}>
       {children}
     </button>
   );
 };
-
-export { Button, ButtonCVA };

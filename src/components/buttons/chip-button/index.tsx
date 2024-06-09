@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/libs";
 
-const ChipCVA = cva("flex items-center justify-center rounded-full border", {
+export const ChipCVA = cva("flex items-center justify-center rounded-full border", {
   defaultVariants: {
     size: "md",
   },
