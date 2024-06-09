@@ -6,7 +6,7 @@ import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";
 
-const INFO_LINK_DATA = {
+const INFO_LINKS_DATA = {
   Archiact: [
     { href: "#Home", label: "Home" },
     { href: "#About", label: "About" },
@@ -28,7 +28,7 @@ const INFO_LINK_DATA = {
   ],
 };
 
-type TSection = {
+type TInfoLinkSection = {
   links: {
     href: string;
     icon?: ReactNode;
@@ -37,7 +37,7 @@ type TSection = {
   title: string;
 };
 
-const Section: FC<TSection> = ({ links, title }) => (
+const InfoLinkSection: FC<TInfoLinkSection> = ({ links, title }): ReactElement => (
   <section className="space-y-2">
     <div className="bg-P1">
       <div className="h-px w-full rounded-full bg-N1 md:min-w-44" />
@@ -57,8 +57,8 @@ const Section: FC<TSection> = ({ links, title }) => (
 export const Information: FC = (): ReactElement => {
   return (
     <div className="flex flex-col gap-20 md:flex-row">
-      {Object.entries(INFO_LINK_DATA).map(([title, links], index) => (
-        <Section key={index} links={links} title={title} />
+      {Object.entries(INFO_LINKS_DATA).map(([title, links], index) => (
+        <InfoLinkSection key={index} links={links} title={title} />
       ))}
     </div>
   );
