@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 
 import { Logo } from "@/components";
 import { useGlobalStates } from "@/hooks";
-import cardBackground from "@/public/assets/images/card/membership-card.svg";
+import cardBackground from "@/public/assets/images/cards/membership-card.svg";
 import { IMembership } from "@/utils";
 
 type T = {
