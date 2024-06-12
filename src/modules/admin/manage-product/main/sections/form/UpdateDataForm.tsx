@@ -18,7 +18,7 @@ const UpdateDataForm: FC<T> = ({ data }): ReactElement => {
   const queryClient = useQueryClient();
   const { setOpenUpdateDataForm } = useGlobalStates();
   const [loading, setLoading] = useState<boolean>(false);
-  const [convertedImage, setConvertedImage] = useState<string>("");
+  const [convertedImage, setConvertedImage] = useState<string | undefined>();
 
   const {
     formState: { errors },
@@ -67,7 +67,7 @@ const UpdateDataForm: FC<T> = ({ data }): ReactElement => {
       code: data.code,
       description: data.description,
       id: data.id,
-      image: convertedImage,
+      image: convertedImage ?? data.image,
       name: data.name,
       price: data.price,
       size: data.size,
