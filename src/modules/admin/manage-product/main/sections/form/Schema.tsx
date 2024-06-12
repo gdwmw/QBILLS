@@ -6,7 +6,7 @@ export const Schema = z.object({
   description: z
     .string()
     .min(8, { message: "Please enter Description minimum 8 character." })
-    .max(200, { message: "Description maximum 200 character." }),
+    .max(1000, { message: "Description maximum 1000 character." }),
   id: z.string(),
   image: z.any(),
   name: z.string().min(3, { message: "Please enter Name minimum 3 character." }).max(32, { message: "Name maximum 32 character." }),
