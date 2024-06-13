@@ -1,7 +1,7 @@
-const URL = process.env.NEXT_PUBLIC_ADMIN_ACCOUNT;
+const API_URL = process.env.NEXT_PUBLIC_ADMIN_ACCOUNT;
 
-if (!URL) {
-  throw new Error("The URL is not defined. Please check your environment variables.");
+if (!API_URL) {
+  throw new Error("The API URL is not defined. Please check your environment variables.");
 }
 
 export interface IAdminAccount {
@@ -14,7 +14,7 @@ export interface IAdminAccount {
 
 export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(API_URL, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -34,7 +34,7 @@ export const GETAdminAccount = async (): Promise<IAdminAccount[]> => {
 
 export const POSTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(API_URL, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export const POSTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccou
 
 export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccount> => {
   try {
-    const res = await fetch(`${URL}/${data.id}`, {
+    const res = await fetch(`${API_URL}/${data.id}`, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export const PUTAdminAccount = async (data: IAdminAccount): Promise<IAdminAccoun
 
 export const DELETEAdminAccount = async (id: string): Promise<IAdminAccount> => {
   try {
-    const res = await fetch(`${URL}/${id}`, {
+    const res = await fetch(`${API_URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -98,7 +98,7 @@ export const DELETEMultipleAdminAccount = async (ids: string[]): Promise<IAdminA
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
-        const res = await fetch(`${URL}/${id}`, {
+        const res = await fetch(`${API_URL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },

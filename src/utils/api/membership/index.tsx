@@ -1,7 +1,7 @@
-const URL = process.env.NEXT_PUBLIC_MEMBERSHIP;
+const API_URL = process.env.NEXT_PUBLIC_MEMBERSHIP;
 
-if (!URL) {
-  throw new Error("The URL is not defined. Please check your environment variables.");
+if (!API_URL) {
+  throw new Error("The API URL is not defined. Please check your environment variables.");
 }
 
 export interface IMembership {
@@ -13,7 +13,7 @@ export interface IMembership {
 
 export const GETMembership = async (): Promise<IMembership[]> => {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(API_URL, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -33,7 +33,7 @@ export const GETMembership = async (): Promise<IMembership[]> => {
 
 export const POSTMembership = async (data: IMembership): Promise<IMembership> => {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(API_URL, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export const POSTMembership = async (data: IMembership): Promise<IMembership> =>
 
 export const PUTMembership = async (data: IMembership): Promise<IMembership> => {
   try {
-    const res = await fetch(`${URL}/${data.id}`, {
+    const res = await fetch(`${API_URL}/${data.id}`, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export const PUTMembership = async (data: IMembership): Promise<IMembership> => 
 
 export const DELETEMembership = async (id: string): Promise<IMembership> => {
   try {
-    const res = await fetch(`${URL}/${id}`, {
+    const res = await fetch(`${API_URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -97,7 +97,7 @@ export const DELETEMultipleMembership = async (ids: string[]): Promise<IMembersh
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
-        const res = await fetch(`${URL}/${id}`, {
+        const res = await fetch(`${API_URL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },

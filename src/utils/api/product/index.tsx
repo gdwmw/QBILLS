@@ -1,7 +1,7 @@
-const URL = process.env.NEXT_PUBLIC_PRODUCT;
+const API_URL = process.env.NEXT_PUBLIC_PRODUCT;
 
-if (!URL) {
-  throw new Error("The URL is not defined. Please check your environment variables.");
+if (!API_URL) {
+  throw new Error("The API URL is not defined. Please check your environment variables.");
 }
 
 export interface IProduct {
@@ -18,7 +18,7 @@ export interface IProduct {
 
 export const GETProduct = async (): Promise<IProduct[]> => {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(API_URL, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -38,7 +38,7 @@ export const GETProduct = async (): Promise<IProduct[]> => {
 
 export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(API_URL, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const POSTProduct = async (data: IProduct): Promise<IProduct> => {
 
 export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
   try {
-    const res = await fetch(`${URL}/${data.id}`, {
+    const res = await fetch(`${API_URL}/${data.id}`, {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export const PUTProduct = async (data: IProduct): Promise<IProduct> => {
 
 export const DELETEProduct = async (id: string): Promise<IProduct> => {
   try {
-    const res = await fetch(`${URL}/${id}`, {
+    const res = await fetch(`${API_URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -102,7 +102,7 @@ export const DELETEMultipleProduct = async (ids: string[]): Promise<IProduct[]> 
   try {
     const results = await Promise.all(
       ids.map(async (id) => {
-        const res = await fetch(`${URL}/${id}`, {
+        const res = await fetch(`${API_URL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
