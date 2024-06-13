@@ -12,27 +12,12 @@ import { MdAccountBalanceWallet } from "react-icons/md";
 import { RiSwapBoxFill } from "react-icons/ri";
 
 import { ChipButton } from "@/components";
-import { GETCashierAccount, GETMembership, GETProduct, GETTransaction } from "@/utils";
+import { GETDashboard } from "@/utils";
 
 export const Main: FC = (): ReactElement => {
-  const { data: cashier } = useQuery({
-    queryFn: GETCashierAccount,
-    queryKey: ["GETCashierAccount"],
-  });
-
-  const { data: product } = useQuery({
-    queryFn: GETProduct,
-    queryKey: ["GETProduct"],
-  });
-
-  const { data: membership } = useQuery({
-    queryFn: GETMembership,
-    queryKey: ["GETMembership"],
-  });
-
-  const { data: transaction } = useQuery({
-    queryFn: GETTransaction,
-    queryKey: ["GETTransaction"],
+  const { data } = useQuery({
+    queryFn: GETDashboard,
+    queryKey: ["GETAllData"],
   });
 
   const quantity = [50, 35, 20];
@@ -61,7 +46,7 @@ export const Main: FC = (): ReactElement => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  let transactionsAfterDeduction = transaction?.map((t) => {
+  let transactionsAfterDeduction = data?.transaction?.map((t) => {
     let transactionAmount = t.amount;
     let transactionAmountAfterDeduction = transactionAmount - transactionAmount * 0.5;
     return { ...t, amount: transactionAmountAfterDeduction };
@@ -70,7 +55,7 @@ export const Main: FC = (): ReactElement => {
   let monthlyTotal = calculateCurrentMonthlyTotal(transactionsAfterDeduction || []);
 
   const labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const data = {
+  const chartData = {
     datasets: [
       {
         backgroundColor: "rgba(190, 132, 101, 0.5)",
@@ -156,7 +141,7 @@ export const Main: FC = (): ReactElement => {
                   </div>
                   <span className="whitespace-nowrap font-semibold text-N3">Total Product</span>
                   <br />
-                  <span className="text-2xl font-semibold">{product?.length}</span>
+                  <span className="text-2xl font-semibold">{data?.product?.length}</span>
                 </div>
               </section>
 
@@ -167,7 +152,7 @@ export const Main: FC = (): ReactElement => {
                   </div>
                   <span className="whitespace-nowrap font-semibold text-N3">Total Cashier</span>
                   <br />
-                  <span className="text-2xl font-semibold">{cashier?.length}</span>
+                  <span className="text-2xl font-semibold">{data?.cashier?.length}</span>
                 </div>
               </section>
             </div>
@@ -176,7 +161,7 @@ export const Main: FC = (): ReactElement => {
           <section>
             <h2 className="mb-3 whitespace-nowrap text-xl font-semibold">Income Flow</h2>
             <div className="rounded-lg border p-10">
-              <Line data={data} options={options} />
+              <Line data={chartData} options={options} />
             </div>
           </section>
         </div>
@@ -194,7 +179,7 @@ export const Main: FC = (): ReactElement => {
                   </tr>
                 </thead>
                 <tbody>
-                  {transaction
+                  {data?.transaction
                     ?.sort((a, b) => {
                       const dateDifference = new Date(b.date).getTime() - new Date(a.date).getTime();
                       if (dateDifference !== 0) return dateDifference;
@@ -251,7 +236,7 @@ export const Main: FC = (): ReactElement => {
                 </tr>
               </thead>
               <tbody>
-                {transaction
+                {data?.transaction
                   ?.sort((a, b) => {
                     const dateDifference = new Date(b.date).getTime() - new Date(a.date).getTime();
                     if (dateDifference !== 0) return dateDifference;
@@ -302,7 +287,7 @@ export const Main: FC = (): ReactElement => {
                   </tr>
                 </thead>
                 <tbody>
-                  {product?.slice(0, 3).map((product, index) => (
+                  {data?.product?.slice(0, 3).map((product, index) => (
                     <tr className={`text-center ${index % 2 === 0 ? "bg-N1" : "bg-N2.2"}`} key={product.id}>
                       <td className="p-2">
                         <span
@@ -386,7 +371,7 @@ export const Main: FC = (): ReactElement => {
                   </tr>
                 </thead>
                 <tbody>
-                  {membership
+                  {data?.membership
                     ?.sort((a, b) => b.point - a.point)
                     .slice(0, 3)
                     .map((member, index) => (
@@ -422,7 +407,7 @@ export const Main: FC = (): ReactElement => {
                 </tr>
               </thead>
               <tbody>
-                {membership
+                {data?.membership
                   ?.sort((a, b) => b.point - a.point)
                   .slice(0, 3)
                   .map((member, index) => (
