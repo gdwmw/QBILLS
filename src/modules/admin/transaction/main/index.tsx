@@ -277,7 +277,7 @@ export const Main: FC = (): ReactElement => {
           </div>
         </section>
 
-        <section className="grid w-full grid-rows-2 items-center gap-3 overflow-y-auto md:flex">
+        <section className="grid w-full grid-rows-2 items-center gap-5 overflow-y-auto md:flex">
           <div className="w-full">
             <Input label="Search Transaction" type="text" {...register("search")} icon={<FaSearch />} id="search-transaction"></Input>
           </div>

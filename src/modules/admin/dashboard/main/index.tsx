@@ -48,7 +48,7 @@ export const Main: FC = (): ReactElement => {
 
   let transactionsAfterDeduction = data?.transaction?.map((t) => {
     let transactionAmount = t.amount;
-    let transactionAmountAfterDeduction = transactionAmount - transactionAmount * 0.5;
+    let transactionAmountAfterDeduction = transactionAmount - transactionAmount * 0.8;
     return { ...t, amount: transactionAmountAfterDeduction };
   });
 
