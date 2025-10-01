@@ -1,8 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_CASHIER_ACCOUNT;
-
-if (!API_URL) {
-  throw new Error("The API URL is not defined. Please check your environment variables.");
-}
+import { deleteApi, getApi, postApi, putApi } from "../base";
 
 export interface ICashierAccount {
   id: string;
@@ -12,110 +8,51 @@ export interface ICashierAccount {
   username: string;
 }
 
+const label = "Cashier Account";
+
 export const GETCashierAccount = async (): Promise<ICashierAccount[]> => {
-  try {
-    const res = await fetch(API_URL, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: Cashier Account with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await getApi<ICashierAccount[]>({
+    endpoint: "/cashier",
+    label: label,
+  });
+  return response;
 };
 
 export const POSTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
-  try {
-    const res = await fetch(API_URL, {
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to post: Cashier Account with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await postApi<ICashierAccount>({
+    data: data,
+    endpoint: "/cashier",
+    label: label,
+  });
+  return response;
 };
 
 export const PUTCashierAccount = async (data: ICashierAccount): Promise<ICashierAccount> => {
-  try {
-    const res = await fetch(`${API_URL}/${data.id}`, {
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "PUT",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to put: Cashier Account with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await putApi<ICashierAccount>({
+    data: data,
+    endpoint: `/cashier/${data.id}`,
+    label: label,
+  });
+  return response;
 };
 
 export const DELETECashierAccount = async (id: string): Promise<ICashierAccount> => {
-  try {
-    const res = await fetch(`${API_URL}/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "DELETE",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to delete: Cashier Account with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await deleteApi<ICashierAccount>({
+    endpoint: `/cashier/${id}`,
+    label: label,
+  });
+  return response;
 };
 
 export const DELETEMultipleCashierAccount = async (ids: string[]): Promise<ICashierAccount[]> => {
-  try {
-    const results = await Promise.all(
-      ids.map(async (id) => {
-        const res = await fetch(`${API_URL}/${id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          method: "DELETE",
-        });
-
-        if (!res.ok) {
-          throw new Error(`Failed to delete: Cashier Account with id ${id} and status ${res.status}`);
-        }
-
-        return await res.json();
-      }),
-    );
-
-    return results;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const results = await Promise.all(
+    ids.map(async (id) => {
+      const response = await deleteApi<ICashierAccount>({
+        endpoint: `/cashier/${id}`,
+        label: label,
+      });
+      return response;
+    }),
+  );
+  return results;
 };

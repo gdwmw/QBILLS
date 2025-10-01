@@ -1,6 +1,5 @@
-import { FC, FormEventHandler, ReactElement, useState } from "react";
-
 import Image from "next/image";
+import { FC, FormEventHandler, ReactElement, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { Button, Input, Modal } from "@/components";

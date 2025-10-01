@@ -1,8 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_TRANSACTION;
-
-if (!API_URL) {
-  throw new Error("The API URL is not defined. Please check your environment variables.");
-}
+import { deleteApi, getApi, postApi, putApi } from "../base";
 
 export interface ITransaction {
   amount: number;
@@ -16,110 +12,51 @@ export interface ITransaction {
   time: string;
 }
 
+const label = "Transaction";
+
 export const GETTransaction = async (): Promise<ITransaction[]> => {
-  try {
-    const res = await fetch(API_URL, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: Transaction with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await getApi<ITransaction[]>({
+    endpoint: "/transaction",
+    label: label,
+  });
+  return response;
 };
 
 export const POSTTransaction = async (data: ITransaction): Promise<ITransaction> => {
-  try {
-    const res = await fetch(API_URL, {
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to post: Transaction with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await postApi<ITransaction>({
+    data: data,
+    endpoint: "/transaction",
+    label: label,
+  });
+  return response;
 };
 
 export const PUTTransaction = async (data: ITransaction): Promise<ITransaction> => {
-  try {
-    const res = await fetch(`${API_URL}/${data.id}`, {
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "PUT",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to put: Transaction with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await putApi<ITransaction>({
+    data: data,
+    endpoint: `/transaction/${data.id}`,
+    label: label,
+  });
+  return response;
 };
 
 export const DELETETransaction = async (id: string): Promise<ITransaction> => {
-  try {
-    const res = await fetch(`${API_URL}/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "DELETE",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to delete: Transaction with status ${res.status}`);
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await deleteApi<ITransaction>({
+    endpoint: `/transaction/${id}`,
+    label: label,
+  });
+  return response;
 };
 
 export const DELETEMultipleTransaction = async (ids: string[]): Promise<ITransaction[]> => {
-  try {
-    const results = await Promise.all(
-      ids.map(async (id) => {
-        const res = await fetch(`${API_URL}/${id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          method: "DELETE",
-        });
-
-        if (!res.ok) {
-          throw new Error(`Failed to delete: Transaction with id ${id} and status ${res.status}`);
-        }
-
-        return await res.json();
-      }),
-    );
-
-    return results;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const results = await Promise.all(
+    ids.map(async (id) => {
+      const response = await deleteApi<ITransaction>({
+        endpoint: `/transaction/${id}`,
+        label: label,
+      });
+      return response;
+    }),
+  );
+  return results;
 };

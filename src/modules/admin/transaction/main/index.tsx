@@ -1,11 +1,10 @@
 "use client";
 
-import { FC, ReactElement, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaCheckCircle, FaClock, FaSearch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdAccountBalanceWallet, MdDelete, MdEdit } from "react-icons/md";
@@ -158,11 +157,11 @@ export const Main: FC = (): ReactElement => {
   const totalPage = searchResult && Math.ceil(searchResult.length / perPage);
 
   const calculateCurrentMonthlyTotal = (transactions: { amount: number; date: string; status: string }[]) => {
-    let currentMonth = new Date().toISOString().slice(0, 7);
+    const currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
-    for (let transaction of transactions) {
+    for (const transaction of transactions) {
       if (transaction.status === "success") {
-        let month = transaction.date.slice(0, 7);
+        const month = transaction.date.slice(0, 7);
         if (month === currentMonth) {
           currentMonthTotal += transaction.amount;
         }
@@ -173,7 +172,7 @@ export const Main: FC = (): ReactElement => {
 
   const calculateStatus = (transactions: { status: string }[], status: string) => {
     let count = 0;
-    for (let transaction of transactions) {
+    for (const transaction of transactions) {
       if (transaction.status === status) {
         count++;
       }

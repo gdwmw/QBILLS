@@ -1,8 +1,7 @@
 "use client";
 
-import { FC, ReactElement, useEffect, useState } from "react";
-
 import { usePathname } from "next/navigation";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { IoIosNotifications } from "react-icons/io";
 
 import { IconButton } from "@/components";

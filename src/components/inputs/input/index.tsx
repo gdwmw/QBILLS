@@ -1,6 +1,5 @@
-import { FC, forwardRef, InputHTMLAttributes, ReactElement, ReactNode } from "react";
-
 import { cva, type VariantProps } from "class-variance-authority";
+import { FC, forwardRef, InputHTMLAttributes, ReactElement, ReactNode } from "react";
 
 import { cn } from "@/libs";
 

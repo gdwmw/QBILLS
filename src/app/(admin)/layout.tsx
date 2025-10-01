@@ -1,8 +1,7 @@
 import type { Viewport } from "next";
 
-import { FC, ReactElement, ReactNode } from "react";
-
 import { getServerSession } from "next-auth/next";
+import { FC, ReactElement, ReactNode } from "react";
 
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { AdminNavbar, Sidebar } from "@/components";

@@ -1,6 +1,5 @@
-import { FC, FormEventHandler, ReactElement } from "react";
-
 import Image from "next/image";
+import { FC, FormEventHandler, ReactElement } from "react";
 
 import { Button, Input, Modal } from "@/components";
 import loadingAnimation from "@/public/assets/animations/loadings/gray-n4.svg";

@@ -1,7 +1,6 @@
-import { FC, ReactElement } from "react";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import { FC, ReactElement } from "react";
 import { FaSearch } from "react-icons/fa";
 
 import { Button, Input } from "@/components";

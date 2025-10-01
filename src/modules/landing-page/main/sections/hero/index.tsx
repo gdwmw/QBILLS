@@ -1,6 +1,5 @@
-import { FC, ReactElement } from "react";
-
 import Image from "next/image";
+import { FC, ReactElement } from "react";
 
 import Mockup1 from "@/public/assets/images/landing-page/hero-section/mockup.webp";
 import logoQBILLS1 from "@/public/assets/images/logos/brown/logo-2.webp";

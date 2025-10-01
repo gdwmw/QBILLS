@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 
-import { FC, ReactElement, ReactNode } from "react";
-
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Open_Sans } from "next/font/google";
+import { FC, ReactElement, ReactNode } from "react";
 
 import { NextAuthProvider, ReactQueryProvider } from "@/libs";
-
 import "@/styles/globals.css";
 
 const openSans = Open_Sans({ subsets: ["latin"] });

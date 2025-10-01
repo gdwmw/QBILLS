@@ -1,8 +1,7 @@
 "use client";
 
-import { FC, ReactElement, ReactNode } from "react";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { FC, ReactElement, ReactNode } from "react";
 
 type T = {
   children: ReactNode;

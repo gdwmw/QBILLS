@@ -1,7 +1,6 @@
-import { FC, ReactElement } from "react";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import { FC, ReactElement } from "react";
 import { FaAddressCard } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
 

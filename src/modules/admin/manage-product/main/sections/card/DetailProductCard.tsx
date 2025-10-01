@@ -1,6 +1,5 @@
-import { FC, ReactElement } from "react";
-
 import Image from "next/image";
+import { FC, ReactElement } from "react";
 import { FaCoffee } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 

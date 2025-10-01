@@ -1,9 +1,8 @@
-import { FC, ReactElement, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import { FC, ReactElement, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { Button, Input } from "@/components";

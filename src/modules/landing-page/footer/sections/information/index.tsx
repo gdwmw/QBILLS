@@ -1,6 +1,5 @@
-import { FC, ReactElement, ReactNode } from "react";
-
 import Link from "next/link";
+import { FC, ReactElement, ReactNode } from "react";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 import { ButtonCVA } from "@/components";

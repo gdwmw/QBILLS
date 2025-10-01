@@ -1,6 +1,5 @@
-import { FC, ReactElement } from "react";
-
 import Image from "next/image";
+import { FC, ReactElement } from "react";
 
 import logoQBILLS4 from "@/public/assets/images/logos/brown/logo-2.webp";
 import logoQBILLS5 from "@/public/assets/images/logos/brown/logo-4.webp";

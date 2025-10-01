@@ -1,5 +1,4 @@
 import { FC, ReactElement } from "react";
-
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 type T = {

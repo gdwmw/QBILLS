@@ -1,10 +1,9 @@
 "use client";
 
-import { FC, ReactElement, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-
 import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Pagination, PaginationLogic } from "@/components";
 import { useGlobalStates } from "@/hooks";

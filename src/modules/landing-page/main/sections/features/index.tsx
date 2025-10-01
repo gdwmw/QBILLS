@@ -1,6 +1,5 @@
-import { FC, ReactElement } from "react";
-
 import Image, { StaticImageData } from "next/image";
+import { FC, ReactElement } from "react";
 
 import Mockup1 from "@/public/assets/images/landing-page/our-feature/mockup-1.webp";
 import Mockup2 from "@/public/assets/images/landing-page/our-feature/mockup-2.webp";

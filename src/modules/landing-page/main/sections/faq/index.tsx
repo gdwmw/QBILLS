@@ -1,7 +1,6 @@
 "use client";
 
 import { FC, ReactElement, useState } from "react";
-
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { IconButton } from "@/components";

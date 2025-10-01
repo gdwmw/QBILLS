@@ -1,10 +1,9 @@
 "use client";
 
-import { FC, ReactElement, ReactNode, useState } from "react";
-
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FC, ReactElement, ReactNode, useState } from "react";
 import { FaAddressCard, FaChevronLeft, FaChevronRight, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked, FaMoneyBillTransfer } from "react-icons/fa6";
 import { IoDocumentText } from "react-icons/io5";

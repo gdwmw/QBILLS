@@ -1,7 +1,6 @@
-import { FC, ReactElement, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
+import { FC, ReactElement, useState } from "react";
 
 import { ButtonCVA } from "@/components";
 import { cn } from "@/libs";

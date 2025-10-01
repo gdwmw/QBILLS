@@ -1,7 +1,6 @@
-import { FC, ReactElement } from "react";
-
 import { Metadata, Viewport } from "next";
 import { getServerSession } from "next-auth/next";
+import { FC, ReactElement } from "react";
 
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { Footer, Header, Main } from "@/modules/landing-page";

@@ -1,11 +1,10 @@
 "use client";
 
-import { FC, ReactElement, useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-
 import { useQuery } from "@tanstack/react-query";
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from "chart.js";
 import Image from "next/image";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 import { FaUserCircle } from "react-icons/fa";
 import { FaBoxesStacked } from "react-icons/fa6";
 import { MdAccountBalanceWallet } from "react-icons/md";
@@ -25,11 +24,11 @@ export const Main: FC = (): ReactElement => {
   const [height, setHeight] = useState(0);
 
   const calculateCurrentMonthlyTotal = (transactions: { amount: number; date: string; status: string }[]) => {
-    let currentMonth = new Date().toISOString().slice(0, 7);
+    const currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
-    for (let transaction of transactions) {
+    for (const transaction of transactions) {
       if (transaction.status === "success") {
-        let month = transaction.date.slice(0, 7);
+        const month = transaction.date.slice(0, 7);
         if (month === currentMonth) {
           currentMonthTotal += transaction.amount;
         }
@@ -46,13 +45,13 @@ export const Main: FC = (): ReactElement => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  let transactionsAfterDeduction = data?.transaction?.map((t) => {
-    let transactionAmount = t.amount;
-    let transactionAmountAfterDeduction = transactionAmount - transactionAmount * 0.8;
+  const transactionsAfterDeduction = data?.transaction?.map((t) => {
+    const transactionAmount = t.amount;
+    const transactionAmountAfterDeduction = transactionAmount - transactionAmount * 0.8;
     return { ...t, amount: transactionAmountAfterDeduction };
   });
 
-  let monthlyTotal = calculateCurrentMonthlyTotal(transactionsAfterDeduction || []);
+  const monthlyTotal = calculateCurrentMonthlyTotal(transactionsAfterDeduction || []);
 
   const labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const chartData = {
@@ -324,10 +323,10 @@ export const Main: FC = (): ReactElement => {
                       <td className="whitespace-nowrap p-2">
                         {(() => {
                           switch (product.size) {
-                            case "small":
-                              return "Small";
                             case "medium":
                               return "Medium";
+                            case "small":
+                              return "Small";
                             default:
                               return "Large";
                           }

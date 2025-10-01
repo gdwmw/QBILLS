@@ -1,6 +1,5 @@
-import { FC, FormEvent, ReactElement, useEffect, useRef, useState } from "react";
-
 import Link from "next/link";
+import { FC, FormEvent, ReactElement, useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import { ButtonCVA } from "@/components";

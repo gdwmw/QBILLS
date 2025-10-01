@@ -1,6 +1,5 @@
-import { FC, ReactElement } from "react";
-
 import Image from "next/image";
+import { FC, ReactElement } from "react";
 
 import { IProduct } from "@/utils";
 
@@ -55,10 +54,10 @@ export const TableBody: FC<T> = ({ checkbox, data, handleCheckbox, index, loadin
       <td className="whitespace-nowrap p-2">
         {(() => {
           switch (data.size) {
-            case "small":
-              return "Small";
             case "medium":
               return "Medium";
+            case "small":
+              return "Small";
             default:
               return "Large";
           }

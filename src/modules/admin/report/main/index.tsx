@@ -1,11 +1,10 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from "chart.js";
 import { FC, ReactElement, useEffect, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import { useForm } from "react-hook-form";
-
-import { useQuery } from "@tanstack/react-query";
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from "chart.js";
 import { FaCheckCircle, FaClock, FaSearch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdAccountBalanceWallet } from "react-icons/md";
@@ -38,11 +37,11 @@ export const Main: FC = (): ReactElement => {
   });
 
   const calculateCurrentMonthlyTotal = (transactions: { amount: number; date: string; status: string }[]) => {
-    let currentMonth = new Date().toISOString().slice(0, 7);
+    const currentMonth = new Date().toISOString().slice(0, 7);
     let currentMonthTotal = 0;
-    for (let transaction of transactions) {
+    for (const transaction of transactions) {
       if (transaction.status === "success") {
-        let month = transaction.date.slice(0, 7);
+        const month = transaction.date.slice(0, 7);
         if (month === currentMonth) {
           currentMonthTotal += transaction.amount;
         }
@@ -53,7 +52,7 @@ export const Main: FC = (): ReactElement => {
 
   const calculateStatus = (transactions: { status: string }[], status: string) => {
     let count = 0;
-    for (let transaction of transactions) {
+    for (const transaction of transactions) {
       if (transaction.status === status) {
         count++;
       }

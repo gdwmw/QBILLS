@@ -1,9 +1,8 @@
-import { FC, ReactElement, useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import { FC, ReactElement, useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { IoTime } from "react-icons/io5";
 import { z } from "zod";
 
@@ -72,7 +71,7 @@ const AddData: FC = (): ReactElement => {
 
   useEffect(() => {
     const realTimeInterval = setInterval(() => {
-      let date = new Date();
+      const date = new Date();
       setRealTime(date.toLocaleTimeString());
     }, 1000);
     return () => clearInterval(realTimeInterval);

@@ -1,7 +1,6 @@
-import { FC, ReactElement } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
+import { FC, ReactElement } from "react";
 
 import AppStore from "@/public/assets/images/landing-page/get-app/appstore.webp";
 import GooglePlay from "@/public/assets/images/landing-page/get-app/googleplay.webp";

@@ -1,7 +1,6 @@
-import { FC, ReactElement } from "react";
-
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { Metadata } from "next";
+import { FC, ReactElement } from "react";
 
 import { Main } from "@/modules/admin/manage-admin";
 import { GETAdminAccount } from "@/utils";
