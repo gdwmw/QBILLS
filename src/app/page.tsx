@@ -11,8 +11,44 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  description:
-    "Elevate your sales strategy and delight customers with our state-of-the-art POS application, offering a seamless and user-friendly interface for enhanced transactions. QBILLS is here to be a solution for your business, features are available to make your work easier, use it now.",
+  description: "Boost Your Sales with Our Point of Sales App",
+  keywords: ["qbills"],
+  openGraph: {
+    description: "Boost Your Sales with Our Point of Sales App",
+    images: [
+      {
+        alt: "QBILLS",
+        height: 800,
+        url: "https://qbills.zettara.com/assets/images/logos/qbills.png", // Must be an absolute URL and PNG format
+        width: 800,
+      },
+    ],
+    locale: "en_US",
+    siteName: "QBILLS",
+    title: "QBILLS | Landing Page",
+    type: "website",
+    url: "https://qbills.zettara.com/",
+  },
+  robots: {
+    follow: true,
+    googleBot: {
+      follow: true,
+      index: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+      noimageindex: false,
+    },
+    index: true,
+    nocache: false,
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@gdwmw",
+    description: "Boost Your Sales with Our Point of Sales App",
+    images: ["https://qbills.zettara.com/assets/images/logos/qbills.png"], // Must be an absolute URL and PNG format
+    title: "QBILLS | Landing Page",
+  },
 };
 
 const LandingPage: FC = async (): Promise<ReactElement> => {
