@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbo -p 3003",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3003",
     "prettier": "bunx prettier --write \"src/**/*.{js,ts,jsx,tsx}\"",
     "prettier: all": "bunx prettier --write \"./**/*\"",
     "lint": "next lint",
