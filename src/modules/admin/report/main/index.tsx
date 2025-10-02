@@ -120,7 +120,7 @@ export const Main: FC = (): ReactElement => {
         data: Object.keys(dailyRevenue)
           .sort((a, b) => a.localeCompare(b))
           .map((date) => dailyRevenue[date]),
-        label: "Pendapatan Harian",
+        label: "Line Chart",
       },
     ],
     labels: Object.keys(dailyRevenue).sort((a, b) => a.localeCompare(b)),
@@ -133,7 +133,7 @@ export const Main: FC = (): ReactElement => {
         borderColor: ["rgb(34, 197, 94)", "rgb(251, 191, 36)", "rgb(239, 68, 68)"],
         borderWidth: 2,
         data: [successTransactions, pendingTransactions, canceledTransactions],
-        label: "Jumlah Transaksi",
+        label: "Bar Chart",
       },
     ],
     labels: ["Success", "Pending", "Canceled"],
@@ -215,12 +215,12 @@ export const Main: FC = (): ReactElement => {
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <div className="rounded-lg border p-6">
-          <h3 className="mb-4 text-lg font-semibold">Pendapatan Harian</h3>
+          <h3 className="mb-4 text-lg font-semibold">Daily Income</h3>
           <Line data={chartData} options={chartOptions} />
         </div>
 
         <div className="rounded-lg border p-6">
-          <h3 className="mb-4 text-lg font-semibold">Status Transaksi</h3>
+          <h3 className="mb-4 text-lg font-semibold">Transaction Status</h3>
           <Bar data={statusChartData} options={chartOptions} />
         </div>
       </div>
